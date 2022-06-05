@@ -10,6 +10,12 @@ const formatColumnNames = (name) => {
       return "Number of Spares";
     case "strikes_percentage":
       return "Stikes %";
+    case "num_baker_game":
+      return "Baker Game";
+    case "num_team_game":
+      return "Team Game";
+    case "num_baker_match_play":
+      return "Baker Match Play Game";
     default:
       return name;
   }
