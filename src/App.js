@@ -7,6 +7,7 @@ import { Container } from "react-bootstrap";
 
 import SummaryData from "./widgets/summary-data";
 import IndividualData from "./widgets/individual-data";
+import GameData from "./widgets/game-data";
 
 const SUMMARY = "SUMMARY";
 const INDIVIDUAL = "INDIVIDUAL";
@@ -27,7 +28,7 @@ function App() {
               <Nav.Link eventKey={INDIVIDUAL}>By Individual</Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link eventKey={GAMETYPE}>By Game Type</Nav.Link>
+              <Nav.Link eventKey={GAMETYPE}>By Game No</Nav.Link>
             </Nav.Item>
           </Nav>
 
@@ -39,7 +40,7 @@ function App() {
               <IndividualData />
             </Tab.Pane>
             <Tab.Pane eventKey={GAMETYPE}>
-              <h3>Coming Soon</h3>
+              <GameData />
             </Tab.Pane>
           </Tab.Content>
         </Tab.Container>

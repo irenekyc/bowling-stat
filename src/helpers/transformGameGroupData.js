@@ -1,14 +1,14 @@
-const transformIndividualData = (summaryData) => {
+const transformGameGroupData = (summaryData) => {
   let data = [];
   const columns = [
+    {
+      Header: "Game No",
+      accessor: "Match Group",
+    },
     {
       Header: "Bowler",
       accessor: "Bowler",
       Cell: ({ value }) => <strong>{value}</strong>,
-    },
-    {
-      Header: "Game No",
-      accessor: "Match Group",
       Aggregated: () => `All`,
     },
     {
@@ -61,6 +61,7 @@ const transformIndividualData = (summaryData) => {
 
   Object.entries(summaryData).forEach(([_, entries]) => {
     let entry = { ...entries };
+    console.log(entries);
     if (
       entry.strikes_percentage &&
       typeof entry.strikes_percentage === "string"
@@ -71,11 +72,10 @@ const transformIndividualData = (summaryData) => {
     }
     data.push(entry);
   });
-
   return {
     columns,
     data,
   };
 };
 
-export default transformIndividualData;
+export default transformGameGroupData;
