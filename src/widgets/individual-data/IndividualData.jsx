@@ -10,19 +10,17 @@ import transformBakerMatchPlayData from "../../helpers/transformBakerMatchPlayDa
 const IndividualData = () => {
   return (
     <div>
-      <h2>Individual Data</h2>
+      <h2>Group by Individual</h2>
       <StatTable
         tableData={transformIndividualData(bakerIndiviualGameData)}
         group="Bowler"
         title="Baker"
       />
-      <h3>Team Game</h3>
       <StatTable
         tableData={transformTeamData(teamData)}
         group="Bowler"
         title="Team"
       />
-      <h3>Baker Match play</h3>
       <StatTable
         tableData={transformBakerMatchPlayData(bakerMatchPlayData)}
         group="Bowler"

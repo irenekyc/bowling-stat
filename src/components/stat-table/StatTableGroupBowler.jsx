@@ -53,7 +53,10 @@ const StatTableGroupBowler = ({ title, tableData }) => {
                             {...row.getToggleRowExpandedProps()}
                             style={{ whiteSpace: "nowrap" }}
                           >
-                            {cell.render("Cell")} {row.isExpanded ? "-" : "+"}
+                            {cell.render("Cell")}{" "}
+                            <span style={{ cursor: "pointer" }}>
+                              {row.isExpanded ? "-" : "+"}
+                            </span>
                           </span>
                         </>
                       ) : cell.isAggregated ? (

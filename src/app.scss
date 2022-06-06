@@ -1,2 +1,15 @@
 @import "./styles/vendors.scss";
 @import "./styles/variables.scss";
+
+p {
+  margin: 0;
+}
+
+.bd-main {
+  &__tabs-div {
+    margin-left: -1rem;
+    a {
+      cursor: pointer;
+    }
+  }
+}

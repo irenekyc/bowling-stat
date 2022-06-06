@@ -10,7 +10,7 @@ import bakerMatchPlayData from "../../data/baker-match-play.json";
 const GameData = () => {
   return (
     <div>
-      <h2>Game</h2>
+      <h2>Group by Game</h2>
       <StatTable
         title="Baker"
         tableData={transformGameGroupData(bakerMatchData)}

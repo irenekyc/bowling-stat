@@ -1,4 +1,5 @@
 import formatColumnNames from "../../helpers/formatColumnNames";
+import "./meta-data.scss";
 
 const MetaData = ({ metaData }) => {
   const {
@@ -8,24 +9,31 @@ const MetaData = ({ metaData }) => {
     end_date,
     oil_pattern,
     bowlers,
-    ...num_of_games
   } = metaData;
   return (
-    <div>
+    <div className="bd-event-meta">
       <h1>{team}</h1>
-      <p>Venue: {location}</p>
-      <p>
-        Date: {start_date} - {end_date}
-      </p>
-      <p>
-        {Object.entries(num_of_games).map(([key, value]) => (
-          <p key={key + value}>
+      <div className="bd-event-meta__details-row">
+        <span>
+          <strong>Venue:</strong> {location}
+        </span>{" "}
+        <span>
+          <strong>Date: </strong>
+          {start_date} - {end_date}
+        </span>
+      </div>
+
+      {/* <p> */}
+      {/* {Object.entries(num_of_games).map(([key, value]) => (
+          <span key={key + value}>
             {formatColumnNames(key)} : {value}
-          </p>
+          </span>
         ))}
-      </p>
-      <p>Oil Pattern: {oil_pattern}</p>
-      <p>Bowlers</p>
+      </p> */}
+      <span style={{ display: "none" }}>Oil Pattern: {oil_pattern}</span>
+      <span>
+        <strong>Bowlers</strong>
+      </span>
       <ul>
         {bowlers.map((bowler) => (
           <li key={bowler}>{bowler}</li>
