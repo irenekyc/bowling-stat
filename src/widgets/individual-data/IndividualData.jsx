@@ -3,7 +3,9 @@ import transformIndividualData from "../../helpers/transformIndividualData";
 import bakerIndiviualGameData from "../../data/baker-matches-individual-individual-first.json";
 import StatTable from "../../components/stat-table";
 import teamData from "../../data/team.json";
+import bakerMatchPlayData from "../../data/baker-match-play.json";
 import transformTeamData from "../../helpers/transformTeamData";
+import transformBakerMatchPlayData from "../../helpers/transformBakerMatchPlayData";
 
 const IndividualData = () => {
   return (
@@ -21,7 +23,11 @@ const IndividualData = () => {
         title="Team"
       />
       <h3>Baker Match play</h3>
-      <p>Coming Soon</p>
+      <StatTable
+        tableData={transformBakerMatchPlayData(bakerMatchPlayData)}
+        group="Bowler"
+        title="Baker Match Play"
+      />
     </div>
   );
 };

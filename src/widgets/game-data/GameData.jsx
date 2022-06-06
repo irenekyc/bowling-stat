@@ -4,6 +4,9 @@ import transformGameGroupData from "../../helpers/transformGameGroupData";
 import bakerMatchData from "../../data/baker-matches-individual-match-first.json";
 import transformTeamData from "../../helpers/transformTeamData";
 import teamData from "../../data/team.json";
+import transformBakerMatchPlayData from "../../helpers/transformBakerMatchPlayData";
+import bakerMatchPlayData from "../../data/baker-match-play.json";
+
 const GameData = () => {
   return (
     <div>
@@ -18,8 +21,11 @@ const GameData = () => {
         tableData={transformTeamData(teamData)}
         group="Game"
       />
-      <h3>Baker Match Play</h3>
-      <p>Coming soon</p>
+      <StatTable
+        tableData={transformBakerMatchPlayData(bakerMatchPlayData)}
+        group="Game"
+        title="Baker Match Play"
+      />
     </div>
   );
 };
