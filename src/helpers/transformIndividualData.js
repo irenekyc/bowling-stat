@@ -4,7 +4,9 @@ const transformIndividualData = (summaryData) => {
     {
       Header: "Bowler",
       accessor: "Bowler",
-      Cell: ({ value }) => <strong>{value}</strong>,
+      Cell: ({ value }) => (
+        <strong style={{ whiteSpace: "nowrap" }}>{value}</strong>
+      ),
     },
     {
       Header: "Game No",

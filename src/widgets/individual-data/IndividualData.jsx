@@ -2,6 +2,8 @@ import transformIndividualData from "../../helpers/transformIndividualData";
 
 import bakerIndiviualGameData from "../../data/baker-matches-individual-individual-first.json";
 import StatTable from "../../components/stat-table";
+import teamData from "../../data/team.json";
+import transformTeamData from "../../helpers/transformTeamData";
 
 const IndividualData = () => {
   return (
@@ -13,7 +15,11 @@ const IndividualData = () => {
         title="Baker"
       />
       <h3>Team Game</h3>
-      <p>Coming Soon</p>
+      <StatTable
+        tableData={transformTeamData(teamData)}
+        group="Bowler"
+        title="Team"
+      />
       <h3>Baker Match play</h3>
       <p>Coming Soon</p>
     </div>

@@ -22,7 +22,7 @@ const StatTableGroupBowler = ({ title, tableData }) => {
   );
 
   useEffect(() => {
-    setGroupBy(["Match Group"]);
+    setGroupBy(["Match Group", "Match No"]);
   }, [setGroupBy]);
 
   return (
