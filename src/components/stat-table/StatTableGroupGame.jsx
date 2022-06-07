@@ -10,6 +10,7 @@ const StatTableGroupBowler = ({ title, tableData }) => {
     getTableBodyProps,
     headerGroups,
     rows,
+    state,
     setGroupBy,
     prepareRow,
   } = useTable(
@@ -22,8 +23,10 @@ const StatTableGroupBowler = ({ title, tableData }) => {
   );
 
   useEffect(() => {
-    setGroupBy(["Match Group", "Match No"]);
+    setGroupBy(["Match Group"]);
   }, [setGroupBy]);
+
+  console.log(state);
 
   return (
     <div className="bd-table">

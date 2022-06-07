@@ -1,4 +1,4 @@
-const transformTeamData = (summaryData) => {
+const transformBakerData = (summaryData) => {
   let data = [];
 
   Object.entries(summaryData).forEach(([_, entries]) => {
@@ -11,43 +11,29 @@ const transformTeamData = (summaryData) => {
         entry.strikes_percentage.replace("%", "")
       );
     }
-    if (
-      entry.double_percentage &&
-      typeof entry.double_percentage === "string"
-    ) {
-      entry.double_percentage = parseFloat(
-        entry.double_percentage.replace("%", "")
-      );
-    }
     data.push(entry);
   });
 
   return data;
 };
 
-export const teamColumns = [
+export const bakerColumns = [
   {
-    Header: "Game No",
+    Header: "Baker Game",
     accessor: "Match Group",
     Aggregated: () => `All`,
   },
   {
     Header: "Bowler",
     accessor: "Bowler",
-    Aggregated: () => `All`,
     Cell: ({ value }) => <strong>{value}</strong>,
+    Aggregated: () => `All`,
   },
-
   {
     Header: "First Ball Average",
     accessor: "first_ball_ave",
     aggregate: "average",
     Cell: ({ value }) => value.toFixed(2),
-  },
-  {
-    Header: "First Ball Attempts",
-    accessor: "first_balls",
-    aggregate: "sum",
   },
   {
     Header: "Strikes",
@@ -62,32 +48,33 @@ export const teamColumns = [
     Cell: ({ value }) => `${value.toFixed(1)}%`,
   },
   {
+    Header: "Strikes/Game",
+    accessor: "strike_per_game",
+    aggregate: "average",
+    Cell: ({ value }) => value.toFixed(2),
+  },
+  {
     Header: "Spares",
     accessor: "num_spares",
     aggregate: "sum",
   },
   {
-    Header: "Doubles",
-    accessor: "num_doubles",
-    aggregate: "sum",
-  },
-  {
-    Header: "Doubles",
-    accessor: "num_double_attempt",
-    aggregate: "sum",
-  },
-  {
-    Header: "Double Percentage",
-    accessor: "double_percentage",
+    Header: "Spares/Game",
+    accessor: "spare_per_game",
     aggregate: "average",
-    Aggregated: ({ value }) => `${value.toFixed(1)}%`,
-    Cell: ({ value }) => `${value.toFixed(1)}%`,
+    Cell: ({ value }) => value.toFixed(2),
   },
   {
     Header: "Opens",
     accessor: "num_opens",
     aggregate: "sum",
   },
+  {
+    Header: "Opens/Game",
+    accessor: "open_per_game",
+    aggregate: "average",
+    Cell: ({ value }) => value.toFixed(2),
+  },
 ];
 
-export default transformTeamData;
+export default transformBakerData;

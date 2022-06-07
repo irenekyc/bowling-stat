@@ -1,31 +1,49 @@
-import transformIndividualData from "../../helpers/transformIndividualData";
-
-import bakerIndiviualGameData from "../../data/baker-matches-individual-individual-first.json";
+import { useSelector } from "react-redux";
+import { bakerColumns } from "../../helpers/transformBakerData";
 import StatTable from "../../components/stat-table";
-import teamData from "../../data/team.json";
-import bakerMatchPlayData from "../../data/baker-match-play.json";
-import transformTeamData from "../../helpers/transformTeamData";
-import transformBakerMatchPlayData from "../../helpers/transformBakerMatchPlayData";
+import { teamColumns } from "../../helpers/transformTeamData";
+import { bakerMatchPlayColumns } from "../../helpers/transformBakerMatchPlayData";
 
 const IndividualData = () => {
+  const {
+    baker: bakerData,
+    team: teamData,
+    bakerMatch: bakerMatchPlayData,
+  } = useSelector((state) => state.data.data);
+
   return (
     <div>
       <h2>Group by Individual</h2>
-      <StatTable
-        tableData={transformIndividualData(bakerIndiviualGameData)}
-        group="Bowler"
-        title="Baker"
-      />
-      <StatTable
-        tableData={transformTeamData(teamData)}
-        group="Bowler"
-        title="Team"
-      />
-      <StatTable
-        tableData={transformBakerMatchPlayData(bakerMatchPlayData)}
-        group="Bowler"
-        title="Baker Match Play"
-      />
+      {bakerData.length > 0 && bakerColumns.length > 0 && (
+        <StatTable
+          tableData={{
+            data: bakerData,
+            columns: bakerColumns,
+          }}
+          group="Bowler"
+          title="Baker"
+        />
+      )}
+      {teamData.length > 0 && teamColumns.length > 0 && (
+        <StatTable
+          tableData={{
+            data: teamData,
+            columns: teamColumns,
+          }}
+          group="Bowler"
+          title="Team"
+        />
+      )}
+      {bakerMatchPlayData.length > 0 && bakerMatchPlayColumns.length > 0 && (
+        <StatTable
+          tableData={{
+            data: bakerMatchPlayData,
+            columns: bakerMatchPlayColumns,
+          }}
+          group="Bowler"
+          title="Baker Match Play"
+        />
+      )}
     </div>
   );
 };
