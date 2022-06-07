@@ -1,5 +1,4 @@
 import { useSelector } from "react-redux";
-import transformEventIdToName from "../../helpers/transformEventIdtoName";
 
 const TeamMetaData = () => {
   const { details } = useSelector((state) => state.user);
@@ -7,16 +6,18 @@ const TeamMetaData = () => {
   return (
     <div className="bd-header">
       <h2 className="bd-header__userName">QU Women</h2>
-      <ul className="bd-header__events-list">
+      <div className="bd-header__events-list">
         <span>
-          <strong>Events: </strong>
+          <strong>
+            <a href="/events">All Events</a>
+          </strong>
         </span>
-        {details.events.map((event) => (
-          <li key={event}>
-            <a href={`/events/${event}`}>{transformEventIdToName(event)}</a>
-          </li>
-        ))}
-      </ul>
+        <span>
+          <strong>
+            <a href="/bowlers">All Bowlers</a>
+          </strong>
+        </span>
+      </div>
     </div>
   );
 };

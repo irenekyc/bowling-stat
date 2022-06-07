@@ -2,7 +2,7 @@ const transformTeamData = (summaryData) => {
   let data = [];
 
   Object.entries(summaryData).forEach(([_, entries]) => {
-    let entry = { ...entries };
+    let entry = { ...entries, "Game Type": "Team" };
     if (
       entry.strikes_percentage &&
       typeof entry.strikes_percentage === "string"
@@ -26,6 +26,7 @@ const transformTeamData = (summaryData) => {
 };
 
 export const teamColumns = [
+  { Header: "Game Type", accessor: "Game Type", Aggregated: () => `Team` },
   {
     Header: "Game No",
     accessor: "Match Group",

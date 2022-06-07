@@ -1,4 +1,5 @@
 const transformEventIdToName = (eventId) => {
+  if (!eventId) return "";
   const [eventName, year] = eventId.split("--");
   const formatedEventName = eventName
     .split("-")

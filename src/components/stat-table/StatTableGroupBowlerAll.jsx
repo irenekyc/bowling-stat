@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useTable, useGroupBy, useExpanded } from "react-table";
+import { useTable, useGroupBy } from "react-table";
 import Table from "react-bootstrap/Table";
 
 const StatTableGroupBowler = ({ title, tableData }) => {
@@ -17,12 +17,11 @@ const StatTableGroupBowler = ({ title, tableData }) => {
       columns,
       data,
     },
-    useGroupBy,
-    useExpanded // useGroupBy would be pretty useless without useExpanded ;)
+    useGroupBy
   );
 
   useEffect(() => {
-    setGroupBy(["Match Group"]);
+    setGroupBy(["Bowler"]);
   }, [setGroupBy]);
 
   return (
@@ -49,15 +48,8 @@ const StatTableGroupBowler = ({ title, tableData }) => {
                     <td {...cell.getCellProps()} className="bd-table__cell">
                       {cell.isGrouped ? (
                         <>
-                          <span
-                            {...row.getToggleRowExpandedProps()}
-                            style={{ whiteSpace: "nowrap" }}
-                          >
-                            {cell.render("Cell")}
-                            <span style={{ cursor: "pointer" }}>
-                              {" "}
-                              {row.isExpanded ? "-" : "+"}
-                            </span>
+                          <span style={{ whiteSpace: "nowrap" }}>
+                            {cell.render("Cell")}{" "}
                           </span>
                         </>
                       ) : cell.isAggregated ? (

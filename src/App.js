@@ -4,7 +4,9 @@ import { Container } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 
 import Home from "./pages/home";
+import BowlerHome from "./pages/bowler-home";
 import BowlerStat from "./pages/bowler-stat";
+import EventHome from "./pages/event-home";
 import EventDetails from "./pages/event-details";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -24,12 +26,10 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="events">
-              <Route path=":eventId" element={<EventDetails />} />
-            </Route>
-            <Route path="bowlers">
-              <Route path=":bowlerName" element={<BowlerStat />} />
-            </Route>
+            <Route path="events" element={<EventHome />} />
+            <Route path="/events/:eventId" element={<EventDetails />} />
+            <Route path="bowlers" element={<BowlerHome />} />
+            <Route path="/bowlers/:bowlerName" element={<BowlerStat />} />
           </Routes>
         </BrowserRouter>
       </Container>

@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useTable, useGroupBy, useExpanded } from "react-table";
 import Table from "react-bootstrap/Table";
 
-const StatTableGroupBowler = ({ title, tableData }) => {
+const StatTableBowlerGame = ({ title, tableData }) => {
   const { columns, data } = tableData;
 
   const {
@@ -22,7 +22,7 @@ const StatTableGroupBowler = ({ title, tableData }) => {
   );
 
   useEffect(() => {
-    setGroupBy(["Match Group"]);
+    setGroupBy(["Event Id", "Baker Game"]);
   }, [setGroupBy]);
 
   return (
@@ -53,9 +53,8 @@ const StatTableGroupBowler = ({ title, tableData }) => {
                             {...row.getToggleRowExpandedProps()}
                             style={{ whiteSpace: "nowrap" }}
                           >
-                            {cell.render("Cell")}
+                            {cell.render("Cell")}{" "}
                             <span style={{ cursor: "pointer" }}>
-                              {" "}
                               {row.isExpanded ? "-" : "+"}
                             </span>
                           </span>
@@ -80,4 +79,4 @@ const StatTableGroupBowler = ({ title, tableData }) => {
   );
 };
 
-export default StatTableGroupBowler;
+export default StatTableBowlerGame;

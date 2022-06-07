@@ -2,7 +2,8 @@ const transformBakerData = (summaryData) => {
   let data = [];
 
   Object.entries(summaryData).forEach(([_, entries]) => {
-    let entry = { ...entries };
+    let entry = { ...entries, "Game Type": "Baker" };
+
     if (
       entry.strikes_percentage &&
       typeof entry.strikes_percentage === "string"
@@ -13,7 +14,6 @@ const transformBakerData = (summaryData) => {
     }
     data.push(entry);
   });
-
   return data;
 };
 
@@ -22,6 +22,11 @@ export const bakerColumns = [
     Header: "Baker Game",
     accessor: "Match Group",
     Aggregated: () => `All`,
+  },
+  {
+    Header: "Game Type",
+    accessor: "Game Type",
+    Aggregated: () => `Baker`,
   },
   {
     Header: "Bowler",
