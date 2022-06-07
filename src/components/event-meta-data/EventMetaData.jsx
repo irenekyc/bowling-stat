@@ -1,18 +1,10 @@
 import formatColumnNames from "../../helpers/formatColumnNames";
 import "./meta-data.scss";
 
-const MetaData = ({ metaData }) => {
-  const {
-    location,
-    team,
-    start_date,
-    end_date,
-    oil_pattern,
-    bowlers,
-  } = metaData;
+const EventMetaData = ({ metaData }) => {
+  const { location, start_date, end_date } = metaData;
   return (
     <div className="bd-event-meta">
-      <h1>{team}</h1>
       <div className="bd-event-meta__details-row">
         <span>
           <strong>Venue:</strong> {location}
@@ -30,7 +22,7 @@ const MetaData = ({ metaData }) => {
           </span>
         ))}
       </p> */}
-      <span style={{ display: "none" }}>Oil Pattern: {oil_pattern}</span>
+      {/* <span style={{ display: "none" }}>Oil Pattern: {oil_pattern}</span>
       <span>
         <strong>Bowlers</strong>
       </span>
@@ -38,9 +30,9 @@ const MetaData = ({ metaData }) => {
         {bowlers.map((bowler) => (
           <li key={bowler}>{bowler}</li>
         ))}
-      </ul>
+      </ul> */}
     </div>
   );
 };
 
-export default MetaData;
+export default EventMetaData;

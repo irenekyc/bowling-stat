@@ -1,15 +1,28 @@
+import { useEffect, useState } from "react";
+
 import StatTable from "../../components/stat-table";
 import { useSelector } from "react-redux";
 import { bakerColumns } from "../../helpers/transformBakerData";
 import { teamColumns } from "../../helpers/transformTeamData";
 import { bakerMatchPlayColumns } from "../../helpers/transformBakerMatchPlayData";
+import { useParams } from "react-router";
 
 const GameData = () => {
+  const [eventId, setEventId] = useState(undefined);
   const {
     baker: bakerData,
     team: teamData,
     bakerMatch: bakerMatchPlayData,
   } = useSelector((state) => state.data.data);
+
+  const query = useParams();
+
+  useEffect(() => {
+    if (!query) return;
+    if (query && query.eventId) {
+      setEventId(query.eventId);
+    }
+  }, [query]);
 
   return (
     <div>
@@ -17,7 +30,12 @@ const GameData = () => {
       {bakerData.length > 0 && (
         <StatTable
           title="Baker"
-          tableData={{ data: bakerData, columns: bakerColumns }}
+          tableData={{
+            data: eventId
+              ? bakerData.filter((data) => data["Event Id"] === eventId)
+              : bakerData,
+            columns: bakerColumns,
+          }}
           group="Game"
         />
       )}
@@ -25,7 +43,9 @@ const GameData = () => {
         <StatTable
           title="Team"
           tableData={{
-            data: teamData,
+            data: eventId
+              ? teamData.filter((data) => data["Event Id"] === eventId)
+              : teamData,
             columns: teamColumns,
           }}
           group="Game"
@@ -34,7 +54,11 @@ const GameData = () => {
       {bakerMatchPlayData.length > 0 && (
         <StatTable
           tableData={{
-            data: bakerMatchPlayData,
+            data: eventId
+              ? bakerMatchPlayData.filter(
+                  (data) => data["Event Id"] === eventId
+                )
+              : bakerMatchPlayData,
             columns: bakerMatchPlayColumns,
           }}
           group="Game"

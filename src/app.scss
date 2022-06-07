@@ -5,6 +5,27 @@ p {
   margin: 0;
 }
 
+.bd-header {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  top: 0;
+  position: sticky;
+  background: white;
+  z-index: 999;
+
+  &__events-list {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 0;
+    span,
+    li {
+      margin-right: 1rem;
+    }
+  }
+}
+
 .bd-main {
   &__tabs-div {
     margin-left: -1rem;
