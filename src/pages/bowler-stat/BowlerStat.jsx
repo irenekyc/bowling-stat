@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { transformBowlerSlugToName } from "../../helpers/formatBowlerName";
+import { transformSlugToName } from "../../helpers/convertSlugAndName";
 import { bakerColumns } from "../../helpers/transformBakerData";
 import { teamColumns } from "../../helpers/transformTeamData";
 import { bakerMatchPlayColumns } from "../../helpers/transformBakerMatchPlayData";
@@ -9,7 +9,7 @@ import StatTable from "../../components/stat-table";
 import transformEventIdToName from "../../helpers/transformEventIdtoName";
 
 const BowlerStat = () => {
-  let { bowlerName: bowlerSlug } = useParams();
+  let { bowlerSlug } = useParams();
   const {
     baker: bakerData,
     team: teamData,
@@ -19,14 +19,14 @@ const BowlerStat = () => {
 
   return (
     <PageLayout>
-      <h2>{transformBowlerSlugToName(bowlerSlug)}</h2>
+      <h2>{transformSlugToName(bowlerSlug, "bowler")}</h2>
       <strong>Year 2021 - 2022 </strong>
       <p>View By Game Type</p>
       {bakerData.length > 0 && (
         <StatTable
           tableData={{
             data: bakerData.filter(
-              (data) => data.Bowler === transformBowlerSlugToName(bowlerSlug)
+              (data) => data.Bowler === transformSlugToName(bowlerSlug)
             ),
             columns: bakerColumns,
           }}
@@ -38,7 +38,7 @@ const BowlerStat = () => {
         <StatTable
           tableData={{
             data: teamData.filter(
-              (data) => data.Bowler === transformBowlerSlugToName(bowlerSlug)
+              (data) => data.Bowler === transformSlugToName(bowlerSlug)
             ),
             columns: teamColumns,
           }}
@@ -50,7 +50,7 @@ const BowlerStat = () => {
         <StatTable
           tableData={{
             data: bakerMatchPlayData.filter(
-              (data) => data.Bowler === transformBowlerSlugToName(bowlerSlug)
+              (data) => data.Bowler === transformSlugToName(bowlerSlug)
             ),
             columns: bakerMatchPlayColumns,
           }}
@@ -69,7 +69,7 @@ const BowlerStat = () => {
                 tableData={{
                   data: bakerData.filter(
                     (entry) =>
-                      entry.Bowler === transformBowlerSlugToName(bowlerSlug) &&
+                      entry.Bowler === transformSlugToName(bowlerSlug) &&
                       entry["Event Id"] === eventId
                   ),
                   columns: bakerColumns,
@@ -83,7 +83,7 @@ const BowlerStat = () => {
                 tableData={{
                   data: teamData.filter(
                     (entry) =>
-                      entry.Bowler === transformBowlerSlugToName(bowlerSlug) &&
+                      entry.Bowler === transformSlugToName(bowlerSlug) &&
                       entry["Event Id"] === eventId
                   ),
                   columns: teamColumns,
@@ -97,7 +97,7 @@ const BowlerStat = () => {
                 tableData={{
                   data: bakerMatchPlayData.filter(
                     (entry) =>
-                      entry.Bowler === transformBowlerSlugToName(bowlerSlug) &&
+                      entry.Bowler === transformSlugToName(bowlerSlug) &&
                       entry["Event Id"] === eventId
                   ),
                   columns: bakerMatchPlayColumns,

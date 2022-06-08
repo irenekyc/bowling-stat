@@ -8,7 +8,7 @@ import StatTableBowlerGame from "./StatTableBowlerGame";
 import StatTableBowlerEvent from "./StatTableBowlerEvent";
 import "./stat-table.scss";
 import transformEventIdToName from "../../helpers/transformEventIdtoName";
-import { transformBowlerNameToSlug } from "../../helpers/formatBowlerName";
+import { transformNameToSlug } from "../../helpers/convertSlugAndName";
 
 const eventColumn = {
   Header: "Event",
@@ -44,7 +44,7 @@ const StatTable = ({ title, tableData, group = undefined }) => {
           formatedColumn = {
             ...formatedColumn,
             Cell: ({ value }) => (
-              <a href={`/bowlers/${transformBowlerNameToSlug(value)}`}>
+              <a href={`/bowlers/${transformNameToSlug(value, "bowler")}`}>
                 {value}
               </a>
             ),

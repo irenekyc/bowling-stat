@@ -4,7 +4,7 @@ import PageLayout from "../../layout/page-layout";
 import getAllBowlers from "../../helpers/getAllBowlers";
 import { bakerColumns } from "../../helpers/transformBakerData";
 import StatTable from "../../components/stat-table";
-import { transformBowlerNameToSlug } from "../../helpers/formatBowlerName";
+import { transformNameToSlug } from "../../helpers/convertSlugAndName";
 
 const BowlerHome = () => {
   const [bowlers, setAllBowlers] = useState([]);
@@ -20,7 +20,7 @@ const BowlerHome = () => {
         {bowlers.map((bowlerName) => (
           <a
             key={bowlerName}
-            href={`/bowlers/${transformBowlerNameToSlug(bowlerName)}`}
+            href={`/bowlers/${transformNameToSlug(bowlerName)}`}
           >
             {bowlerName}
           </a>

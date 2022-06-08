@@ -1,24 +1,36 @@
 import { createSlice } from "@reduxjs/toolkit";
-import fetchUser from "./actions/fetchUser";
+import fetchEventList from "./actions/fetchEventList";
+import fetchBowlerList from "./actions/fetchBowlerList";
 
 export const initialState = {
-  details: undefined,
+  bowlers: [],
+  events: [],
 };
 
-export const userSlice = createSlice({
-  name: "user",
+export const teamSlice = createSlice({
+  name: "team",
   initialState,
-  reducers: {},
+  reducers: {
+    resetTeam: (state) => {
+      state.bowlers = [];
+      state.events = [];
+    },
+  },
   extraReducers: (builder) => {
-    builder.addCase(fetchUser.fulfilled, (state, action) => {
+    builder.addCase(fetchEventList.fulfilled, (state, action) => {
       if (action.payload) {
-        state.details = action.payload;
+        state.events = action.payload;
+      }
+    });
+    builder.addCase(fetchBowlerList.fulfilled, (state, action) => {
+      if (action.payload) {
+        state.bowlers = action.payload;
       }
     });
   },
 });
 
-export default userSlice.reducer;
+export default teamSlice.reducer;
 // Add Slice Reducers to the Store​
 // Next, we need to import the reducer function from the counter slice and add it to our store. By defining a field inside the reducers parameter, we tell the store to use this slice reducer function to handle all updates to that state.
 
