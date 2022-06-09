@@ -5,6 +5,7 @@ export const initialState = {
   bowlers: [],
   events: [],
   statistic: [],
+  summaryStatistic: [],
   team: undefined,
 };
 
@@ -19,17 +20,25 @@ export const teamSlice = createSlice({
       state.bowlers = [];
       state.events = [];
       state.statistic = [];
+      state.summaryStatistic = [];
       state.team = undefined;
     },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchTeamData.fulfilled, (state, action) => {
       if (action.payload) {
-        const { bowlers, statistic, events, team } = action.payload;
+        const {
+          bowlers,
+          statistic,
+          events,
+          team,
+          summaryStatistic,
+        } = action.payload;
         state.bowlers = bowlers;
         state.events = events;
         state.statistic = statistic;
         state.team = team;
+        state.summaryStatistic = summaryStatistic;
       }
     });
   },

@@ -1,5 +1,7 @@
 import IndividualData from "../../widgets/individual-data";
 import GameData from "../../widgets/game-data";
+import SummaryData from "../../widgets/summary-data";
+
 import { useEffect } from "react";
 import { Tab, Nav, Container } from "react-bootstrap";
 import { useParams } from "react-router";
@@ -14,6 +16,7 @@ import {
   BOWLER_TABLE_PAGE_EVENT_ALL,
 } from "../../constants/bowler-table";
 import { PAGE_EVENT_ALL, PAGE_EVENT_SINGLE } from "../../constants/page-view";
+
 const SUMMARY = "SUMMARY";
 const INDIVIDUAL = "INDIVIDUAL";
 const GAMETYPE = "GAMETYPE";
@@ -38,7 +41,7 @@ const staticEvents = {
 
 const EventDetails = () => {
   const { teamId, eventId } = useParams();
-  const { statistic } = useSelector((state) => state.team);
+  const { statistic, summaryStatistic } = useSelector((state) => state.team);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -78,9 +81,15 @@ const EventDetails = () => {
               </div>
 
               <Tab.Content>
-                {/* <Tab.Pane eventKey={SUMMARY}>
-                  <SummaryData />
-                </Tab.Pane> */}
+                <Tab.Pane eventKey={SUMMARY}>
+                  <SummaryData
+                    summaryStatistic={summaryStatistic.filter((stat) =>
+                      !eventId.includes("all")
+                        ? stat["Event Id"] === eventId
+                        : stat
+                    )}
+                  />
+                </Tab.Pane>
                 <Tab.Pane eventKey={INDIVIDUAL}>
                   <IndividualData
                     page={

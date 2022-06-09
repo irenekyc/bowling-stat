@@ -1,34 +1,42 @@
-// import strikesData from "../../data/strikes-summary.json";
-// import doubleData from "../../data/doubles-summary.json";
-// import transformSummaryData from "../../helpers/transformSummaryData";
-// import firstBallAveData from "../../data/first_ball_ave-summary.json";
-// import StatTable from "../../components/stat-table";
-// import {
-//   DATA_SUMMARY_TYPE_STRIKES,
-//   DATA_SUMMARY_TYPE_DOUBLE,
-//   DATA_SUMMARY_TYPE_FIRST_BALL_AVERAGE,
-// } from "../../constants/data";
+import StatSummaryTable from "../../components/stat-summary-table";
+import {
+  SUMMARY_SCORE,
+  SUMMARY_STRIKES,
+  SUMMARY_DOUBLE,
+  SUMMARY_FIRST_BALL_AVE,
+} from "../../constants/summary";
+import {
+  summaryDoublesColumns,
+  summaryFirstBallAveColumns,
+  summaryScoreColumns,
+  summaryStrikesColumns,
+} from "./summary-data-columns";
 
-const SummaryData = () => {
+const SummaryData = ({ summaryStatistic = [] }) => {
+  if (summaryStatistic.length === 0) return null;
   return (
     <div>
       <h2>Summary</h2>
-      <p>Work in progress</p>
-      {/* <StatTable
-        tableData={transformSummaryData(strikesData, DATA_SUMMARY_TYPE_STRIKES)}
-        title="Strikes"
+      <StatSummaryTable
+        data={summaryStatistic}
+        title={SUMMARY_SCORE}
+        columns={summaryScoreColumns}
       />
-      <StatTable
-        tableData={transformSummaryData(doubleData, DATA_SUMMARY_TYPE_DOUBLE)}
-        title="Doubles"
+      <StatSummaryTable
+        data={summaryStatistic}
+        title={SUMMARY_STRIKES}
+        columns={summaryStrikesColumns}
       />
-      <StatTable
-        tableData={transformSummaryData(
-          firstBallAveData,
-          DATA_SUMMARY_TYPE_FIRST_BALL_AVERAGE
-        )}
-        title="First Ball Average"
-      /> */}
+      <StatSummaryTable
+        data={summaryStatistic}
+        title={SUMMARY_DOUBLE}
+        columns={summaryDoublesColumns}
+      />
+      <StatSummaryTable
+        data={summaryStatistic}
+        title={SUMMARY_FIRST_BALL_AVE}
+        columns={summaryFirstBallAveColumns}
+      />
     </div>
   );
 };
