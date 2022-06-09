@@ -1,5 +1,5 @@
 import Dropdown from "react-bootstrap/Dropdown";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { Container } from "react-bootstrap";
 import transformEventIdToName from "../../helpers/transformEventIdtoName";
 import { transformNameToSlug } from "../../helpers/convertSlugAndName";
@@ -52,7 +52,7 @@ const TeamHome = () => {
                 Bowler Page
               </Dropdown.Toggle>
               <Dropdown.Menu>
-                {bowlers.map((bowlerName) => (
+                {["all", ...bowlers].map((bowlerName) => (
                   <Dropdown.Item
                     key={bowlerName}
                     as={Link}

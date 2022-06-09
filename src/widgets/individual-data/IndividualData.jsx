@@ -1,69 +1,138 @@
-import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { bakerColumns } from "../../helpers/transformBakerData";
-import StatTable from "../../components/stat-table";
-import { teamColumns } from "../../helpers/transformTeamData";
-import { bakerMatchPlayColumns } from "../../helpers/transformBakerMatchPlayData";
-import { useParams } from "react-router";
+import {
+  BOWLER_TABLE_PAGE_EVENT_ALL,
+  BOWLER_TABLE_PAGE_EVENT_SINGLE,
+  BOWLER_TABLE_PAGE_BOWLER_ALL,
+  BOWLER_TABLE_PAGE_BOWLER_SINGLE,
+} from "../../constants/bowler-table";
+import StatBowlerTable from "../../components/stat-bowler-table";
+import transformEventIdToName from "../../helpers/transformEventIdtoName";
 
-const IndividualData = () => {
-  const [eventId, setEventId] = useState(undefined);
-  // const {
-  //   baker: bakerData,
-  //   team: teamData,
-  //   bakerMatch: bakerMatchPlayData,
-  // } = useSelector((state) => state.data.data);
+// 3 combinations
+// Individual Data - Event Details - ALL (page)
+// ** Bowler > Event > Game Type > Game Group
+// *** Until Game Group
+// Individual Data - Event Details - SINGLE Event
+// ** Bowler > Game Type > Game Group
+// *** Until Game type
+// Individual Data - Bowler Details - ALL
+// ** Bowler > Event > Game Type > Game Group
+// *** Until Game Group
+// Individual Data - Bowler Details - Single Bowler
+// ** Event > Game Type > Game Group
+// *** Until Game Group
 
-  const query = useParams();
+let bowlerTableColumns = [
+  {
+    Header: "Event",
+    accessor: "Event Id",
+    Cell: ({ value }) => <strong>{transformEventIdToName(value)}</strong>,
+    Aggregated: () => `All Events`,
+  },
+  {
+    Header: "Bowler",
+    accessor: "bowler",
+    Cell: ({ value }) => (
+      <strong style={{ whiteSpace: "nowrap" }}>{value}</strong>
+    ),
+  },
+  {
+    Header: "Game Type",
+    accessor: "game_type",
+    Aggregated: () => `All`,
+  },
+  {
+    Header: "Game Group",
+    accessor: "game_group",
+    Aggregated: () => `All`,
+    Cell: ({ value, ...props }) => {
+      return <>{value}</>;
+    },
+  },
+  {
+    Header: "First Ball Average",
+    accessor: "first_ball_ave",
+    aggregate: "average",
+    Cell: ({ value }) => value.toFixed(2),
+  },
+  {
+    Header: "Frame Average",
+    accessor: "frame_average",
+    aggregate: "average",
+    Aggregated: ({ value }) => `${value.toFixed(2)}`,
+    Cell: ({ value }) => `${value.toFixed(2)}`,
+  },
+  {
+    Header: "Strikes",
+    accessor: "num_strikes",
+    aggregate: "sum",
+  },
+  {
+    Header: "Strikes %",
+    accessor: "strikes_percentage",
+    aggregate: "average",
+    Aggregated: ({ value }) => `${(value * 100).toFixed(1)}%`,
+    Cell: ({ value }) => `${(value * 100).toFixed(1)}%`,
+  },
+  // {
+  //   Header: "Strikes/Game",
+  //   accessor: "strikes_per_game",
+  //   aggregate: "average",
+  // },
+  {
+    Header: "Spares",
+    accessor: "num_spares",
+    aggregate: "sum",
+  },
+  // {
+  //   Header: "Spares/Game",
+  //   accessor: "spare_per_game",
+  //   aggregate: "average",
+  //   Cell: ({ value }) => value.toFixed(2),
+  // },
+  {
+    Header: "Opens",
+    accessor: "num_opens",
+    aggregate: "sum",
+  },
 
-  useEffect(() => {
-    if (!query) return;
-    if (query && query.eventId) {
-      setEventId(query.eventId);
-    }
-  }, [query]);
+  // {
+  //   Header: "Opens/Game",
+  //   accessor: "open_per_game",
+  //   aggregate: "average",
+  //   Cell: ({ value }) => value.toFixed(2),
+  // },
+];
+
+const IndividualData = ({ page = undefined, data = [] }) => {
+  if (!page) return null;
+  let columns = [];
+  switch (page) {
+    case BOWLER_TABLE_PAGE_EVENT_ALL:
+      columns = bowlerTableColumns;
+      break;
+    case BOWLER_TABLE_PAGE_EVENT_SINGLE:
+      columns = bowlerTableColumns.filter(
+        (column) => column.Header !== "Event"
+      );
+      break;
+    case BOWLER_TABLE_PAGE_BOWLER_ALL:
+      columns = bowlerTableColumns;
+      break;
+    case BOWLER_TABLE_PAGE_BOWLER_SINGLE:
+      columns = bowlerTableColumns.filter(
+        (column) => column.Header !== "Bowler"
+      );
+      break;
+    default:
+      break;
+  }
+
+  if (data.length === 0 || columns.length === 0) return null;
 
   return (
     <div>
-      <h2>Group by Individual</h2>
-      {/* {bakerData.length > 0 && bakerColumns.length > 0 && (
-        <StatTable
-          tableData={{
-            data: eventId
-              ? bakerData.filter((data) => data["Event Id"] === eventId)
-              : bakerData,
-            columns: bakerColumns,
-          }}
-          group="Bowler"
-          title="Baker"
-        />
-      )}
-      {teamData.length > 0 && teamColumns.length > 0 && (
-        <StatTable
-          tableData={{
-            data: eventId
-              ? teamData.filter((data) => data["Event Id"] === eventId)
-              : teamData,
-            columns: teamColumns,
-          }}
-          group="Bowler"
-          title="Team"
-        />
-      )}
-      {bakerMatchPlayData.length > 0 && bakerMatchPlayColumns.length > 0 && (
-        <StatTable
-          tableData={{
-            data: eventId
-              ? bakerMatchPlayData.filter(
-                  (data) => data["Event Id"] === eventId
-                )
-              : bakerMatchPlayData,
-            columns: bakerMatchPlayColumns,
-          }}
-          group="Bowler"
-          title="Baker Match Play"
-        />
-      )} */}
+      <h2>Group by Bowler</h2>
+      <StatBowlerTable page={page} data={data} columns={columns} />
     </div>
   );
 };

@@ -1,22 +1,35 @@
 import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { transformSlugToName } from "../../helpers/convertSlugAndName";
-import { bakerColumns } from "../../helpers/transformBakerData";
-import { teamColumns } from "../../helpers/transformTeamData";
-import { bakerMatchPlayColumns } from "../../helpers/transformBakerMatchPlayData";
-import StatTable from "../../components/stat-table";
-import transformEventIdToName from "../../helpers/transformEventIdtoName";
+import IndividualData from "../../widgets/individual-data";
 import Header from "../../layout/header";
-import { Container } from "react-bootstrap";
+import { Tab, Nav, Container } from "react-bootstrap";
+import {
+  BOWLER_TABLE_PAGE_BOWLER_SINGLE,
+  BOWLER_TABLE_PAGE_BOWLER_ALL,
+} from "../../constants/bowler-table";
+import { PAGE_BOWLER_ALL, PAGE_BOWLER_SINGLE } from "../../constants/page-view";
+import { useEffect } from "react";
+import { fetchTeamData } from "../../redux/team/actions";
+import GameData from "../../widgets/game-data";
+
+const EVENT = "EVENT";
+const GAMETYPE = "GAMETYPE";
 
 const BowlerStat = () => {
+  const dispatch = useDispatch();
   let { bowlerSlug, teamId } = useParams();
   // const {
   //   baker: bakerData,
   //   team: teamData,
   //   bakerMatch: bakerMatchPlayData,
   // } = useSelector((state) => state.data.data);
-  // const details = useSelector((state) => state.user.details);
+  const { statistic } = useSelector((state) => state.team);
+  useEffect(() => {
+    if (statistic && statistic.length === 0 && teamId !== undefined) {
+      dispatch(fetchTeamData(teamId));
+    }
+  }, [teamId, statistic, dispatch]);
 
   return (
     <>
@@ -24,92 +37,52 @@ const BowlerStat = () => {
       <Container>
         <h2>{transformSlugToName(bowlerSlug, "bowler")}</h2>
         <strong>Year 2021 - 2022 </strong>
-        <p>View By Game Type</p>
-        {/* {bakerData.length > 0 && (
-        <StatTable
-          tableData={{
-            data: bakerData.filter(
-              (data) => data.Bowler === transformSlugToName(bowlerSlug)
-            ),
-            columns: bakerColumns,
-          }}
-          group="Bowler-Game"
-          title="Baker"
-        />
-      )}
-      {teamData.length > 0 && (
-        <StatTable
-          tableData={{
-            data: teamData.filter(
-              (data) => data.Bowler === transformSlugToName(bowlerSlug)
-            ),
-            columns: teamColumns,
-          }}
-          group="Bowler-Game"
-          title="Team"
-        />
-      )}
-      {bakerMatchPlayData.length > 0 && (
-        <StatTable
-          tableData={{
-            data: bakerMatchPlayData.filter(
-              (data) => data.Bowler === transformSlugToName(bowlerSlug)
-            ),
-            columns: bakerMatchPlayColumns,
-          }}
-          group="Bowler-Game"
-          title="Baker Match Player"
-        />
-      )}
-      <p>View By Event</p>
-      {details &&
-        details.events.map((eventId) => (
-          <div key={`section-${eventId}`}>
-            <h5>{transformEventIdToName(eventId)}</h5>
-            {bakerData.length > 0 && (
-              <StatTable
-                title="Baker"
-                tableData={{
-                  data: bakerData.filter(
-                    (entry) =>
-                      entry.Bowler === transformSlugToName(bowlerSlug) &&
-                      entry["Event Id"] === eventId
-                  ),
-                  columns: bakerColumns,
-                }}
-                group="Bowler-Event"
-              />
-            )}
-            {teamData.length > 0 && (
-              <StatTable
-                title="Team"
-                tableData={{
-                  data: teamData.filter(
-                    (entry) =>
-                      entry.Bowler === transformSlugToName(bowlerSlug) &&
-                      entry["Event Id"] === eventId
-                  ),
-                  columns: teamColumns,
-                }}
-                group="Bowler-Event"
-              />
-            )}
-            {bakerMatchPlayData.length > 0 && (
-              <StatTable
-                title="Team"
-                tableData={{
-                  data: bakerMatchPlayData.filter(
-                    (entry) =>
-                      entry.Bowler === transformSlugToName(bowlerSlug) &&
-                      entry["Event Id"] === eventId
-                  ),
-                  columns: bakerMatchPlayColumns,
-                }}
-                group="Bowler-Event"
-              />
-            )}
+        <Tab.Container defaultActiveKey={EVENT}>
+          <p>Breakdown:</p>
+          <div className="bd-main__tabs-div">
+            <Nav>
+              <Nav.Item>
+                <Nav.Link eventKey={EVENT}>Event</Nav.Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Nav.Link eventKey={GAMETYPE}>Game Type</Nav.Link>
+              </Nav.Item>
+            </Nav>
           </div>
-        ))} */}
+
+          <Tab.Content>
+            <Tab.Pane eventKey={EVENT}>
+              <IndividualData
+                page={
+                  !bowlerSlug.includes("all")
+                    ? BOWLER_TABLE_PAGE_BOWLER_SINGLE
+                    : BOWLER_TABLE_PAGE_BOWLER_ALL
+                }
+                data={statistic.filter((stat) =>
+                  !bowlerSlug.includes("all")
+                    ? stat["bowler"] ===
+                      transformSlugToName(bowlerSlug, "bowler")
+                    : stat
+                )}
+              />
+            </Tab.Pane>
+            <Tab.Pane eventKey={GAMETYPE}>
+              <GameData
+                page={
+                  !bowlerSlug.includes("all")
+                    ? PAGE_BOWLER_SINGLE
+                    : PAGE_BOWLER_ALL
+                }
+                data={statistic.filter((stat) =>
+                  !bowlerSlug.includes("all")
+                    ? stat["bowler"] ===
+                      transformSlugToName(bowlerSlug, "bowler")
+                    : stat
+                )}
+              />
+            </Tab.Pane>
+          </Tab.Content>
+        </Tab.Container>
       </Container>
     </>
   );

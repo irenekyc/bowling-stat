@@ -1,10 +1,8 @@
+import { useTable, useGroupBy, useExpanded } from "react-table";
 import { useEffect } from "react";
-import { useTable, useGroupBy } from "react-table";
 import Table from "react-bootstrap/Table";
 
-const StatTableGroupEvent = ({ tableData, title }) => {
-  const { columns, data } = tableData;
-
+const StatBowlerTable = ({ data, columns, page }) => {
   const {
     getTableProps,
     getTableBodyProps,
@@ -17,16 +15,16 @@ const StatTableGroupEvent = ({ tableData, title }) => {
       columns,
       data,
     },
-    useGroupBy
+    useGroupBy,
+    useExpanded
   );
 
   useEffect(() => {
-    setGroupBy(["Event Id"]);
+    setGroupBy(["bowler", "Event Id", "game_type", "game_group"]);
   }, [setGroupBy]);
 
   return (
     <div className="bd-table">
-      {title && <h3 className="bd-table__title">{title}</h3>}
       <Table {...getTableProps()} striped bordered hover>
         <thead className="bd-table__header">
           {headerGroups.map((headerGroup) => (
@@ -45,12 +43,27 @@ const StatTableGroupEvent = ({ tableData, title }) => {
                 {row.cells.map((cell) => {
                   return (
                     <td {...cell.getCellProps()} className="bd-table__cell">
+                      {/* {? (
+                      <span> {cell.render("Cell")} </span>
+                    ) :  */}
                       {cell.isGrouped ? (
-                        <>
-                          <span style={{ whiteSpace: "nowrap" }}>
-                            {cell.render("Cell")}
-                          </span>
-                        </>
+                        row.groupByID === "game_group" ? (
+                          <>
+                            <span>{cell.render("Cell")}</span>
+                          </>
+                        ) : (
+                          <>
+                            <span
+                              {...row.getToggleRowExpandedProps()}
+                              style={{ whiteSpace: "nowrap" }}
+                            >
+                              {cell.render("Cell")}{" "}
+                              <span style={{ cursor: "pointer" }}>
+                                {row.isExpanded ? "-" : "+"}
+                              </span>
+                            </span>
+                          </>
+                        )
                       ) : cell.isAggregated ? (
                         // If the cell is aggregated, use the Aggregated
                         // renderer for cell
@@ -71,4 +84,4 @@ const StatTableGroupEvent = ({ tableData, title }) => {
   );
 };
 
-export default StatTableGroupEvent;
+export default StatBowlerTable;

@@ -1,12 +1,19 @@
-import SummaryData from "../../widgets/summary-data";
 import IndividualData from "../../widgets/individual-data";
 import GameData from "../../widgets/game-data";
+import { useEffect } from "react";
 import { Tab, Nav, Container } from "react-bootstrap";
 import { useParams } from "react-router";
 import Header from "../../layout/header";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchTeamData } from "../../redux/team/actions";
 
 import EventMetaData from "../../components/event-meta-data";
 import transformEventIdToName from "../../helpers/transformEventIdtoName";
+import {
+  BOWLER_TABLE_PAGE_EVENT_SINGLE,
+  BOWLER_TABLE_PAGE_EVENT_ALL,
+} from "../../constants/bowler-table";
+import { PAGE_EVENT_ALL, PAGE_EVENT_SINGLE } from "../../constants/page-view";
 const SUMMARY = "SUMMARY";
 const INDIVIDUAL = "INDIVIDUAL";
 const GAMETYPE = "GAMETYPE";
@@ -31,6 +38,14 @@ const staticEvents = {
 
 const EventDetails = () => {
   const { teamId, eventId } = useParams();
+  const { statistic } = useSelector((state) => state.team);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (statistic && statistic.length === 0 && teamId !== undefined) {
+      dispatch(fetchTeamData(teamId));
+    }
+  }, [teamId, statistic]);
   let metaData = staticEvents[eventId];
   if (eventId.includes("all")) {
     metaData = "All";
@@ -47,30 +62,52 @@ const EventDetails = () => {
             <h2>{transformEventIdToName(eventId)}</h2>
             <EventMetaData metaData={metaData} />
             <Tab.Container defaultActiveKey={SUMMARY}>
-              <p>Data By:</p>
+              <p>Breakdown:</p>
               <div className="bd-main__tabs-div">
                 <Nav>
                   <Nav.Item>
                     <Nav.Link eventKey={SUMMARY}>Summary</Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
-                    <Nav.Link eventKey={INDIVIDUAL}>Individual</Nav.Link>
+                    <Nav.Link eventKey={INDIVIDUAL}>Bowler</Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
-                    <Nav.Link eventKey={GAMETYPE}>Game No</Nav.Link>
+                    <Nav.Link eventKey={GAMETYPE}>Game Type</Nav.Link>
                   </Nav.Item>
                 </Nav>
               </div>
 
               <Tab.Content>
-                <Tab.Pane eventKey={SUMMARY}>
+                {/* <Tab.Pane eventKey={SUMMARY}>
                   <SummaryData />
-                </Tab.Pane>
+                </Tab.Pane> */}
                 <Tab.Pane eventKey={INDIVIDUAL}>
-                  <IndividualData />
+                  <IndividualData
+                    page={
+                      !eventId.includes("all")
+                        ? BOWLER_TABLE_PAGE_EVENT_SINGLE
+                        : BOWLER_TABLE_PAGE_EVENT_ALL
+                    }
+                    data={statistic.filter((stat) =>
+                      !eventId.includes("all")
+                        ? stat["Event Id"] === eventId
+                        : stat
+                    )}
+                  />
                 </Tab.Pane>
                 <Tab.Pane eventKey={GAMETYPE}>
-                  <GameData />
+                  <GameData
+                    page={
+                      !eventId.includes("all")
+                        ? PAGE_EVENT_SINGLE
+                        : PAGE_EVENT_ALL
+                    }
+                    data={statistic.filter((stat) =>
+                      !eventId.includes("all")
+                        ? stat["Event Id"] === eventId
+                        : stat
+                    )}
+                  />
                 </Tab.Pane>
               </Tab.Content>
             </Tab.Container>
