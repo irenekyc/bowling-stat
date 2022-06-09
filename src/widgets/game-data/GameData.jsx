@@ -1,19 +1,19 @@
 import { useEffect, useState } from "react";
 
-import StatTable from "../../components/stat-table";
-import { useSelector } from "react-redux";
-import { bakerColumns } from "../../helpers/transformBakerData";
-import { teamColumns } from "../../helpers/transformTeamData";
-import { bakerMatchPlayColumns } from "../../helpers/transformBakerMatchPlayData";
+// import StatTable from "../../components/stat-table";
+// import { useSelector } from "react-redux";
+// import { bakerColumns } from "../../helpers/transformBakerData";
+// import { teamColumns } from "../../helpers/transformTeamData";
+// import { bakerMatchPlayColumns } from "../../helpers/transformBakerMatchPlayData";
 import { useParams } from "react-router";
 
 const GameData = () => {
   const [eventId, setEventId] = useState(undefined);
-  const {
-    baker: bakerData,
-    team: teamData,
-    bakerMatch: bakerMatchPlayData,
-  } = useSelector((state) => state.data.data);
+  // const {
+  //   baker: bakerData,
+  //   team: teamData,
+  //   bakerMatch: bakerMatchPlayData,
+  // } = useSelector((state) => state.data.data);
 
   const query = useParams();
 
@@ -27,12 +27,15 @@ const GameData = () => {
   return (
     <div>
       <h2>Group by Game</h2>
-      {bakerData.length > 0 && (
+      {/* {bakerData.length > 0 && (
         <StatTable
           title="Baker"
           tableData={{
             data: eventId
-              ? bakerData.filter((data) => data["Event Id"] === eventId)
+              ? bakerData.filter(
+                  (data) =>
+                    !eventId.includes("all") && data["Event Id"] === eventId
+                )
               : bakerData,
             columns: bakerColumns,
           }}
@@ -64,7 +67,7 @@ const GameData = () => {
           group="Game"
           title="Baker Match Play"
         />
-      )}
+      )} */}
     </div>
   );
 };

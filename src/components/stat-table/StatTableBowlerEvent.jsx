@@ -20,7 +20,6 @@ const StatTableBowlerGame = ({ title, tableData }) => {
     useGroupBy,
     useExpanded // useGroupBy would be pretty useless without useExpanded ;)
   );
-  console.log(data);
 
   useEffect(() => {
     setGroupBy(["Game Type"]);

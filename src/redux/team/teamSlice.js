@@ -1,30 +1,35 @@
 import { createSlice } from "@reduxjs/toolkit";
-import fetchEventList from "./actions/fetchEventList";
-import fetchBowlerList from "./actions/fetchBowlerList";
+import fetchTeamData from "./actions/fetchTeamData";
 
 export const initialState = {
   bowlers: [],
   events: [],
+  statistic: [],
+  team: undefined,
 };
 
 export const teamSlice = createSlice({
   name: "team",
   initialState,
   reducers: {
+    setTeam: (state, action) => {
+      state.team = action.payload;
+    },
     resetTeam: (state) => {
       state.bowlers = [];
       state.events = [];
+      state.statistic = [];
+      state.team = undefined;
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchEventList.fulfilled, (state, action) => {
+    builder.addCase(fetchTeamData.fulfilled, (state, action) => {
       if (action.payload) {
-        state.events = action.payload;
-      }
-    });
-    builder.addCase(fetchBowlerList.fulfilled, (state, action) => {
-      if (action.payload) {
-        state.bowlers = action.payload;
+        const { bowlers, statistic, events, team } = action.payload;
+        state.bowlers = bowlers;
+        state.events = events;
+        state.statistic = statistic;
+        state.team = team;
       }
     });
   },

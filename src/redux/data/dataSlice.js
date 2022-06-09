@@ -2,11 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 import fetchData from "./actions/fetchData";
 
 export const initialState = {
-  data: {
-    baker: [],
-    team: [],
-    bakerMatch: [],
-  },
+  ready: false,
+  data: [],
 };
 
 export const dataSlice = createSlice({
@@ -14,8 +11,14 @@ export const dataSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
+    builder.addCase(fetchData.pending, (state, action) => {
+      if (action.payload) {
+        state.ready = false;
+      }
+    });
     builder.addCase(fetchData.fulfilled, (state, action) => {
       if (action.payload) {
+        state.ready = true;
         state.data = action.payload;
       }
     });

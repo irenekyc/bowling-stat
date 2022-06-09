@@ -8,11 +8,11 @@ import { useParams } from "react-router";
 
 const IndividualData = () => {
   const [eventId, setEventId] = useState(undefined);
-  const {
-    baker: bakerData,
-    team: teamData,
-    bakerMatch: bakerMatchPlayData,
-  } = useSelector((state) => state.data.data);
+  // const {
+  //   baker: bakerData,
+  //   team: teamData,
+  //   bakerMatch: bakerMatchPlayData,
+  // } = useSelector((state) => state.data.data);
 
   const query = useParams();
 
@@ -26,7 +26,7 @@ const IndividualData = () => {
   return (
     <div>
       <h2>Group by Individual</h2>
-      {bakerData.length > 0 && bakerColumns.length > 0 && (
+      {/* {bakerData.length > 0 && bakerColumns.length > 0 && (
         <StatTable
           tableData={{
             data: eventId
@@ -63,7 +63,7 @@ const IndividualData = () => {
           group="Bowler"
           title="Baker Match Play"
         />
-      )}
+      )} */}
     </div>
   );
 };

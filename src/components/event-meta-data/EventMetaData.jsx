@@ -2,6 +2,9 @@ import formatColumnNames from "../../helpers/formatColumnNames";
 import "./meta-data.scss";
 
 const EventMetaData = ({ metaData }) => {
+  if (metaData === "All") {
+    return <></>;
+  }
   const { location, start_date, end_date } = metaData;
   return (
     <div className="bd-event-meta">

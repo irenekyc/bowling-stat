@@ -1,4 +1,5 @@
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 const TeamMetaData = () => {
   const { details } = useSelector((state) => state.user);
@@ -9,12 +10,12 @@ const TeamMetaData = () => {
       <div className="bd-header__events-list">
         <span>
           <strong>
-            <a href="/events">All Events</a>
+            <Link to="/events">All Events</Link>
           </strong>
         </span>
         <span>
           <strong>
-            <a href="/bowlers">All Bowlers</a>
+            <Link to="/bowlers">All Bowlers</Link>
           </strong>
         </span>
       </div>

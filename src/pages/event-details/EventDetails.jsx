@@ -1,11 +1,11 @@
 import SummaryData from "../../widgets/summary-data";
 import IndividualData from "../../widgets/individual-data";
 import GameData from "../../widgets/game-data";
-import { Tab, Nav } from "react-bootstrap";
+import { Tab, Nav, Container } from "react-bootstrap";
 import { useParams } from "react-router";
+import Header from "../../layout/header";
 
 import EventMetaData from "../../components/event-meta-data";
-import PageLayout from "../../layout/page-layout";
 import transformEventIdToName from "../../helpers/transformEventIdtoName";
 const SUMMARY = "SUMMARY";
 const INDIVIDUAL = "INDIVIDUAL";
@@ -30,48 +30,54 @@ const staticEvents = {
 };
 
 const EventDetails = () => {
-  const { eventId } = useParams();
-  const metaData = staticEvents[eventId];
+  const { teamId, eventId } = useParams();
+  let metaData = staticEvents[eventId];
+  if (eventId.includes("all")) {
+    metaData = "All";
+  }
 
   return (
-    <PageLayout>
+    <>
       {!metaData ? (
         <h2>404! Event not found</h2>
       ) : (
         <>
-          <h2>{transformEventIdToName(eventId)}</h2>
-          <EventMetaData metaData={metaData} />
-          <Tab.Container defaultActiveKey={SUMMARY}>
-            <p>Data By:</p>
-            <div className="bd-main__tabs-div">
-              <Nav>
-                <Nav.Item>
-                  <Nav.Link eventKey={SUMMARY}>Summary</Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                  <Nav.Link eventKey={INDIVIDUAL}>Individual</Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                  <Nav.Link eventKey={GAMETYPE}>Game No</Nav.Link>
-                </Nav.Item>
-              </Nav>
-            </div>
+          <Header level2={teamId} level3={eventId} />
+          <Container>
+            <h2>{transformEventIdToName(eventId)}</h2>
+            <EventMetaData metaData={metaData} />
+            <Tab.Container defaultActiveKey={SUMMARY}>
+              <p>Data By:</p>
+              <div className="bd-main__tabs-div">
+                <Nav>
+                  <Nav.Item>
+                    <Nav.Link eventKey={SUMMARY}>Summary</Nav.Link>
+                  </Nav.Item>
+                  <Nav.Item>
+                    <Nav.Link eventKey={INDIVIDUAL}>Individual</Nav.Link>
+                  </Nav.Item>
+                  <Nav.Item>
+                    <Nav.Link eventKey={GAMETYPE}>Game No</Nav.Link>
+                  </Nav.Item>
+                </Nav>
+              </div>
 
-            <Tab.Content>
-              <Tab.Pane eventKey={SUMMARY}>
-                <SummaryData />
-              </Tab.Pane>
-              <Tab.Pane eventKey={INDIVIDUAL}>
-                <IndividualData />
-              </Tab.Pane>
-              <Tab.Pane eventKey={GAMETYPE}>
-                <GameData />
-              </Tab.Pane>
-            </Tab.Content>
-          </Tab.Container>
+              <Tab.Content>
+                <Tab.Pane eventKey={SUMMARY}>
+                  <SummaryData />
+                </Tab.Pane>
+                <Tab.Pane eventKey={INDIVIDUAL}>
+                  <IndividualData />
+                </Tab.Pane>
+                <Tab.Pane eventKey={GAMETYPE}>
+                  <GameData />
+                </Tab.Pane>
+              </Tab.Content>
+            </Tab.Container>
+          </Container>
         </>
       )}
-    </PageLayout>
+    </>
   );
 };
 

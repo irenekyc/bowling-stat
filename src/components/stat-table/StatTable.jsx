@@ -9,14 +9,15 @@ import StatTableBowlerEvent from "./StatTableBowlerEvent";
 import "./stat-table.scss";
 import transformEventIdToName from "../../helpers/transformEventIdtoName";
 import { transformNameToSlug } from "../../helpers/convertSlugAndName";
+import { Link } from "react-router-dom";
 
 const eventColumn = {
   Header: "Event",
   accessor: "Event Id",
   Cell: ({ value }) => (
-    <a href={`/events/${value}`}>
+    <Link to={`/events/${value}`}>
       <strong>{transformEventIdToName(value)}</strong>
-    </a>
+    </Link>
   ),
 };
 
@@ -44,9 +45,9 @@ const StatTable = ({ title, tableData, group = undefined }) => {
           formatedColumn = {
             ...formatedColumn,
             Cell: ({ value }) => (
-              <a href={`/bowlers/${transformNameToSlug(value, "bowler")}`}>
+              <Link to={`/bowlers/${transformNameToSlug(value, "bowler")}`}>
                 {value}
-              </a>
+              </Link>
             ),
           };
         }

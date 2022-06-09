@@ -1,2 +1,4 @@
-export { default as fetchEventList } from "./fetchEventList";
-export { default as fetchBowlerList } from "./fetchBowlerList";
+import { teamSlice } from "../teamSlice";
+
+export { default as fetchTeamData } from "./fetchTeamData";
+export const { setTeam } = teamSlice.actions;

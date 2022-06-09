@@ -4,25 +4,28 @@ import { transformSlugToName } from "../../helpers/convertSlugAndName";
 import { bakerColumns } from "../../helpers/transformBakerData";
 import { teamColumns } from "../../helpers/transformTeamData";
 import { bakerMatchPlayColumns } from "../../helpers/transformBakerMatchPlayData";
-import PageLayout from "../../layout/page-layout";
 import StatTable from "../../components/stat-table";
 import transformEventIdToName from "../../helpers/transformEventIdtoName";
+import Header from "../../layout/header";
+import { Container } from "react-bootstrap";
 
 const BowlerStat = () => {
-  let { bowlerSlug } = useParams();
-  const {
-    baker: bakerData,
-    team: teamData,
-    bakerMatch: bakerMatchPlayData,
-  } = useSelector((state) => state.data.data);
-  const details = useSelector((state) => state.user.details);
+  let { bowlerSlug, teamId } = useParams();
+  // const {
+  //   baker: bakerData,
+  //   team: teamData,
+  //   bakerMatch: bakerMatchPlayData,
+  // } = useSelector((state) => state.data.data);
+  // const details = useSelector((state) => state.user.details);
 
   return (
-    <PageLayout>
-      <h2>{transformSlugToName(bowlerSlug, "bowler")}</h2>
-      <strong>Year 2021 - 2022 </strong>
-      <p>View By Game Type</p>
-      {bakerData.length > 0 && (
+    <>
+      <Header level2={teamId} level3={bowlerSlug} />
+      <Container>
+        <h2>{transformSlugToName(bowlerSlug, "bowler")}</h2>
+        <strong>Year 2021 - 2022 </strong>
+        <p>View By Game Type</p>
+        {/* {bakerData.length > 0 && (
         <StatTable
           tableData={{
             data: bakerData.filter(
@@ -106,8 +109,9 @@ const BowlerStat = () => {
               />
             )}
           </div>
-        ))}
-    </PageLayout>
+        ))} */}
+      </Container>
+    </>
   );
 };
 
