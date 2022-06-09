@@ -1,4 +1,4 @@
-export default {
+const teamData = {
   "qu-women": {
     events: [
       "big-red-invite--2021-2022",
@@ -19,3 +19,5 @@ export default {
     bowlers: [],
   },
 };
+
+export default teamData;

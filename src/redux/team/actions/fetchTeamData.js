@@ -3,7 +3,7 @@ import quWomenData from "../../../data/qu-women-all.json";
 import staticTeamMetaData from "../../../static/team";
 
 const staticData = {
-  ["qu-women"]: quWomenData,
+  "qu-women": quWomenData,
 };
 
 const fetchTeamData = createAsyncThunk("fetchTeamData", async (teamId) => {

@@ -9,7 +9,7 @@ import { fetchTeamData } from "../../redux/team/actions";
 
 const TeamApp = () => {
   const dispatch = useDispatch();
-  const { teamId, ...rest } = useParams();
+  const { teamId } = useParams();
   const { team } = useSelector((state) => state.team);
 
   useEffect(() => {

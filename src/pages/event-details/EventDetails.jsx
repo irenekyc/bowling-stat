@@ -45,7 +45,7 @@ const EventDetails = () => {
     if (statistic && statistic.length === 0 && teamId !== undefined) {
       dispatch(fetchTeamData(teamId));
     }
-  }, [teamId, statistic]);
+  }, [teamId, statistic, dispatch]);
   let metaData = staticEvents[eventId];
   if (eventId.includes("all")) {
     metaData = "All";

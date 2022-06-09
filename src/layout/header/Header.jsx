@@ -1,23 +1,8 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 import BreadCrumb from "../../components/bread-crumb";
 import { transformSlugToName } from "../../helpers/convertSlugAndName";
 import { Container } from "react-bootstrap";
 
 const Header = ({ level2 = undefined, level3 = undefined }) => {
-  // const [breadcrumbs, setBreadCrumbs] = useState({
-  //   level2: undefined,
-  //   level3: undefined,
-  // });
-  // const { teamId } = useParams();
-
-  // useEffect(() => {
-  //   setBreadCrumbs({
-  //     level2: teamId,
-  //     level3: eventId || bowlerSlug,
-  //   });
-  // }, [teamId]);
-
   return (
     <nav className="flex bd-header">
       <Container>
