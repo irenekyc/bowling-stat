@@ -10,24 +10,24 @@ const BakerGameStatTable = ({ data, columns, title }) => {
     headerGroups,
     rows,
     setGroupBy,
-    toggleAllRowsExpanded,
     prepareRow,
   } = useTable(
     {
       columns,
       data,
+      initialState: {
+        expanded: {
+          ["All:undefined"]: true,
+        },
+      },
     },
     useGroupBy,
     useExpanded
   );
 
   useEffect(() => {
-    setGroupBy(["All"]);
+    setGroupBy(["All", "bowler"]);
   }, [setGroupBy]);
-
-  useEffect(() => {
-    toggleAllRowsExpanded(true);
-  }, [toggleAllRowsExpanded]);
 
   return (
     <div className="bd-table">
@@ -54,13 +54,17 @@ const BakerGameStatTable = ({ data, columns, title }) => {
                       <span> {cell.render("Cell")} </span>
                     ) :  */}
                       {cell.isGrouped ? (
-                        row.groupByID === "All" ? (
-                          <>
+                        row.groupByID !== "All" ||
+                        row.groupByID === "bowler" ? (
+                          <span {...row.getToggleRowExpandedProps()}>
                             <span>{cell.render("Cell")}</span>
-                          </>
+                          </span>
                         ) : (
                           <>
-                            <span style={{ whiteSpace: "nowrap" }}>
+                            <span
+                              {...row.getToggleRowExpandedProps()}
+                              style={{ whiteSpace: "nowrap" }}
+                            >
                               {cell.render("Cell")}{" "}
                             </span>
                           </>

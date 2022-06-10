@@ -1,5 +1,6 @@
 export const summaryScoreColumns = [
   { Header: "All", Cell: () => "All", expanded: true },
+  // { Header: "Event", accessor: "Event Id" },
   {
     Header: "Bowler",
     accessor: "bowler",
