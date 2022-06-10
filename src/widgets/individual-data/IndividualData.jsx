@@ -103,9 +103,10 @@ let bowlerTableColumns = [
   // },
 ];
 
-const IndividualData = ({ page = undefined, data = [] }) => {
+const IndividualData = ({ page = undefined, data = [], bowlerPage = "" }) => {
   if (!page) return null;
   let columns = [];
+
   switch (page) {
     case BOWLER_TABLE_PAGE_EVENT_ALL:
       columns = bowlerTableColumns;
@@ -127,12 +128,32 @@ const IndividualData = ({ page = undefined, data = [] }) => {
       break;
   }
 
+  const renderTitle = () => {
+    let bowlerName = "";
+    switch (page) {
+      case BOWLER_TABLE_PAGE_EVENT_ALL:
+      case BOWLER_TABLE_PAGE_EVENT_SINGLE:
+      case BOWLER_TABLE_PAGE_BOWLER_ALL:
+        bowlerName = "Bowlers : All";
+        break;
+      case BOWLER_TABLE_PAGE_BOWLER_SINGLE:
+        bowlerName = bowlerPage;
+        break;
+      default:
+        break;
+    }
+    return bowlerName;
+  };
+
   if (data.length === 0 || columns.length === 0) return null;
+  console.log(page);
 
   return (
-    <div>
-      <h2>Group by Bowler</h2>
-      <StatBowlerTable page={page} data={data} columns={columns} />
+    <div className="bd-stat__table">
+      <div className="bd-stat__table__section">
+        <h4 className="bd-stat__table__section__title">{renderTitle()}</h4>
+        <StatBowlerTable page={page} data={data} columns={columns} />
+      </div>
     </div>
   );
 };

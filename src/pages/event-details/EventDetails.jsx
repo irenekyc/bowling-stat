@@ -16,6 +16,8 @@ import {
   BOWLER_TABLE_PAGE_EVENT_ALL,
 } from "../../constants/bowler-table";
 import { PAGE_EVENT_ALL, PAGE_EVENT_SINGLE } from "../../constants/page-view";
+import Page from "../../layout/page";
+import Main from "../../layout/main";
 
 const SUMMARY = "SUMMARY";
 const INDIVIDUAL = "INDIVIDUAL";
@@ -55,75 +57,84 @@ const EventDetails = () => {
   }
 
   return (
-    <>
+    <Page>
       {!metaData ? (
         <h2>404! Event not found</h2>
       ) : (
         <>
-          <Header level2={teamId} level3={eventId} />
-          <Container>
-            <h2>{transformEventIdToName(eventId)}</h2>
-            <EventMetaData metaData={metaData} />
-            <Tab.Container defaultActiveKey={SUMMARY}>
-              <p>Breakdown:</p>
-              <div className="bd-main__tabs-div">
-                <Nav>
-                  <Nav.Item>
-                    <Nav.Link eventKey={SUMMARY}>Summary</Nav.Link>
-                  </Nav.Item>
-                  <Nav.Item>
-                    <Nav.Link eventKey={INDIVIDUAL}>Bowler</Nav.Link>
-                  </Nav.Item>
-                  <Nav.Item>
-                    <Nav.Link eventKey={GAMETYPE}>Game Type</Nav.Link>
-                  </Nav.Item>
-                </Nav>
-              </div>
+          <Header
+            level2={teamId}
+            level3={
+              eventId.includes("all")
+                ? "All Events (2021 - 2021)"
+                : transformEventIdToName(eventId)
+            }
+          />
+          <Main>
+            <Container>
+              <h2>{transformEventIdToName(eventId)}</h2>
+              <EventMetaData metaData={metaData} />
+              <Tab.Container defaultActiveKey={SUMMARY}>
+                <p>Breakdown:</p>
+                <div className="bd-main__tabs-div">
+                  <Nav>
+                    <Nav.Item>
+                      <Nav.Link eventKey={SUMMARY}>Summary</Nav.Link>
+                    </Nav.Item>
+                    <Nav.Item>
+                      <Nav.Link eventKey={INDIVIDUAL}>Bowler</Nav.Link>
+                    </Nav.Item>
+                    <Nav.Item>
+                      <Nav.Link eventKey={GAMETYPE}>Game Type</Nav.Link>
+                    </Nav.Item>
+                  </Nav>
+                </div>
 
-              <Tab.Content>
-                <Tab.Pane eventKey={SUMMARY}>
-                  <SummaryData
-                    summaryStatistic={summaryStatistic.filter((stat) =>
-                      !eventId.includes("all")
-                        ? stat["Event Id"] === eventId
-                        : stat
-                    )}
-                  />
-                </Tab.Pane>
-                <Tab.Pane eventKey={INDIVIDUAL}>
-                  <IndividualData
-                    page={
-                      !eventId.includes("all")
-                        ? BOWLER_TABLE_PAGE_EVENT_SINGLE
-                        : BOWLER_TABLE_PAGE_EVENT_ALL
-                    }
-                    data={statistic.filter((stat) =>
-                      !eventId.includes("all")
-                        ? stat["Event Id"] === eventId
-                        : stat
-                    )}
-                  />
-                </Tab.Pane>
-                <Tab.Pane eventKey={GAMETYPE}>
-                  <GameData
-                    page={
-                      !eventId.includes("all")
-                        ? PAGE_EVENT_SINGLE
-                        : PAGE_EVENT_ALL
-                    }
-                    data={statistic.filter((stat) =>
-                      !eventId.includes("all")
-                        ? stat["Event Id"] === eventId
-                        : stat
-                    )}
-                  />
-                </Tab.Pane>
-              </Tab.Content>
-            </Tab.Container>
-          </Container>
+                <Tab.Content>
+                  <Tab.Pane eventKey={SUMMARY}>
+                    <SummaryData
+                      summaryStatistic={summaryStatistic.filter((stat) =>
+                        !eventId.includes("all")
+                          ? stat["Event Id"] === eventId
+                          : stat
+                      )}
+                    />
+                  </Tab.Pane>
+                  <Tab.Pane eventKey={INDIVIDUAL}>
+                    <IndividualData
+                      page={
+                        !eventId.includes("all")
+                          ? BOWLER_TABLE_PAGE_EVENT_SINGLE
+                          : BOWLER_TABLE_PAGE_EVENT_ALL
+                      }
+                      data={statistic.filter((stat) =>
+                        !eventId.includes("all")
+                          ? stat["Event Id"] === eventId
+                          : stat
+                      )}
+                    />
+                  </Tab.Pane>
+                  <Tab.Pane eventKey={GAMETYPE}>
+                    <GameData
+                      page={
+                        !eventId.includes("all")
+                          ? PAGE_EVENT_SINGLE
+                          : PAGE_EVENT_ALL
+                      }
+                      data={statistic.filter((stat) =>
+                        !eventId.includes("all")
+                          ? stat["Event Id"] === eventId
+                          : stat
+                      )}
+                    />
+                  </Tab.Pane>
+                </Tab.Content>
+              </Tab.Container>
+            </Container>
+          </Main>
         </>
       )}
-    </>
+    </Page>
   );
 };
 

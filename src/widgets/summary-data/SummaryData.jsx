@@ -16,7 +16,6 @@ const SummaryData = ({ summaryStatistic = [] }) => {
   if (summaryStatistic.length === 0) return null;
   return (
     <div>
-      <h2>Summary</h2>
       <StatSummaryTable
         data={summaryStatistic}
         title={SUMMARY_SCORE}

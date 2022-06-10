@@ -58,9 +58,6 @@ const bakerColumns = [
     Header: "Game Group",
     accessor: "game_group",
     Aggregated: () => `All`,
-    Cell: ({ value, ...props }) => {
-      return <>{value}</>;
-    },
   },
   {
     Header: "First Ball Average",
@@ -91,6 +88,8 @@ const bakerColumns = [
     Header: "Strikes/Game",
     accessor: "strikes_per_game",
     aggregate: "average",
+    Aggregated: ({ value }) => `${value.toFixed(2)}`,
+    Cell: ({ value }) => `${value.toFixed(2)}`,
   },
   {
     Header: "Spares",
@@ -101,7 +100,8 @@ const bakerColumns = [
     Header: "Spares/Game",
     accessor: "spares_per_game",
     aggregate: "average",
-    Cell: ({ value }) => value.toFixed(2),
+    Aggregated: ({ value }) => `${value.toFixed(2)}`,
+    Cell: ({ value }) => `${value.toFixed(2)}`,
   },
   {
     Header: "Opens",
@@ -113,7 +113,8 @@ const bakerColumns = [
     Header: "Opens/Game",
     accessor: "opens_per_game",
     aggregate: "average",
-    Cell: ({ value }) => value.toFixed(2),
+    Aggregated: ({ value }) => `${value.toFixed(2)}`,
+    Cell: ({ value }) => `${value.toFixed(2)}`,
   },
 ];
 
@@ -206,10 +207,10 @@ const GameData = ({ page, data = [] }) => {
       break;
     case PAGE_EVENT_ALL:
       bakerGameStatColumns = bakerColumns.filter(
-        (column) => column.Header !== "Bowler"
+        (column) => column.Header !== "Bowler" && column.Header !== "Event"
       );
       teamGameStatColumns = teamColumns.filter(
-        (column) => column.Header !== "Bowler"
+        (column) => column.Header !== "Bowler" && column.Header !== "Event"
       );
       break;
     case PAGE_EVENT_SINGLE:
@@ -225,29 +226,37 @@ const GameData = ({ page, data = [] }) => {
   }
 
   return (
-    <div>
-      <h2>Group by Game Type</h2>
-      <h4>Baker</h4>
-      {bakerGameStatColumns.length > 0 && (
-        <StatGameTypeTable
-          data={data.filter((entry) => entry.game_type === "Baker")}
-          columns={bakerGameStatColumns}
-        />
-      )}
-      <h4>Team</h4>
-      {teamGameStatColumns.length > 0 && (
-        <StatGameTypeTable
-          data={data.filter((entry) => entry.game_type === "Team")}
-          columns={teamGameStatColumns}
-        />
-      )}
-      <h4>Baker Match Play</h4>
-      {bakerGameStatColumns.length > 0 && (
-        <StatGameTypeTable
-          data={data.filter((entry) => entry.game_type === "Baker Match Play")}
-          columns={bakerGameStatColumns}
-        />
-      )}
+    <div className="bd-stat__table">
+      <div className="bd-stat__table__section">
+        <h4 className="bd-stat__table__section__title">Baker</h4>
+        {bakerGameStatColumns.length > 0 && (
+          <StatGameTypeTable
+            data={data.filter((entry) => entry.game_type === "Baker")}
+            columns={bakerGameStatColumns}
+          />
+        )}
+      </div>
+      <div className="bd-stat__table__section">
+        <h4 className="bd-stat__table__section__title">Team</h4>
+        {teamGameStatColumns.length > 0 && (
+          <StatGameTypeTable
+            data={data.filter((entry) => entry.game_type === "Team")}
+            columns={teamGameStatColumns}
+          />
+        )}
+      </div>
+      <div className="bd-stat__table__section">
+        <h4 className="bd-stat__table__section__title">Baker Match Play</h4>
+
+        {bakerGameStatColumns.length > 0 && (
+          <StatGameTypeTable
+            data={data.filter(
+              (entry) => entry.game_type === "Baker Match Play"
+            )}
+            columns={bakerGameStatColumns}
+          />
+        )}
+      </div>
     </div>
   );
 };

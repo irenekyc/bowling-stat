@@ -17,7 +17,7 @@ const BakerGameStatTable = ({ data, columns, title }) => {
       data,
       initialState: {
         expanded: {
-          ["All:undefined"]: true,
+          "All:undefined": true,
         },
       },
     },
@@ -30,8 +30,12 @@ const BakerGameStatTable = ({ data, columns, title }) => {
   }, [setGroupBy]);
 
   return (
-    <div className="bd-table">
-      {title && <h3>{transformSummaryTableTitle(title)}</h3>}
+    <div className="bd-stat__table__section">
+      {title && (
+        <h4 className="bd-stat__table__section__title">
+          {transformSummaryTableTitle(title)}
+        </h4>
+      )}
       <Table {...getTableProps()} striped bordered hover>
         <thead className="bd-table__header">
           {headerGroups.map((headerGroup) => (
@@ -54,17 +58,14 @@ const BakerGameStatTable = ({ data, columns, title }) => {
                       <span> {cell.render("Cell")} </span>
                     ) :  */}
                       {cell.isGrouped ? (
-                        row.groupByID !== "All" ||
+                        row.groupByID === "All" ||
                         row.groupByID === "bowler" ? (
-                          <span {...row.getToggleRowExpandedProps()}>
+                          <span>
                             <span>{cell.render("Cell")}</span>
                           </span>
                         ) : (
                           <>
-                            <span
-                              {...row.getToggleRowExpandedProps()}
-                              style={{ whiteSpace: "nowrap" }}
-                            >
+                            <span style={{ whiteSpace: "nowrap" }}>
                               {cell.render("Cell")}{" "}
                             </span>
                           </>
