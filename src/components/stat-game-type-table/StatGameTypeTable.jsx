@@ -2,7 +2,7 @@ import { useTable, useGroupBy, useExpanded } from "react-table";
 import { useEffect } from "react";
 import Table from "react-bootstrap/Table";
 
-const BakerGameStatTable = ({ data, columns }) => {
+const StatGameTypeTable = ({ data, columns }) => {
   const {
     getTableProps,
     getTableBodyProps,
@@ -84,4 +84,4 @@ const BakerGameStatTable = ({ data, columns }) => {
   );
 };
 
-export default BakerGameStatTable;
+export default StatGameTypeTable;

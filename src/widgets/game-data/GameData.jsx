@@ -1,4 +1,3 @@
-import BakerGameStatTable from "../../components/baker-game-stat-table";
 import {
   PAGE_BOWLER_ALL,
   PAGE_BOWLER_SINGLE,
@@ -6,6 +5,7 @@ import {
   PAGE_EVENT_ALL,
 } from "../../constants/page-view";
 import transformEventIdToName from "../../helpers/transformEventIdtoName";
+import StatGameTypeTable from "../../components/stat-game-type-table";
 
 /*Game Type Data - consists 3 tables
  1. Baker / 3. Baker Match Play
@@ -229,21 +229,21 @@ const GameData = ({ page, data = [] }) => {
       <h2>Group by Game Type</h2>
       <h4>Baker</h4>
       {bakerGameStatColumns.length > 0 && (
-        <BakerGameStatTable
+        <StatGameTypeTable
           data={data.filter((entry) => entry.game_type === "Baker")}
           columns={bakerGameStatColumns}
         />
       )}
       <h4>Team</h4>
       {teamGameStatColumns.length > 0 && (
-        <BakerGameStatTable
+        <StatGameTypeTable
           data={data.filter((entry) => entry.game_type === "Team")}
           columns={teamGameStatColumns}
         />
       )}
       <h4>Baker Match Play</h4>
       {bakerGameStatColumns.length > 0 && (
-        <BakerGameStatTable
+        <StatGameTypeTable
           data={data.filter((entry) => entry.game_type === "Baker Match Play")}
           columns={bakerGameStatColumns}
         />
