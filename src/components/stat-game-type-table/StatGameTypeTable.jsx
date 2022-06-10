@@ -25,7 +25,7 @@ const StatGameTypeTable = ({ data, columns }) => {
 
   return (
     <div className="bd-table">
-      <Table {...getTableProps()} striped bordered hover>
+      <Table {...getTableProps()} striped bordered hover responsive>
         <thead className="bd-table__header">
           {headerGroups.map((headerGroup) => (
             <tr {...headerGroup.getHeaderGroupProps()}>

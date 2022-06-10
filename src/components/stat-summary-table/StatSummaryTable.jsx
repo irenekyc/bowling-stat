@@ -36,7 +36,7 @@ const BakerGameStatTable = ({ data, columns, title }) => {
           {transformSummaryTableTitle(title)}
         </h4>
       )}
-      <Table {...getTableProps()} striped bordered hover>
+      <Table {...getTableProps()} striped bordered hover responsive>
         <thead className="bd-table__header">
           {headerGroups.map((headerGroup) => (
             <tr {...headerGroup.getHeaderGroupProps()}>
