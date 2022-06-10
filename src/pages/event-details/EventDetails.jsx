@@ -23,6 +23,7 @@ const SUMMARY = "SUMMARY";
 const INDIVIDUAL = "INDIVIDUAL";
 const GAMETYPE = "GAMETYPE";
 
+// TODO: get it from data
 const staticEvents = {
   "big-red-invite--2021-2022": {
     location: "Hollywood Bowl",
@@ -38,6 +39,16 @@ const staticEvents = {
     location: "Cadillac XBC",
     start_date: "2022-1-21",
     end_date: "2022-1-23",
+  },
+  "warhawk-open--2021-2022": {
+    location: "Rock River Lanes , North rock Lanes",
+    start_date: "",
+    end_date: "",
+  },
+  "bearcat-open--2021-2022": {
+    location: "St Clair Bowl",
+    start_date: "",
+    end_date: "",
   },
 };
 

@@ -44,22 +44,19 @@ let bowlerTableColumns = [
     Header: "Game Group",
     accessor: "game_group",
     Aggregated: () => `All`,
-    Cell: ({ value, ...props }) => {
-      return <>{value}</>;
-    },
   },
   {
     Header: "First Ball Average",
     accessor: "first_ball_ave",
     aggregate: "average",
-    Cell: ({ value }) => value.toFixed(2),
+    Cell: ({ value }) => (value ? value.toFixed(2) : "-"),
   },
   {
     Header: "Frame Average",
     accessor: "frame_average",
     aggregate: "average",
-    Aggregated: ({ value }) => `${value.toFixed(2)}`,
-    Cell: ({ value }) => `${value.toFixed(2)}`,
+    Aggregated: ({ value }) => (value ? `${value.toFixed(2)}` : "-"),
+    Cell: ({ value }) => (value ? `${value.toFixed(2)}` : "-"),
   },
   {
     Header: "Strikes",
@@ -70,8 +67,8 @@ let bowlerTableColumns = [
     Header: "Strikes %",
     accessor: "strikes_percentage",
     aggregate: "average",
-    Aggregated: ({ value }) => `${(value * 100).toFixed(1)}%`,
-    Cell: ({ value }) => `${(value * 100).toFixed(1)}%`,
+    Aggregated: ({ value }) => (value ? `${(value * 100).toFixed(1)}%` : "-"),
+    Cell: ({ value }) => (value ? `${(value * 100).toFixed(1)}%` : "-"),
   },
   // {
   //   Header: "Strikes/Game",

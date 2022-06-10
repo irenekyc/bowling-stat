@@ -63,14 +63,14 @@ const bakerColumns = [
     Header: "First Ball Average",
     accessor: "first_ball_ave",
     aggregate: "average",
-    Cell: ({ value }) => value.toFixed(2),
+    Cell: ({ value }) => (value ? value.toFixed(2) : "-"),
   },
   {
     Header: "Frame Average",
     accessor: "frame_average",
     aggregate: "average",
-    Aggregated: ({ value }) => `${value.toFixed(2)}`,
-    Cell: ({ value }) => `${value.toFixed(2)}`,
+    Aggregated: ({ value }) => (value ? `${value.toFixed(2)}` : ""),
+    Cell: ({ value }) => (value ? `${value.toFixed(2)}` : ""),
   },
   {
     Header: "Strikes",
@@ -81,15 +81,15 @@ const bakerColumns = [
     Header: "Strikes %",
     accessor: "strikes_percentage",
     aggregate: "average",
-    Aggregated: ({ value }) => `${(value * 100).toFixed(1)}%`,
-    Cell: ({ value }) => `${(value * 100).toFixed(1)}%`,
+    Aggregated: ({ value }) => (value ? `${(value * 100).toFixed(1)}%` : "-"),
+    Cell: ({ value }) => (value ? `${(value * 100).toFixed(1)}%` : "-"),
   },
   {
     Header: "Strikes/Game",
     accessor: "strikes_per_game",
     aggregate: "average",
-    Aggregated: ({ value }) => `${value.toFixed(2)}`,
-    Cell: ({ value }) => `${value.toFixed(2)}`,
+    Aggregated: ({ value }) => (value ? `${value.toFixed(2)}` : "-"),
+    Cell: ({ value }) => (value ? `${value.toFixed(2)}` : "-"),
   },
   {
     Header: "Spares",
@@ -100,8 +100,8 @@ const bakerColumns = [
     Header: "Spares/Game",
     accessor: "spares_per_game",
     aggregate: "average",
-    Aggregated: ({ value }) => `${value.toFixed(2)}`,
-    Cell: ({ value }) => `${value.toFixed(2)}`,
+    Aggregated: ({ value }) => (value ? `${value.toFixed(2)}` : "-"),
+    Cell: ({ value }) => (value ? `${value.toFixed(2)}` : "-"),
   },
   {
     Header: "Opens",
@@ -113,8 +113,8 @@ const bakerColumns = [
     Header: "Opens/Game",
     accessor: "opens_per_game",
     aggregate: "average",
-    Aggregated: ({ value }) => `${value.toFixed(2)}`,
-    Cell: ({ value }) => `${value.toFixed(2)}`,
+    Aggregated: ({ value }) => (value ? `${value.toFixed(2)}` : "-"),
+    Cell: ({ value }) => (value ? `${value.toFixed(2)}` : "-"),
   },
 ];
 
@@ -144,14 +144,14 @@ let teamColumns = [
     Header: "First Ball Average",
     accessor: "first_ball_ave",
     aggregate: "average",
-    Cell: ({ value }) => value.toFixed(2),
+    Cell: ({ value }) => (value ? value.toFixed(2) : "-"),
   },
   {
     Header: "Frame Average",
     accessor: "frame_average",
     aggregate: "average",
-    Aggregated: ({ value }) => `${value.toFixed(2)}`,
-    Cell: ({ value }) => `${value.toFixed(2)}`,
+    Aggregated: ({ value }) => (value ? `${value.toFixed(2)}` : "-"),
+    Cell: ({ value }) => (value ? `${value.toFixed(2)}` : "-"),
   },
   {
     Header: "Strikes",
@@ -182,8 +182,8 @@ let teamColumns = [
     Header: "Doubles %",
     accessor: "double_percentage",
     aggregate: "average",
-    Aggregated: ({ value }) => `${(value * 100).toFixed(2)}%`,
-    Cell: ({ value }) => `${(value * 100).toFixed(2)}%`,
+    Aggregated: ({ value }) => (value ? `${(value * 100).toFixed(2)}%` : "-"),
+    Cell: ({ value }) => (value ? `${(value * 100).toFixed(2)}%` : "-"),
   },
 ];
 
