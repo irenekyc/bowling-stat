@@ -1,6 +1,6 @@
 {
   "name": "bowling-stats-frontend",
-  "homepage": "https://irenekyc.github.io/bowling-stat",
+  "homepage": "/bowling-stat/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
