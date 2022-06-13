@@ -1,7 +1,6 @@
 import Dropdown from "react-bootstrap/Dropdown";
 import { useSelector } from "react-redux";
 import { Container } from "react-bootstrap";
-import transformEventIdToName from "../../helpers/transformEventIdtoName";
 import { transformNameToSlug } from "../../helpers/convertSlugAndName";
 
 import { Link, useLocation, useParams } from "react-router-dom";
@@ -28,15 +27,15 @@ const TeamHome = () => {
                   Events Page
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
-                  {["all-events--2021-2022", ...events].map((eventId) => (
+                  {events.map((event) => (
                     <Dropdown.Item
-                      key={eventId}
+                      key={event.id}
                       as={Link}
                       to={{
-                        pathname: `${pathname}/events/${eventId}`,
+                        pathname: `${pathname}/events/${event.id}`,
                       }}
                     >
-                      {transformEventIdToName(eventId)}
+                      {event.name}
                     </Dropdown.Item>
                   ))}
                 </Dropdown.Menu>

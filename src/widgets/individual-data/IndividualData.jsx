@@ -143,7 +143,6 @@ const IndividualData = ({ page = undefined, data = [], bowlerPage = "" }) => {
   };
 
   if (data.length === 0 || columns.length === 0) return null;
-  console.log(page);
 
   return (
     <div className="bd-stat__table">

@@ -2,7 +2,7 @@ import IndividualData from "../../widgets/individual-data";
 import GameData from "../../widgets/game-data";
 import SummaryData from "../../widgets/summary-data";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Tab, Nav, Container } from "react-bootstrap";
 import { useParams } from "react-router";
 import Header from "../../layout/header";
@@ -23,38 +23,12 @@ const SUMMARY = "SUMMARY";
 const INDIVIDUAL = "INDIVIDUAL";
 const GAMETYPE = "GAMETYPE";
 
-// TODO: get it from data
-const staticEvents = {
-  "big-red-invite--2021-2022": {
-    location: "Hollywood Bowl",
-    start_date: "2022-2-25",
-    end_date: "2022-2-27",
-  },
-  "flyer-classic--2021-2022": {
-    location: "Strike And Spare II",
-    start_date: "2022-2-11",
-    end_date: "2022-2-13",
-  },
-  "peacocks-classic--2021-2022": {
-    location: "Cadillac XBC",
-    start_date: "2022-1-21",
-    end_date: "2022-1-23",
-  },
-  "warhawk-open--2021-2022": {
-    location: "Rock River Lanes , North rock Lanes",
-    start_date: "",
-    end_date: "",
-  },
-  "bearcat-open--2021-2022": {
-    location: "St Clair Bowl",
-    start_date: "",
-    end_date: "",
-  },
-};
-
 const EventDetails = () => {
+  const [metaData, setMetaData] = useState(undefined);
   const { teamId, eventId } = useParams();
-  const { statistic, summaryStatistic } = useSelector((state) => state.team);
+  const { statistic, summaryStatistic, events } = useSelector(
+    (state) => state.team
+  );
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -62,10 +36,11 @@ const EventDetails = () => {
       dispatch(fetchTeamData(teamId));
     }
   }, [teamId, statistic, dispatch]);
-  let metaData = staticEvents[eventId];
-  if (eventId.includes("all")) {
-    metaData = "All";
-  }
+
+  useEffect(() => {
+    if (eventId === undefined || events.length === 0) return;
+    setMetaData(events.filter((event) => event.id === eventId)[0]);
+  }, [events, eventId]);
 
   return (
     <Page>

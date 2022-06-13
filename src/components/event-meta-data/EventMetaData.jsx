@@ -1,20 +1,25 @@
 import "./meta-data.scss";
 
 const EventMetaData = ({ metaData }) => {
-  if (metaData === "All") {
+  if (!metaData) return null;
+  if (metaData.name.toLowerCase().includes("all")) {
     return <></>;
   }
-  const { location, start_date, end_date } = metaData;
+  const { location, startDate, endDate } = metaData;
   return (
     <div className="bd-event-meta">
       <div className="bd-event-meta__details-row">
-        <span>
-          <strong>Venue:</strong> {location}
-        </span>{" "}
-        <span>
-          <strong>Date: </strong>
-          {start_date} - {end_date}
-        </span>
+        {location && (
+          <span>
+            <strong>Venue:</strong> {location}
+          </span>
+        )}
+        {startDate && endDate && (
+          <span>
+            <strong>Date: </strong>
+            {startDate} - {endDate}
+          </span>
+        )}
       </div>
     </div>
   );

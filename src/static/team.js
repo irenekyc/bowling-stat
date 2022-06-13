@@ -6,6 +6,7 @@ const teamData = {
       "flyer-classic--2021-2022",
       "warhawk-open--2021-2022",
       "peacocks-classic--2021-2022",
+      "glvc-championships--2021-2022",
     ],
     bowlers: [
       "Alyssa Vasquez",
