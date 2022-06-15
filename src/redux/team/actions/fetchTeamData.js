@@ -1,14 +1,18 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import quWomenData from "../../../data/qu-women-all.json";
+import quMenData from "../../../data/qu-men-all.json";
 // import staticTeamMetaData from "../../../static/team";
 import quWomenSummaryData from "../../../data/qu-women-summary-all.json";
+import quMenSummaryData from "../../../data/qu-men-summary-all.json";
 
 const staticData = {
   "qu-women": quWomenData,
+  "qu-men": quMenData,
 };
 
 const staticSummaryData = {
   "qu-women": quWomenSummaryData,
+  "qu-men": quMenSummaryData,
 };
 
 const fetchTeamData = createAsyncThunk("fetchTeamData", async (teamId) => {
