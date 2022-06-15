@@ -30,11 +30,11 @@
         "baker_mp_strikes_percentage":null,
         "baker_mp_first_ball_ave":null,
         "all_num_frames":88,
-        "all_frame_ave":18.6571428571,
+        "all_frame_ave":18.6583333333,
         "all_num_strikes":38,
         "all_num_strikes_attempt":88,
-        "all_strikes_percentage":0.4163059163,
-        "all_first_ball_ave":8.9051226551
+        "all_strikes_percentage":0.4297138047,
+        "all_first_ball_ave":8.9036195286
     },
     {
         "Event Id":"kohawk-invite--2021-2022",
@@ -46,11 +46,11 @@
         "end_date":1644105600000,
         "bowler":"Austin Owen",
         "baker_num_frames":13.0,
-        "baker_frame_ave":13.9285714286,
+        "baker_frame_ave":10.75,
         "baker_num_strikes":4.0,
         "baker_num_strikes_attempt":13.0,
-        "baker_strikes_percentage":0.2857142857,
-        "baker_first_ball_ave":7.6428571429,
+        "baker_strikes_percentage":0.2083333333,
+        "baker_first_ball_ave":7.9166666667,
         "team_num_frames":null,
         "team_frame_ave":null,
         "team_num_strikes":null,
@@ -67,11 +67,11 @@
         "baker_mp_strikes_percentage":null,
         "baker_mp_first_ball_ave":null,
         "all_num_frames":13,
-        "all_frame_ave":13.9285714286,
+        "all_frame_ave":10.75,
         "all_num_strikes":4,
         "all_num_strikes_attempt":13,
-        "all_strikes_percentage":0.2857142857,
-        "all_first_ball_ave":7.6428571429
+        "all_strikes_percentage":0.2083333333,
+        "all_first_ball_ave":7.9166666667
     },
     {
         "Event Id":"kohawk-invite--2021-2022",
@@ -83,11 +83,11 @@
         "end_date":1644105600000,
         "bowler":"Brenden Unseld",
         "baker_num_frames":26.0,
-        "baker_frame_ave":18.1538461538,
+        "baker_frame_ave":17.9375,
         "baker_num_strikes":9.0,
         "baker_num_strikes_attempt":26.0,
-        "baker_strikes_percentage":0.3461538462,
-        "baker_first_ball_ave":8.6923076923,
+        "baker_strikes_percentage":0.28125,
+        "baker_first_ball_ave":8.75,
         "team_num_frames":52.0,
         "team_frame_ave":15.88,
         "team_num_strikes":11.0,
@@ -104,11 +104,11 @@
         "baker_mp_strikes_percentage":null,
         "baker_mp_first_ball_ave":null,
         "all_num_frames":78,
-        "all_frame_ave":17.5222222222,
+        "all_frame_ave":16.7944444444,
         "all_num_strikes":20,
         "all_num_strikes_attempt":78,
-        "all_strikes_percentage":0.3080808081,
-        "all_first_ball_ave":8.4757575758
+        "all_strikes_percentage":0.2411616162,
+        "all_first_ball_ave":8.2848484848
     },
     {
         "Event Id":"kohawk-invite--2021-2022",
@@ -141,11 +141,11 @@
         "baker_mp_strikes_percentage":null,
         "baker_mp_first_ball_ave":null,
         "all_num_frames":86,
-        "all_frame_ave":17.8142857143,
+        "all_frame_ave":17.2333333333,
         "all_num_strikes":30,
         "all_num_strikes_attempt":86,
-        "all_strikes_percentage":0.383982684,
-        "all_first_ball_ave":8.5242424242
+        "all_strikes_percentage":0.3542929293,
+        "all_first_ball_ave":8.5148989899
     },
     {
         "Event Id":"kohawk-invite--2021-2022",
@@ -157,11 +157,11 @@
         "end_date":1644105600000,
         "bowler":"Parker Lymenstull",
         "baker_num_frames":26.0,
-        "baker_frame_ave":17.1153846154,
+        "baker_frame_ave":17.53125,
         "baker_num_strikes":9.0,
         "baker_num_strikes_attempt":26.0,
-        "baker_strikes_percentage":0.3461538462,
-        "baker_first_ball_ave":8.5,
+        "baker_strikes_percentage":0.3645833333,
+        "baker_first_ball_ave":8.625,
         "team_num_frames":54.0,
         "team_frame_ave":18.86,
         "team_num_strikes":21.0,
@@ -178,11 +178,11 @@
         "baker_mp_strikes_percentage":null,
         "baker_mp_first_ball_ave":null,
         "all_num_frames":80,
-        "all_frame_ave":17.6,
+        "all_frame_ave":18.2694444444,
         "all_num_strikes":30,
         "all_num_strikes_attempt":80,
-        "all_strikes_percentage":0.3585858586,
-        "all_first_ball_ave":8.5585858586
+        "all_strikes_percentage":0.3792087542,
+        "all_first_ball_ave":8.6727272727
     },
     {
         "Event Id":"kohawk-invite--2021-2022",
@@ -197,8 +197,8 @@
         "baker_frame_ave":19.625,
         "baker_num_strikes":28.0,
         "baker_num_strikes_attempt":50.0,
-        "baker_strikes_percentage":0.5,
-        "baker_first_ball_ave":8.9166666667,
+        "baker_strikes_percentage":0.5592948718,
+        "baker_first_ball_ave":9.0512820513,
         "team_num_frames":58.0,
         "team_frame_ave":22.96,
         "team_num_strikes":32.0,
@@ -215,11 +215,11 @@
         "baker_mp_strikes_percentage":null,
         "baker_mp_first_ball_ave":null,
         "all_num_frames":108,
-        "all_frame_ave":20.419047619,
+        "all_frame_ave":21.4777777778,
         "all_num_strikes":60,
         "all_num_strikes_attempt":108,
-        "all_strikes_percentage":0.5111832612,
-        "all_first_ball_ave":9.0079365079
+        "all_strikes_percentage":0.5524475524,
+        "all_first_ball_ave":9.1894586895
     },
     {
         "Event Id":"leatherneck-classic--2021-2022",
@@ -252,11 +252,11 @@
         "baker_mp_strikes_percentage":null,
         "baker_mp_first_ball_ave":null,
         "all_num_frames":97,
-        "all_frame_ave":17.0045454545,
+        "all_frame_ave":17.535,
         "all_num_strikes":34,
         "all_num_strikes_attempt":97,
-        "all_strikes_percentage":0.3068181818,
-        "all_first_ball_ave":8.4125344353
+        "all_strikes_percentage":0.3375,
+        "all_first_ball_ave":8.5325757576
     },
     {
         "Event Id":"leatherneck-classic--2021-2022",
@@ -289,11 +289,11 @@
         "baker_mp_strikes_percentage":null,
         "baker_mp_first_ball_ave":null,
         "all_num_frames":99,
-        "all_frame_ave":18.1409090909,
+        "all_frame_ave":18.91,
         "all_num_strikes":48,
         "all_num_strikes_attempt":99,
-        "all_strikes_percentage":0.4562672176,
-        "all_first_ball_ave":8.5606060606
+        "all_strikes_percentage":0.4787878788,
+        "all_first_ball_ave":8.7083333333
     },
     {
         "Event Id":"leatherneck-classic--2021-2022",
@@ -326,11 +326,11 @@
         "baker_mp_strikes_percentage":null,
         "baker_mp_first_ball_ave":null,
         "all_num_frames":101,
-        "all_frame_ave":17.6,
+        "all_frame_ave":18.995,
         "all_num_strikes":51,
         "all_num_strikes_attempt":101,
-        "all_strikes_percentage":0.4255509642,
-        "all_first_ball_ave":8.8791322314
+        "all_strikes_percentage":0.4862121212,
+        "all_first_ball_ave":8.9965909091
     },
     {
         "Event Id":"leatherneck-classic--2021-2022",
@@ -363,11 +363,11 @@
         "baker_mp_strikes_percentage":null,
         "baker_mp_first_ball_ave":null,
         "all_num_frames":88,
-        "all_frame_ave":18.8909090909,
+        "all_frame_ave":18.7225,
         "all_num_strikes":34,
         "all_num_strikes_attempt":88,
-        "all_strikes_percentage":0.414738292,
-        "all_first_ball_ave":8.7563360882
+        "all_strikes_percentage":0.3874242424,
+        "all_first_ball_ave":8.7264393939
     },
     {
         "Event Id":"leatherneck-classic--2021-2022",
@@ -382,8 +382,8 @@
         "baker_frame_ave":20.09375,
         "baker_num_strikes":27.0,
         "baker_num_strikes_attempt":51.0,
-        "baker_strikes_percentage":0.5104166667,
-        "baker_first_ball_ave":9.1302083333,
+        "baker_strikes_percentage":0.5274725275,
+        "baker_first_ball_ave":9.1531593407,
         "team_num_frames":66.0,
         "team_frame_ave":20.1,
         "team_num_strikes":30.0,
@@ -400,11 +400,11 @@
         "baker_mp_strikes_percentage":null,
         "baker_mp_first_ball_ave":null,
         "all_num_frames":117,
-        "all_frame_ave":20.0954545455,
+        "all_frame_ave":20.0975,
         "all_num_strikes":57,
         "all_num_strikes_attempt":117,
-        "all_strikes_percentage":0.4951790634,
-        "all_first_ball_ave":9.0864325069
+        "all_strikes_percentage":0.4837162837,
+        "all_first_ball_ave":9.0430819181
     },
     {
         "Event Id":"leatherneck-classic--2021-2022",
@@ -456,8 +456,8 @@
         "baker_frame_ave":19.575,
         "baker_num_strikes":23.0,
         "baker_num_strikes_attempt":45.0,
-        "baker_strikes_percentage":0.5083333333,
-        "baker_first_ball_ave":9.2083333333,
+        "baker_strikes_percentage":0.5173076923,
+        "baker_first_ball_ave":9.225,
         "team_num_frames":55.0,
         "team_frame_ave":18.18,
         "team_num_strikes":27.0,
@@ -474,11 +474,11 @@
         "baker_mp_strikes_percentage":null,
         "baker_mp_first_ball_ave":null,
         "all_num_frames":100,
-        "all_frame_ave":19.296,
+        "all_frame_ave":18.8775,
         "all_num_strikes":50,
         "all_num_strikes_attempt":100,
-        "all_strikes_percentage":0.5045454545,
-        "all_first_ball_ave":9.1453939394
+        "all_strikes_percentage":0.5033508159,
+        "all_first_ball_ave":9.0593181818
     },
     {
         "Event Id":"kegel-isbpa-midwest-classic--2021-2022",
@@ -490,11 +490,11 @@
         "end_date":1642291200000,
         "bowler":"Austin Owen",
         "baker_num_frames":16.0,
-        "baker_frame_ave":19.625,
+        "baker_frame_ave":19.7083333333,
         "baker_num_strikes":6.0,
         "baker_num_strikes_attempt":16.0,
-        "baker_strikes_percentage":0.375,
-        "baker_first_ball_ave":7.9375,
+        "baker_strikes_percentage":0.4166666667,
+        "baker_first_ball_ave":7.7083333333,
         "team_num_frames":21.0,
         "team_frame_ave":13.875,
         "team_num_strikes":7.0,
@@ -511,11 +511,11 @@
         "baker_mp_strikes_percentage":null,
         "baker_mp_first_ball_ave":null,
         "all_num_frames":37,
-        "all_frame_ave":18.0568181818,
+        "all_frame_ave":16.7916666667,
         "all_num_strikes":13,
         "all_num_strikes_attempt":37,
-        "all_strikes_percentage":0.3770661157,
-        "all_first_ball_ave":8.0950413223
+        "all_strikes_percentage":0.3996212121,
+        "all_first_ball_ave":8.1117424242
     },
     {
         "Event Id":"kegel-isbpa-midwest-classic--2021-2022",
@@ -527,11 +527,11 @@
         "end_date":1642291200000,
         "bowler":"Brenden Unseld",
         "baker_num_frames":24.0,
-        "baker_frame_ave":15.9583333333,
+        "baker_frame_ave":16.46875,
         "baker_num_strikes":6.0,
         "baker_num_strikes_attempt":24.0,
         "baker_strikes_percentage":0.25,
-        "baker_first_ball_ave":8.5,
+        "baker_first_ball_ave":8.46875,
         "team_num_frames":46.0,
         "team_frame_ave":16.7111111111,
         "team_num_strikes":18.0,
@@ -548,11 +548,11 @@
         "baker_mp_strikes_percentage":null,
         "baker_mp_first_ball_ave":null,
         "all_num_frames":70,
-        "all_frame_ave":16.1797385621,
+        "all_frame_ave":16.6033950617,
         "all_num_strikes":24,
         "all_num_strikes_attempt":70,
-        "all_strikes_percentage":0.3022875817,
-        "all_first_ball_ave":8.568627451
+        "all_strikes_percentage":0.3487654321,
+        "all_first_ball_ave":8.6157407407
     },
     {
         "Event Id":"kegel-isbpa-midwest-classic--2021-2022",
@@ -585,11 +585,11 @@
         "baker_mp_strikes_percentage":null,
         "baker_mp_first_ball_ave":null,
         "all_num_frames":95,
-        "all_frame_ave":17.744,
+        "all_frame_ave":18.035,
         "all_num_strikes":43,
         "all_num_strikes_attempt":95,
-        "all_strikes_percentage":0.4181818182,
-        "all_first_ball_ave":8.8472727273
+        "all_strikes_percentage":0.4454545455,
+        "all_first_ball_ave":8.8431818182
     },
     {
         "Event Id":"kegel-isbpa-midwest-classic--2021-2022",
@@ -622,11 +622,11 @@
         "baker_mp_strikes_percentage":null,
         "baker_mp_first_ball_ave":null,
         "all_num_frames":82,
-        "all_frame_ave":17.473,
+        "all_frame_ave":16.9075,
         "all_num_strikes":25,
         "all_num_strikes_attempt":82,
-        "all_strikes_percentage":0.2907272727,
-        "all_first_ball_ave":8.7407272727
+        "all_strikes_percentage":0.3143181818,
+        "all_first_ball_ave":8.5768181818
     },
     {
         "Event Id":"kegel-isbpa-midwest-classic--2021-2022",
@@ -641,8 +641,8 @@
         "baker_frame_ave":17.525,
         "baker_num_strikes":17.0,
         "baker_num_strikes_attempt":52.0,
-        "baker_strikes_percentage":0.2958333333,
-        "baker_first_ball_ave":8.5791666667,
+        "baker_strikes_percentage":0.3140909091,
+        "baker_first_ball_ave":8.6609090909,
         "team_num_frames":56.0,
         "team_frame_ave":19.86,
         "team_num_strikes":32.0,
@@ -659,11 +659,11 @@
         "baker_mp_strikes_percentage":null,
         "baker_mp_first_ball_ave":null,
         "all_num_frames":108,
-        "all_frame_ave":17.992,
+        "all_frame_ave":18.6925,
         "all_num_strikes":49,
         "all_num_strikes_attempt":108,
-        "all_strikes_percentage":0.3501818182,
-        "all_first_ball_ave":8.673030303
+        "all_strikes_percentage":0.4408333333,
+        "all_first_ball_ave":8.8546969697
     },
     {
         "Event Id":"mid-states-championships--2021-2022",
@@ -696,11 +696,11 @@
         "baker_mp_strikes_percentage":null,
         "baker_mp_first_ball_ave":null,
         "all_num_frames":95,
-        "all_frame_ave":18.7884615385,
+        "all_frame_ave":18.4659090909,
         "all_num_strikes":42,
         "all_num_strikes_attempt":95,
-        "all_strikes_percentage":0.4632867133,
-        "all_first_ball_ave":8.9493006993
+        "all_strikes_percentage":0.4132231405,
+        "all_first_ball_ave":8.7097107438
     },
     {
         "Event Id":"mid-states-championships--2021-2022",
@@ -718,14 +718,14 @@
         "baker_strikes_percentage":0.275,
         "baker_first_ball_ave":8.35,
         "team_num_frames":74.0,
-        "team_frame_ave":15.4603174603,
+        "team_frame_ave":15.3605263158,
         "team_num_strikes":23.0,
         "team_num_strikes_attempt":74.0,
-        "team_strikes_percentage":0.3064935065,
-        "team_first_ball_ave":8.1545454545,
+        "team_strikes_percentage":0.3112554113,
+        "team_first_ball_ave":8.0762626263,
         "team_doubles":5.0,
         "team_doubles_attempt":22.0,
-        "team_double_percentage":0.1547619048,
+        "team_double_percentage":0.1666666667,
         "baker_mp_num_frames":null,
         "baker_mp_frame_ave":null,
         "baker_mp_num_strikes":null,
@@ -733,11 +733,11 @@
         "baker_mp_strikes_percentage":null,
         "baker_mp_first_ball_ave":null,
         "all_num_frames":114,
-        "all_frame_ave":16.2674897119,
+        "all_frame_ave":15.9011961722,
         "all_num_strikes":34,
         "all_num_strikes_attempt":114,
-        "all_strikes_percentage":0.2831649832,
-        "all_first_ball_ave":8.2993265993
+        "all_strikes_percentage":0.2947756789,
+        "all_first_ball_ave":8.2006887052
     },
     {
         "Event Id":"mid-states-championships--2021-2022",
@@ -770,11 +770,11 @@
         "baker_mp_strikes_percentage":null,
         "baker_mp_first_ball_ave":null,
         "all_num_frames":103,
-        "all_frame_ave":19.0384615385,
+        "all_frame_ave":18.6477272727,
         "all_num_strikes":52,
         "all_num_strikes_attempt":103,
-        "all_strikes_percentage":0.5623543124,
-        "all_first_ball_ave":8.6773892774
+        "all_strikes_percentage":0.5110192837,
+        "all_first_ball_ave":8.6806473829
     },
     {
         "Event Id":"mid-states-championships--2021-2022",
@@ -807,11 +807,11 @@
         "baker_mp_strikes_percentage":null,
         "baker_mp_first_ball_ave":null,
         "all_num_frames":108,
-        "all_frame_ave":16.7423076923,
+        "all_frame_ave":16.9704545455,
         "all_num_strikes":33,
         "all_num_strikes_attempt":108,
-        "all_strikes_percentage":0.2695221445,
-        "all_first_ball_ave":8.6048951049
+        "all_strikes_percentage":0.2961432507,
+        "all_first_ball_ave":8.6115702479
     },
     {
         "Event Id":"mid-states-championships--2021-2022",
@@ -826,8 +826,8 @@
         "baker_frame_ave":19.95,
         "baker_num_strikes":32.0,
         "baker_num_strikes_attempt":64.0,
-        "baker_strikes_percentage":0.4833333333,
-        "baker_first_ball_ave":8.9375,
+        "baker_strikes_percentage":0.5023809524,
+        "baker_first_ball_ave":9.0009157509,
         "team_num_frames":64.0,
         "team_frame_ave":19.1666666667,
         "team_num_strikes":28.0,
@@ -844,11 +844,11 @@
         "baker_mp_strikes_percentage":null,
         "baker_mp_first_ball_ave":null,
         "all_num_frames":128,
-        "all_frame_ave":19.7692307692,
+        "all_frame_ave":19.5227272727,
         "all_num_strikes":60,
         "all_num_strikes_attempt":128,
-        "all_strikes_percentage":0.4721445221,
-        "all_first_ball_ave":8.9351398601
+        "all_strikes_percentage":0.465545061,
+        "all_first_ball_ave":8.9607468289
     },
     {
         "Event Id":"five-seasons-classic--2021-2022",
@@ -863,8 +863,8 @@
         "baker_frame_ave":17.78125,
         "baker_num_strikes":14.0,
         "baker_num_strikes_attempt":40.0,
-        "baker_strikes_percentage":0.3541666667,
-        "baker_first_ball_ave":8.625,
+        "baker_strikes_percentage":0.3397727273,
+        "baker_first_ball_ave":8.6204545455,
         "team_num_frames":53.0,
         "team_frame_ave":16.48,
         "team_num_strikes":17.0,
@@ -881,11 +881,11 @@
         "baker_mp_strikes_percentage":null,
         "baker_mp_first_ball_ave":null,
         "all_num_frames":93,
-        "all_frame_ave":17.4714285714,
+        "all_frame_ave":17.0583333333,
         "all_num_strikes":31,
         "all_num_strikes_attempt":93,
-        "all_strikes_percentage":0.3455266955,
-        "all_first_ball_ave":8.5927128427
+        "all_strikes_percentage":0.3276094276,
+        "all_first_ball_ave":8.5476430976
     },
     {
         "Event Id":"five-seasons-classic--2021-2022",
@@ -897,11 +897,11 @@
         "end_date":1635638400000,
         "bowler":"Austin Owen",
         "baker_num_frames":20.0,
-        "baker_frame_ave":15.35,
+        "baker_frame_ave":14.46875,
         "baker_num_strikes":9.0,
         "baker_num_strikes_attempt":20.0,
-        "baker_strikes_percentage":0.45,
-        "baker_first_ball_ave":8.2,
+        "baker_strikes_percentage":0.375,
+        "baker_first_ball_ave":8.125,
         "team_num_frames":13.0,
         "team_frame_ave":8.5,
         "team_num_strikes":4.0,
@@ -918,11 +918,11 @@
         "baker_mp_strikes_percentage":null,
         "baker_mp_first_ball_ave":null,
         "all_num_frames":33,
-        "all_frame_ave":13.7692307692,
+        "all_frame_ave":11.9107142857,
         "all_num_strikes":13,
         "all_num_strikes_attempt":33,
-        "all_strikes_percentage":0.4076923077,
-        "all_first_ball_ave":7.5692307692
+        "all_strikes_percentage":0.3285714286,
+        "all_first_ball_ave":6.9857142857
     },
     {
         "Event Id":"five-seasons-classic--2021-2022",
@@ -934,11 +934,11 @@
         "end_date":1635638400000,
         "bowler":"Brenden Unseld",
         "baker_num_frames":20.0,
-        "baker_frame_ave":13.6,
+        "baker_frame_ave":12.8333333333,
         "baker_num_strikes":4.0,
         "baker_num_strikes_attempt":20.0,
-        "baker_strikes_percentage":0.2,
-        "baker_first_ball_ave":7.85,
+        "baker_strikes_percentage":0.1666666667,
+        "baker_first_ball_ave":7.625,
         "team_num_frames":44.0,
         "team_frame_ave":12.64,
         "team_num_strikes":14.0,
@@ -955,11 +955,11 @@
         "baker_mp_strikes_percentage":null,
         "baker_mp_first_ball_ave":null,
         "all_num_frames":64,
-        "all_frame_ave":13.28,
+        "all_frame_ave":12.7125,
         "all_num_strikes":18,
         "all_num_strikes_attempt":64,
-        "all_strikes_percentage":0.2197979798,
-        "all_first_ball_ave":7.3594949495
+        "all_strikes_percentage":0.2246212121,
+        "all_first_ball_ave":6.8459280303
     },
     {
         "Event Id":"five-seasons-classic--2021-2022",
@@ -971,11 +971,11 @@
         "end_date":1635638400000,
         "bowler":"Caden Witt",
         "baker_num_frames":30.0,
-        "baker_frame_ave":14.3333333333,
+        "baker_frame_ave":14.0833333333,
         "baker_num_strikes":5.0,
         "baker_num_strikes_attempt":30.0,
-        "baker_strikes_percentage":0.1666666667,
-        "baker_first_ball_ave":7.6333333333,
+        "baker_strikes_percentage":0.15625,
+        "baker_first_ball_ave":7.625,
         "team_num_frames":52.0,
         "team_frame_ave":15.38,
         "team_num_strikes":14.0,
@@ -992,11 +992,11 @@
         "baker_mp_strikes_percentage":null,
         "baker_mp_first_ball_ave":null,
         "all_num_frames":82,
-        "all_frame_ave":14.595,
+        "all_frame_ave":14.8037037037,
         "all_num_strikes":19,
         "all_num_strikes_attempt":82,
-        "all_strikes_percentage":0.1927272727,
-        "all_first_ball_ave":7.83
+        "all_strikes_percentage":0.2199494949,
+        "all_first_ball_ave":8.0666666667
     },
     {
         "Event Id":"five-seasons-classic--2021-2022",
@@ -1008,11 +1008,11 @@
         "end_date":1635638400000,
         "bowler":"Parker Lymenstull",
         "baker_num_frames":30.0,
-        "baker_frame_ave":16.3666666667,
+        "baker_frame_ave":16.1041666667,
         "baker_num_strikes":5.0,
         "baker_num_strikes_attempt":30.0,
         "baker_strikes_percentage":0.1666666667,
-        "baker_first_ball_ave":8.1,
+        "baker_first_ball_ave":8.0833333333,
         "team_num_frames":52.0,
         "team_frame_ave":17.72,
         "team_num_strikes":18.0,
@@ -1029,11 +1029,11 @@
         "baker_mp_strikes_percentage":null,
         "baker_mp_first_ball_ave":null,
         "all_num_frames":82,
-        "all_frame_ave":16.705,
+        "all_frame_ave":17.0018518519,
         "all_num_strikes":23,
         "all_num_strikes_attempt":82,
-        "all_strikes_percentage":0.2109090909,
-        "all_first_ball_ave":8.2713636364
+        "all_strikes_percentage":0.264983165,
+        "all_first_ball_ave":8.4734006734
     },
     {
         "Event Id":"five-seasons-classic--2021-2022",
@@ -1045,11 +1045,11 @@
         "end_date":1635638400000,
         "bowler":"Tony Lundy",
         "baker_num_frames":32.0,
-        "baker_frame_ave":14.5,
+        "baker_frame_ave":14.375,
         "baker_num_strikes":6.0,
         "baker_num_strikes_attempt":32.0,
-        "baker_strikes_percentage":0.1904761905,
-        "baker_first_ball_ave":8.0,
+        "baker_strikes_percentage":0.175,
+        "baker_first_ball_ave":8.025,
         "team_num_frames":50.0,
         "team_frame_ave":17.105,
         "team_num_strikes":17.0,
@@ -1066,10 +1066,10 @@
         "baker_mp_strikes_percentage":null,
         "baker_mp_first_ball_ave":null,
         "all_num_frames":82,
-        "all_frame_ave":15.1855263158,
+        "all_frame_ave":15.8916666667,
         "all_num_strikes":23,
         "all_num_strikes_attempt":82,
-        "all_strikes_percentage":0.2259968102,
-        "all_first_ball_ave":8.1825358852
+        "all_strikes_percentage":0.2585858586,
+        "all_first_ball_ave":8.3964646465
     }
 ]
