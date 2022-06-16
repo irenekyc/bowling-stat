@@ -20,7 +20,7 @@ const StatGameTypeTable = ({ data, columns }) => {
   );
 
   useEffect(() => {
-    setGroupBy(["bowler", "Event Id", "game_group"]);
+    setGroupBy(["All", "bowler", "Event Id", "game_group"]);
   }, [setGroupBy]);
 
   return (

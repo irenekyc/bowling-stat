@@ -41,6 +41,7 @@ import StatGameTypeTable from "../../components/stat-game-type-table";
 */
 
 const bakerColumns = [
+  { Header: "All", Cell: () => "All", expanded: true },
   {
     Header: "Event",
     accessor: "Event Id",
@@ -119,6 +120,7 @@ const bakerColumns = [
 ];
 
 let teamColumns = [
+  { Header: "All", Cell: () => "All", expanded: true },
   {
     Header: "Event",
     accessor: "Event Id",
