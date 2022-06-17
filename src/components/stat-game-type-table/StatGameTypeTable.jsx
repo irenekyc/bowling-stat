@@ -1,6 +1,7 @@
-import { useTable, useGroupBy, useExpanded } from "react-table";
+import { useTable, useGroupBy, useExpanded, useSortBy } from "react-table";
 import { useEffect } from "react";
 import Table from "react-bootstrap/Table";
+import SortingDropdown from "../sorting-dropdown";
 
 const StatGameTypeTable = ({ data, columns }) => {
   const {
@@ -14,8 +15,14 @@ const StatGameTypeTable = ({ data, columns }) => {
     {
       columns,
       data,
+      initialState: {
+        expanded: {
+          "All:undefined": true,
+        },
+      },
     },
     useGroupBy,
+    useSortBy,
     useExpanded
   );
 
@@ -26,11 +33,26 @@ const StatGameTypeTable = ({ data, columns }) => {
   return (
     <div className="bd-table">
       <Table {...getTableProps()} striped bordered hover responsive>
-        <thead className="bd-table__header">
+        <thead>
           {headerGroups.map((headerGroup) => (
             <tr {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map((column) => (
-                <th {...column.getHeaderProps()}>{column.render("Header")}</th>
+                <th {...column.getHeaderProps()}>
+                  <div className="bd-table__header">
+                    <span>{column.render("Header")}</span>
+                    {column.sortable && (
+                      <SortingDropdown
+                        toggleSortBy={column.toggleSortBy}
+                        descLabel={
+                          column.id === "game_group" ? "Descending" : undefined
+                        }
+                        ascLabel={
+                          column.id === "game_group" ? "Ascending" : undefined
+                        }
+                      />
+                    )}
+                  </div>
+                </th>
               ))}
             </tr>
           ))}

@@ -1,7 +1,11 @@
 import Dropdown from "react-bootstrap/Dropdown";
 import { SortingIcon } from "../icons";
 
-const SortingDropdown = ({ toggleSortBy }) => {
+const SortingDropdown = ({
+  toggleSortBy,
+  descLabel = undefined,
+  ascLabel = undefined,
+}) => {
   return (
     <Dropdown>
       <Dropdown.Toggle
@@ -12,10 +16,10 @@ const SortingDropdown = ({ toggleSortBy }) => {
       </Dropdown.Toggle>
       <Dropdown.Menu className="bd-table__sorting-dropdown">
         <Dropdown.Item onClick={() => toggleSortBy(true)}>
-          Highest
+          {descLabel || "Highest"}
         </Dropdown.Item>
         <Dropdown.Item onClick={() => toggleSortBy(false)}>
-          Lowest
+          {ascLabel || "Lowest"}
         </Dropdown.Item>
       </Dropdown.Menu>
       {/* <div className="bd-table__sorting-dropdown"></div> */}
