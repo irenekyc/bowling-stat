@@ -95,6 +95,32 @@ let bowlerTableColumns = [
     aggregate: "sum",
     sortable: true,
   },
+  {
+    Header: "Fill Balls",
+    columns: [
+      {
+        Header: "Attempt",
+        accessor: "fill_balls",
+        aggregate: "sum",
+        sortable: true,
+      },
+      {
+        Header: "Strikes",
+        accessor: "fill_ball_strikes",
+        aggregate: "sum",
+        sortable: true,
+      },
+      {
+        Header: "Strikes %",
+        id: "fill_ball_strikes_percentage",
+        Cell: ({ value }) => (value ? `${(value * 100).toFixed(1)}%` : "-"),
+        accessor: (d) => Number(d.fill_ball_strikes_percentage),
+        sortType: (a, b) => sorting("fill_ball_strikes_percentage", a, b),
+        aggregate: "average",
+        sortable: true,
+      },
+    ],
+  },
 ];
 
 const IndividualData = ({ page = undefined, data = [], bowlerPage = "" }) => {
