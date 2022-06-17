@@ -6,6 +6,7 @@ import {
 } from "../../constants/bowler-table";
 import StatBowlerTable from "../../components/stat-bowler-table";
 import transformEventIdToName from "../../helpers/transformEventIdtoName";
+import sorting from "../../helpers/sorting";
 
 // 3 combinations
 // Individual Data - Event Details - ALL (page)
@@ -47,57 +48,53 @@ let bowlerTableColumns = [
   },
   {
     Header: "First Ball Average",
-    accessor: "first_ball_ave",
+    id: "first_ball_ave",
     aggregate: "average",
+    accessor: (d) => Number(d["first_ball_ave"]),
     Cell: ({ value }) => (value ? value.toFixed(2) : "-"),
+    sortable: true,
+    sortType: (a, b) => sorting("first_ball_ave", a, b),
   },
   {
     Header: "Frame Average",
-    accessor: "frame_average",
+    id: "frame_average",
+    accessor: (d) => Number(d.frame_average),
     aggregate: "average",
     Aggregated: ({ value }) => (value ? `${value.toFixed(2)}` : "-"),
     Cell: ({ value }) => (value ? `${value.toFixed(2)}` : "-"),
+    sortable: true,
+    sortType: (a, b) => sorting("frame_average", a, b),
   },
   {
     Header: "Strikes",
-    accessor: "num_strikes",
+    id: "num_strikes",
+    accessor: (d) => Number(d.num_strikes),
+    sortType: (a, b) => sorting("num_strikes", a, b),
+    sortable: true,
     aggregate: "sum",
   },
   {
     Header: "Strikes %",
-    accessor: "strikes_percentage",
+    id: "strikes_percentage",
+    sortable: true,
+    accessor: (d) => Number(d.strikes_percentage),
+    sortType: (a, b) => sorting("strikes_percentage", a, b),
     aggregate: "average",
     Aggregated: ({ value }) => (value ? `${(value * 100).toFixed(1)}%` : "-"),
     Cell: ({ value }) => (value ? `${(value * 100).toFixed(1)}%` : "-"),
   },
-  // {
-  //   Header: "Strikes/Game",
-  //   accessor: "strikes_per_game",
-  //   aggregate: "average",
-  // },
   {
     Header: "Spares",
     accessor: "num_spares",
     aggregate: "sum",
+    sortable: true,
   },
-  // {
-  //   Header: "Spares/Game",
-  //   accessor: "spare_per_game",
-  //   aggregate: "average",
-  //   Cell: ({ value }) => value.toFixed(2),
-  // },
   {
     Header: "Opens",
     accessor: "num_opens",
     aggregate: "sum",
+    sortable: true,
   },
-
-  // {
-  //   Header: "Opens/Game",
-  //   accessor: "open_per_game",
-  //   aggregate: "average",
-  //   Cell: ({ value }) => value.toFixed(2),
-  // },
 ];
 
 const IndividualData = ({ page = undefined, data = [], bowlerPage = "" }) => {

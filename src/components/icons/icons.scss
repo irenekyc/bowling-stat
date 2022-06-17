@@ -1,0 +1,27 @@
+.bd-icons {
+  &__sorting {
+    padding: 2px;
+    width: 100%;
+    max-width: 36px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+
+    > div {
+      height: 2px;
+      content: "";
+      margin-bottom: 2px;
+      width: 100%;
+      background: black;
+      &:nth-child(2) {
+        width: 80%;
+      }
+      &:last-child {
+        margin-bottom: 0;
+        width: 60%;
+      }
+    }
+  }
+}

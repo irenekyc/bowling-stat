@@ -1,8 +1,9 @@
-import { useTable, useGroupBy, useExpanded } from "react-table";
+import { useTable, useGroupBy, useExpanded, useSortBy } from "react-table";
 import { useEffect } from "react";
 import Table from "react-bootstrap/Table";
+import SortingDropdown from "../sorting-dropdown";
 
-const StatBowlerTable = ({ data, columns, page }) => {
+const StatBowlerTable = ({ data, columns }) => {
   const {
     getTableProps,
     getTableBodyProps,
@@ -16,6 +17,7 @@ const StatBowlerTable = ({ data, columns, page }) => {
       data,
     },
     useGroupBy,
+    useSortBy,
     useExpanded
   );
 
@@ -26,11 +28,18 @@ const StatBowlerTable = ({ data, columns, page }) => {
   return (
     <div className="bd-table">
       <Table {...getTableProps()} striped bordered hover responsive>
-        <thead className="bd-table__header">
+        <thead>
           {headerGroups.map((headerGroup) => (
             <tr {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map((column) => (
-                <th {...column.getHeaderProps()}>{column.render("Header")}</th>
+                <th {...column.getHeaderProps()}>
+                  <div className="bd-table__header">
+                    <span>{column.render("Header")}</span>
+                    {column.sortable && (
+                      <SortingDropdown toggleSortBy={column.toggleSortBy} />
+                    )}
+                  </div>
+                </th>
               ))}
             </tr>
           ))}
