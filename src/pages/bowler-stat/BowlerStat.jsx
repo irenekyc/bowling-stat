@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { transformSlugToName } from "../../helpers/convertSlugAndName";
 import IndividualData from "../../widgets/individual-data";
@@ -21,17 +21,14 @@ const GAMETYPE = "GAMETYPE";
 const BowlerStat = () => {
   const dispatch = useDispatch();
   let { bowlerSlug, teamId } = useParams();
-  // const {
-  //   baker: bakerData,
-  //   team: teamData,
-  //   bakerMatch: bakerMatchPlayData,
-  // } = useSelector((state) => state.data.data);
   const { statistic } = useSelector((state) => state.team);
   useEffect(() => {
     if (statistic && statistic.length === 0 && teamId !== undefined) {
       dispatch(fetchTeamData(teamId));
     }
   }, [teamId, statistic, dispatch]);
+
+  if (!bowlerSlug) return null;
 
   return (
     <Page>
@@ -45,7 +42,9 @@ const BowlerStat = () => {
       />
       <Main>
         <Container>
-          <h2>{transformSlugToName(bowlerSlug, "bowler")}</h2>
+          <h2 data-testid="bowler-stat-page--bowler-name">
+            {transformSlugToName(bowlerSlug, "bowler")}
+          </h2>
           <strong>Year 2021 - 2022 </strong>
           <Tab.Container defaultActiveKey={EVENT}>
             <p>Breakdown:</p>
@@ -61,7 +60,10 @@ const BowlerStat = () => {
             </div>
 
             <Tab.Content>
-              <Tab.Pane eventKey={EVENT}>
+              <Tab.Pane
+                eventKey={EVENT}
+                data-testid="bowler-data-table-by-event"
+              >
                 <IndividualData
                   page={
                     !bowlerSlug.includes("all")
@@ -81,7 +83,10 @@ const BowlerStat = () => {
                   }
                 />
               </Tab.Pane>
-              <Tab.Pane eventKey={GAMETYPE}>
+              <Tab.Pane
+                eventKey={GAMETYPE}
+                data-testid="bowler-data-table-by-game-type"
+              >
                 <GameData
                   page={
                     !bowlerSlug.includes("all")

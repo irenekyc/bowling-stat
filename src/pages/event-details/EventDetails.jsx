@@ -58,7 +58,9 @@ const EventDetails = () => {
           />
           <Main>
             <Container>
-              <h2>{transformEventIdToName(eventId)}</h2>
+              <h2 data-testid="event-details-page-title">
+                {transformEventIdToName(eventId)}
+              </h2>
               <EventMetaData metaData={metaData} />
               <Tab.Container defaultActiveKey={SUMMARY}>
                 <p>Breakdown:</p>
@@ -77,7 +79,10 @@ const EventDetails = () => {
                 </div>
 
                 <Tab.Content>
-                  <Tab.Pane eventKey={SUMMARY}>
+                  <Tab.Pane
+                    eventKey={SUMMARY}
+                    data-testid="event-data-table-summary"
+                  >
                     <SummaryData
                       summaryStatistic={summaryStatistic.filter((stat) =>
                         !eventId.includes("all")
@@ -86,7 +91,10 @@ const EventDetails = () => {
                       )}
                     />
                   </Tab.Pane>
-                  <Tab.Pane eventKey={INDIVIDUAL}>
+                  <Tab.Pane
+                    eventKey={INDIVIDUAL}
+                    data-testid="event-data-table-by-bowler"
+                  >
                     <IndividualData
                       page={
                         !eventId.includes("all")
@@ -100,7 +108,10 @@ const EventDetails = () => {
                       )}
                     />
                   </Tab.Pane>
-                  <Tab.Pane eventKey={GAMETYPE}>
+                  <Tab.Pane
+                    eventKey={GAMETYPE}
+                    data-testid="event-data-table-by-game-type"
+                  >
                     <GameData
                       page={
                         !eventId.includes("all")

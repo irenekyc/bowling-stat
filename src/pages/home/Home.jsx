@@ -11,11 +11,11 @@ const Home = () => {
       <Header />
       <Main>
         <Container>
-          <h2>Teams</h2>
-          <p>
+          <h2 data-testid="home-page-title">Teams</h2>
+          <p data-testid="home-page-team-list">
             <Link to="/qu-women">QU Women</Link>
           </p>
-          <p>
+          <p data-testid="home-page-team-list">
             <Link to="/qu-men">QU Men</Link>
           </p>
         </Container>
