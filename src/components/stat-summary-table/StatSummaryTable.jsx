@@ -32,13 +32,26 @@ const BakerGameStatTable = ({ data, columns, title }) => {
   }, [setGroupBy]);
 
   return (
-    <div className="bd-stat__table__section">
+    <div
+      className="bd-stat__table__section"
+      data-testid="summary-stat-table-div"
+    >
       {title && (
-        <h4 className="bd-stat__table__section__title">
+        <h4
+          className="bd-stat__table__section__title"
+          data-testid="summary-stat-table-title"
+        >
           {transformSummaryTableTitle(title)}
         </h4>
       )}
-      <Table {...getTableProps()} striped bordered hover responsive>
+      <Table
+        {...getTableProps()}
+        striped
+        bordered
+        hover
+        responsive
+        data-testid="summary-stat-table"
+      >
         <thead>
           {headerGroups.map((headerGroup) => (
             <tr {...headerGroup.getHeaderGroupProps()}>

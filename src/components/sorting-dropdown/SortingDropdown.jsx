@@ -7,18 +7,25 @@ const SortingDropdown = ({
   ascLabel = undefined,
 }) => {
   return (
-    <Dropdown>
+    <Dropdown data-testid="sorting-dropdown">
       <Dropdown.Toggle
+        data-testid="sorting-dropdown-button"
         split={false}
         className="bd-table__button bd-table__button--sorting"
       >
         <SortingIcon />
       </Dropdown.Toggle>
-      <Dropdown.Menu className="bd-table__sorting-dropdown">
-        <Dropdown.Item onClick={() => toggleSortBy(true)}>
+      <Dropdown.Menu renderOnMount className="bd-table__sorting-dropdown">
+        <Dropdown.Item
+          data-testid="sorting-dropdown-button-desc"
+          onClick={() => toggleSortBy(true)}
+        >
           {descLabel || "Highest"}
         </Dropdown.Item>
-        <Dropdown.Item onClick={() => toggleSortBy(false)}>
+        <Dropdown.Item
+          data-testid="sorting-dropdown-button-asc"
+          onClick={() => toggleSortBy(false)}
+        >
           {ascLabel || "Lowest"}
         </Dropdown.Item>
       </Dropdown.Menu>

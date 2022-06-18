@@ -26,14 +26,17 @@ const StatBowlerTable = ({ data, columns }) => {
   }, [setGroupBy]);
 
   return (
-    <div className="bd-table">
+    <div className="bd-table" data-testid="bowler-stat-table">
       <Table {...getTableProps()} striped bordered hover responsive>
         <thead>
           {headerGroups.map((headerGroup) => (
             <tr {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map((column) => (
                 <th {...column.getHeaderProps()}>
-                  <div className="bd-table__header">
+                  <div
+                    className="bd-table__header"
+                    data-testid="bowler-stat-table-column-header"
+                  >
                     <span>{column.render("Header")}</span>
                     {column.sortable && (
                       <SortingDropdown toggleSortBy={column.toggleSortBy} />
@@ -51,7 +54,11 @@ const StatBowlerTable = ({ data, columns }) => {
               <tr {...row.getRowProps()}>
                 {row.cells.map((cell) => {
                   return (
-                    <td {...cell.getCellProps()} className="bd-table__cell">
+                    <td
+                      {...cell.getCellProps()}
+                      className="bd-table__cell"
+                      data-testid="bowler-stat-table-data"
+                    >
                       {/* {? (
                       <span> {cell.render("Cell")} </span>
                     ) :  */}

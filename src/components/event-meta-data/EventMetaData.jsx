@@ -7,15 +7,15 @@ const EventMetaData = ({ metaData }) => {
   }
   const { location, startDate, endDate } = metaData;
   return (
-    <div className="bd-event-meta">
+    <div className="bd-event-meta" data-testid="event-meta-data">
       <div className="bd-event-meta__details-row">
         {location && (
-          <span>
+          <span data-testid="event-meta-data-location">
             <strong>Venue:</strong> {location}
           </span>
         )}
         {startDate && endDate && (
-          <span>
+          <span data-testid="event-meta-data-date">
             <strong>Date: </strong>
             {startDate} - {endDate}
           </span>

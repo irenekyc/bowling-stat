@@ -31,13 +31,16 @@ const StatGameTypeTable = ({ data, columns }) => {
   }, [setGroupBy]);
 
   return (
-    <div className="bd-table">
+    <div className="bd-table" data-testid="game-type-stat-table">
       <Table {...getTableProps()} striped bordered hover responsive>
         <thead>
           {headerGroups.map((headerGroup) => (
             <tr {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map((column) => (
-                <th {...column.getHeaderProps()}>
+                <th
+                  {...column.getHeaderProps()}
+                  data-testid="game-type-stat-column-header"
+                >
                   <div className="bd-table__header">
                     <span>{column.render("Header")}</span>
                     {column.sortable && (
