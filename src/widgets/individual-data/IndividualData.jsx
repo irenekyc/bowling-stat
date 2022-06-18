@@ -168,9 +168,14 @@ const IndividualData = ({ page = undefined, data = [], bowlerPage = "" }) => {
   if (data.length === 0 || columns.length === 0) return null;
 
   return (
-    <div className="bd-stat__table">
+    <div className="bd-stat__table" data-testid="bowler-data-widget">
       <div className="bd-stat__table__section">
-        <h4 className="bd-stat__table__section__title">{renderTitle()}</h4>
+        <h4
+          className="bd-stat__table__section__title"
+          data-testid="bowler-data-widget-title"
+        >
+          {renderTitle()}
+        </h4>
         <StatBowlerTable page={page} data={data} columns={columns} />
       </div>
     </div>

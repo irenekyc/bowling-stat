@@ -268,9 +268,17 @@ const GameData = ({ page, data = [] }) => {
   }
 
   return (
-    <div className="bd-stat__table">
-      <div className="bd-stat__table__section">
-        <h4 className="bd-stat__table__section__title">Baker</h4>
+    <div className="bd-stat__table" data-testid="game-data-widget">
+      <div
+        className="bd-stat__table__section"
+        data-testid="game-data-widget-section"
+      >
+        <h4
+          className="bd-stat__table__section__title"
+          data-testid="game-data-widget-section-title"
+        >
+          Baker
+        </h4>
         {bakerGameStatColumns.length > 0 && (
           <StatGameTypeTable
             data={data.filter((entry) => entry.game_type === "Baker")}
@@ -278,8 +286,16 @@ const GameData = ({ page, data = [] }) => {
           />
         )}
       </div>
-      <div className="bd-stat__table__section">
-        <h4 className="bd-stat__table__section__title">Team</h4>
+      <div
+        className="bd-stat__table__section"
+        data-testid="game-data-widget-section"
+      >
+        <h4
+          className="bd-stat__table__section__title"
+          data-testid="game-data-widget-section-title"
+        >
+          Team
+        </h4>
         {teamGameStatColumns.length > 0 && (
           <StatGameTypeTable
             data={data.filter((entry) => entry.game_type === "Team")}
@@ -287,8 +303,16 @@ const GameData = ({ page, data = [] }) => {
           />
         )}
       </div>
-      <div className="bd-stat__table__section">
-        <h4 className="bd-stat__table__section__title">Baker Match Play</h4>
+      <div
+        className="bd-stat__table__section"
+        data-testid="game-data-widget-section"
+      >
+        <h4
+          className="bd-stat__table__section__title"
+          data-testid="game-data-widget-section-title"
+        >
+          Baker Match Play
+        </h4>
 
         {bakerGameStatColumns.length > 0 && (
           <StatGameTypeTable

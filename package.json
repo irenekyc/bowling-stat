@@ -32,6 +32,14 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
+  "jest": {
+    "coveragePathIgnorePatterns": [
+      "./src/constants",
+      "./src/data",
+      "./src/static",
+      "index.js"
+    ]
+  },
   "eslintConfig": {
     "extends": [
       "react-app",

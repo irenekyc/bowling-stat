@@ -15,7 +15,7 @@ import {
 const SummaryData = ({ summaryStatistic = [] }) => {
   if (summaryStatistic.length === 0) return null;
   return (
-    <div>
+    <div data-testid="summary-statistic-widget">
       <StatSummaryTable
         data={summaryStatistic}
         title={SUMMARY_SCORE}
