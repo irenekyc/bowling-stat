@@ -10,7 +10,7 @@ import {
   summaryFirstBallAveColumns,
   summaryScoreColumns,
   summaryStrikesColumns,
-} from "./summary-data-columns";
+} from "../../static/summary-data-columns";
 
 const SummaryData = ({ summaryStatistic = [] }) => {
   if (summaryStatistic.length === 0) return null;

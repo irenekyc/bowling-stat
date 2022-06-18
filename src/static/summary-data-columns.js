@@ -1,4 +1,4 @@
-import sorting from "../../helpers/sorting";
+import sorting from "../helpers/sorting";
 
 export const summaryScoreColumns = [
   { Header: "All", Cell: () => "All", expanded: true },
