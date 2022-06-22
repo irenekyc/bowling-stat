@@ -29,13 +29,13 @@ const TeamHome = () => {
                 <Dropdown.Menu>
                   {events.map((event) => (
                     <Dropdown.Item
-                      key={event.id}
+                      key={event}
                       as={Link}
                       to={{
-                        pathname: `${pathname}/events/${event.id}`,
+                        pathname: `${pathname}/events/${event}`,
                       }}
                     >
-                      {event.name}
+                      {event}
                     </Dropdown.Item>
                   ))}
                 </Dropdown.Menu>

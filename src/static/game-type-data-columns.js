@@ -5,7 +5,7 @@ export const bakerColumns = [
   { Header: "All", Cell: () => "All", expanded: true },
   {
     Header: "Event",
-    accessor: "Event Id",
+    accessor: "event_id",
     Cell: ({ value }) => <strong>{transformEventIdToName(value)}</strong>,
     Aggregated: () => `All Events`,
   },
@@ -107,7 +107,7 @@ export const teamColumns = [
   { Header: "All", Cell: () => "All", expanded: true },
   {
     Header: "Event",
-    accessor: "Event Id",
+    accessor: "event_id",
     Cell: ({ value }) => <strong>{transformEventIdToName(value)}</strong>,
     Aggregated: () => `All Events`,
   },

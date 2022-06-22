@@ -4,6 +4,7 @@ import quMenData from "../../../data/qu-men-all.json";
 // import staticTeamMetaData from "../../../static/team";
 import quWomenSummaryData from "../../../data/qu-women-summary-all.json";
 import quMenSummaryData from "../../../data/qu-men-summary-all.json";
+import axios from "axios";
 
 const staticData = {
   "qu-women": quWomenData,
@@ -22,36 +23,18 @@ const fetchTeamData = createAsyncThunk("fetchTeamData", async (teamId) => {
   let summaryStatistic = [];
 
   // TODO: should fetch from API / google spreadsheet
-
-  if (staticData[teamId]) {
-    statistic = staticData[teamId];
-  }
-  if (staticSummaryData[teamId]) {
-    summaryStatistic = staticSummaryData[teamId];
-    // get a list of bowler name
-    const bowlersAll = summaryStatistic.map(
-      (summaryEntry) => summaryEntry.bowler
+  try {
+    const teamData = await axios.get(
+      "https://fierce-plateau-64816.herokuapp.com/teams/team-test"
     );
-    bowlers = [...new Set(bowlersAll)];
-    // get a list of event data
-    const eventAll = summaryStatistic.map((summaryEntry) => {
-      return {
-        id: summaryEntry["Event Id"],
-        name: summaryEntry["Event Name"],
-        location: summaryEntry.Location,
-        startDate: new Date(summaryEntry.start_date).toLocaleDateString(),
-        endDate: new Date(summaryEntry.end_date).toLocaleDateString(),
-      };
-    });
-    const eventIdsAll = summaryStatistic.map(
-      (summaryEntry) => summaryEntry["Event Id"]
+    const teamEventData = await axios.get(
+      "https://fierce-plateau-64816.herokuapp.com/teams/team-test/events"
     );
-    const eventIds = [...new Set(eventIdsAll)];
-    eventIds.forEach((id) => {
-      const eventData = eventAll.filter((event) => event.id === id)[0];
-      events.push(eventData);
-    });
-    if (events.length > 0) {
+    statistic = teamEventData.data.data.eventdata;
+    events = teamData.data.events.includes(",")
+      ? teamData.data.events.split(",")
+      : [teamData.data.events];
+    if (events.length > 1) {
       events = [
         {
           id: "all-events--2021-2022",
@@ -63,6 +46,10 @@ const fetchTeamData = createAsyncThunk("fetchTeamData", async (teamId) => {
         ...events,
       ];
     }
+    bowlers = teamData.data.bowlers.split(",");
+    summaryStatistic = teamEventData.data.data.eventsummary;
+  } catch (err) {
+    console.log(err);
   }
 
   return {

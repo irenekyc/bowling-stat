@@ -25,7 +25,7 @@ import sorting from "../../helpers/sorting";
 let bowlerTableColumns = [
   {
     Header: "Event",
-    accessor: "Event Id",
+    accessor: "event_id",
     Cell: ({ value }) => <strong>{transformEventIdToName(value)}</strong>,
     Aggregated: () => `All Events`,
   },

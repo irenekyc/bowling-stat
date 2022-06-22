@@ -95,7 +95,6 @@ const UploadPage = () => {
     e.preventDefault();
     const num_of_errors = validateFormData();
     if (num_of_errors === 0) {
-      console.log("Show modal to confirm");
       setShowConfirmation(true);
     }
   };

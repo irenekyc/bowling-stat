@@ -39,7 +39,7 @@ const EventDetails = () => {
 
   useEffect(() => {
     if (eventId === undefined || events.length === 0) return;
-    setMetaData(events.filter((event) => event.id === eventId)[0]);
+    setMetaData(events.filter((event) => event === eventId)[0]);
   }, [events, eventId]);
 
   return (
@@ -86,7 +86,7 @@ const EventDetails = () => {
                     <SummaryData
                       summaryStatistic={summaryStatistic.filter((stat) =>
                         !eventId.includes("all")
-                          ? stat["Event Id"] === eventId
+                          ? stat["event_id"] === eventId
                           : stat
                       )}
                     />
@@ -103,7 +103,7 @@ const EventDetails = () => {
                       }
                       data={statistic.filter((stat) =>
                         !eventId.includes("all")
-                          ? stat["Event Id"] === eventId
+                          ? stat["event_id"] === eventId
                           : stat
                       )}
                     />
@@ -120,7 +120,7 @@ const EventDetails = () => {
                       }
                       data={statistic.filter((stat) =>
                         !eventId.includes("all")
-                          ? stat["Event Id"] === eventId
+                          ? stat["event_id"] === eventId
                           : stat
                       )}
                     />
