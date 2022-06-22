@@ -122,6 +122,15 @@ p {
 }
 
 .bd-form {
+  &__tab {
+    cursor: pointer;
+    &--active {
+      font-weight: 500;
+    }
+    &--inactive {
+      color: gray;
+    }
+  }
   &__iswomen-team-row {
     display: flex;
     justify-content: flex-start;
