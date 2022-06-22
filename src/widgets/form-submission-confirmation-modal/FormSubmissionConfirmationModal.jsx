@@ -1,4 +1,5 @@
 import Modal from "react-bootstrap/Modal";
+import axios from "axios";
 
 const FormSubmissionConfirmationModal = ({
   formData,
@@ -6,9 +7,30 @@ const FormSubmissionConfirmationModal = ({
   show,
   formSubmit,
 }) => {
-  const submitForm = () => {
-    console.log("call api");
-    formSubmit();
+  const submitForm = async () => {
+    let team_id = `${formData.team_name.toLowerCase().split(" ").join("-")}`;
+
+    const form = new FormData();
+    Object.entries(formData).forEach(([key, value]) => {
+      if (key !== "team_id") {
+        if (key === "baker_match_play_distributions") {
+          form.append("baker_match_play_distributions", value.join(","));
+        } else {
+          form.append(key, value);
+        }
+      }
+    });
+    try {
+      await axios({
+        method: "post",
+        url: `https://fierce-plateau-64816.herokuapp.com/teams/${team_id}/upload`,
+        data: form,
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+      // redirect to the event page
+    } catch (error) {
+      // error
+    }
   };
   return (
     <Modal show={show}>
