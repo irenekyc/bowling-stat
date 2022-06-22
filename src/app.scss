@@ -15,6 +15,12 @@ p {
   z-index: 999;
   padding: 1rem 0;
 
+  &__bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
   &__events-list {
     display: flex;
     flex-wrap: wrap;
@@ -112,5 +118,107 @@ p {
       padding: 0;
       padding: 6px 10px;
     }
+  }
+}
+
+.bd-form {
+  &__iswomen-team-row {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    &__label--active {
+      color: blue;
+      font-weight: 500;
+      padding-right: 5px;
+    }
+  }
+  &__input-toggle {
+    &__checkbox {
+      visibility: hidden;
+      height: 0;
+      width: 0;
+    }
+    &__button {
+      height: 30px;
+      width: 50px;
+      border-radius: 30px;
+      background: gray;
+      cursor: pointer;
+      position: relative;
+      margin: 0 5px;
+
+      &:after {
+        width: 25px;
+        height: 25px;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        border-radius: 100%;
+        content: "";
+        background: white;
+        transition: all 0.25s ease-in-out;
+      }
+      &.bd-form__input-toggle__button__inactive {
+        &:after {
+          left: 5px;
+        }
+      }
+      &.bd-form__input-toggle__button__active {
+        &:after {
+          left: 20px;
+        }
+      }
+    }
+  }
+  &__bakermp-row {
+    display: flex;
+    flex-direction: column;
+    &__input-group {
+      display: flex;
+      width: 100%;
+      max-width: 400px;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      input {
+        width: 60px;
+      }
+      label {
+        flex: 1;
+      }
+    }
+    &__add-row-button {
+      position: absolute;
+      right: -30px;
+      width: 20px;
+      height: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: none;
+      outline: none;
+    }
+    &__remove-row-button {
+      position: absolute;
+      right: -60px;
+      width: 20px;
+      height: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: none;
+      outline: none;
+    }
+  }
+
+  &__inputError {
+    color: red;
+    height: 20px;
+  }
+
+  &__input-file-group {
+    display: flex;
+    flex-direction: column;
+    margin: 20px 0;
   }
 }
