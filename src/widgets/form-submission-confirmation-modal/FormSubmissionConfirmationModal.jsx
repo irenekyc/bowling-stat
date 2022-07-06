@@ -16,11 +16,7 @@ const FormSubmissionConfirmationModal = ({
     const form = new FormData();
     Object.entries(formData).forEach(([key, value]) => {
       if (key !== "team_id") {
-        if (key === "baker_match_play_distributions") {
-          form.append("baker_match_play_distributions", value.join(","));
-        } else {
-          form.append(key, value);
-        }
+        form.append(key, value);
       }
     });
     try {
@@ -34,7 +30,6 @@ const FormSubmissionConfirmationModal = ({
         event_id: res.data.event_id,
         team_id: res.data.team_id,
       });
-
       // redirect to the event page
     } catch (error) {
       // error
@@ -49,7 +44,7 @@ const FormSubmissionConfirmationModal = ({
             <button>
               <Link
                 to={{
-                  pathname: `/teams${showSuccessMessage.team_id}/events/${showSuccessMessage.event_id}`,
+                  pathname: `/teams/${showSuccessMessage.team_id}/events/${showSuccessMessage.event_id}`,
                 }}
               >
                 Look at event data
@@ -74,8 +69,15 @@ const FormSubmissionConfirmationModal = ({
               <li>Event Name: {formData.event_name}</li>
               <li> Event Location: {formData.location}</li>
               <li>{formData.isWomen ? "Women Team" : "Men Team"}</li>
-              <li>There are {formData.num_of_baker_games} Bakers Game</li>
-              {formData.baker_match_play_distributions.length === 0
+              <li>
+                There are {formData.num_of_team_games} Traditional Team Games
+              </li>
+              <li>There are {formData.num_of_baker_games} Baker Game Blocks</li>
+              <li>
+                Each Baker Block has {formData.num_of_baker_games_per_block}{" "}
+                games
+              </li>
+              {/* {formData.baker_match_play_distributions.length === 0
                 ? "There are no baker match play"
                 : formData.baker_match_play_distributions.map((num, index) => (
                     <li key={`${index}-${num}`}>
@@ -84,7 +86,7 @@ const FormSubmissionConfirmationModal = ({
                         <strong>{num}</strong> games
                       </span>
                     </li>
-                  ))}
+                  ))} */}
               <li>File: {formData.file ? formData.file.name : ""}</li>
             </ul>
           </Modal.Body>

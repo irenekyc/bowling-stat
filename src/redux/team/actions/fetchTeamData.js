@@ -25,10 +25,10 @@ const fetchTeamData = createAsyncThunk("fetchTeamData", async (teamId) => {
   // TODO: should fetch from API / google spreadsheet
   try {
     const teamData = await axios.get(
-      "https://fierce-plateau-64816.herokuapp.com/teams/team-test"
+      `https://fierce-plateau-64816.herokuapp.com/teams/${teamId}`
     );
     const teamEventData = await axios.get(
-      "https://fierce-plateau-64816.herokuapp.com/teams/team-test/events"
+      `https://fierce-plateau-64816.herokuapp.com/teams/${teamId}/events`
     );
     statistic = teamEventData.data.data.eventdata;
     events = teamData.data.events.includes(",")

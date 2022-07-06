@@ -17,8 +17,12 @@ const initFormData = {
   event_name: "",
   location: "",
   season: "2021-2022",
+  num_of_team_games: 0,
   num_of_baker_games: 0,
-  baker_match_play_distributions: [],
+  baker_match_play_1: 0,
+  baker_match_play_2: 0,
+  baker_match_play_3: 0,
+  num_of_baker_games_per_block: 5,
 };
 const NORMAL_GAME = "NORMAL_GAME";
 const CHAMPIONSHIP = "CHAMPIONSHIP";
@@ -97,6 +101,7 @@ const UploadPage = () => {
     if (num_of_errors === 0) {
       setShowConfirmation(true);
     }
+    console.log(formData);
   };
 
   const teamNameChange = (e) => {
@@ -151,15 +156,6 @@ const UploadPage = () => {
         } else {
           return "";
         }
-
-      case "baker_match_play_distributions":
-        const zeroValues = value.filter((num) => num === 0);
-        if (zeroValues.length > 0) {
-          return "Number cannot be zero";
-        } else {
-          return "";
-        }
-
       default:
         return "";
     }
@@ -251,45 +247,6 @@ const UploadPage = () => {
             </span>
           }
         </Form.Group>
-        <Form.Group className="my-3">
-          <Form.Label className="bd-page--upload__input-title">
-            <span> Team Information</span>
-          </Form.Label>
-          <div className="bd-form__iswomen-team-row">
-            <span
-              className={
-                formData.isWomen
-                  ? "bd-form__iswomen-team-row__label--active"
-                  : ""
-              }
-            >
-              Women's Team
-            </span>
-            <input
-              type="checkbox"
-              id="isWomen"
-              className="bd-form__input-toggle__checkbox"
-              onChange={inputOnChangeHandler}
-            />
-            <label
-              htmlFor="isWomen"
-              className={`bd-form__input-toggle__button ${
-                formData.isWomen
-                  ? "bd-form__input-toggle__button__inactive"
-                  : "bd-form__input-toggle__button__active"
-              }`}
-            ></label>
-            <span
-              className={
-                !formData.isWomen
-                  ? "bd-form__iswomen-team-row__label--active"
-                  : ""
-              }
-            >
-              Men's Team
-            </span>
-          </div>
-        </Form.Group>
         <Form.Group className="mt-3">
           <Form.Label className="bd-page--upload__input-title">
             <span>Event Location</span>
@@ -359,7 +316,7 @@ const UploadPage = () => {
                         : "bd-form__tab--inactive"
                     }`}
                   >
-                    Normal
+                    Regular
                   </span>
                 </Nav.Link>
               </Nav.Item>
@@ -381,6 +338,26 @@ const UploadPage = () => {
               <Tab.Pane eventKey={NORMAL_GAME}>
                 <Form.Group className="mb-3">
                   <Form.Label className="bd-page--upload__input-title--sub">
+                    <span> Number of Team Games</span>
+                    <InfoIcon
+                      withTooltip={"How many regular team game in this event?"}
+                    />
+                  </Form.Label>
+                  <Form.Control
+                    id="num_of_baker_games"
+                    type="number"
+                    placeholder="Number of team game"
+                    onChange={inputOnChangeHandler}
+                    value={formData.num_of_team_game}
+                  />
+                  {
+                    <span className={"bd-form__inputError"}>
+                      {errorMessage.num_of_baker_games || ""}
+                    </span>
+                  }
+                </Form.Group>
+                <Form.Group className="mb-3">
+                  <Form.Label className="bd-page--upload__input-title--sub">
                     <span> Number of Baker Games</span>
                     <InfoIcon
                       withTooltip={"How many normal baker game in this event?"}
@@ -389,13 +366,35 @@ const UploadPage = () => {
                   <Form.Control
                     id="num_of_baker_games"
                     type="number"
-                    placeholder="Number of Baker Games"
+                    placeholder="Number of Baker Blocks or Matches"
                     onChange={inputOnChangeHandler}
                     value={formData.num_of_baker_games}
                   />
                   {
                     <span className={"bd-form__inputError"}>
                       {errorMessage.num_of_baker_games || ""}
+                    </span>
+                  }
+                </Form.Group>
+                <Form.Group className="mb-3">
+                  <Form.Label className="bd-page--upload__input-title--sub">
+                    <span> Number of Games per Baker Blocks or match</span>
+                    <InfoIcon
+                      withTooltip={
+                        "How many baker games for each baker game block"
+                      }
+                    />
+                  </Form.Label>
+                  <Form.Control
+                    id="num_of_baker_games_per_block"
+                    type="number"
+                    placeholder="Number of Baker Blocks or Matches"
+                    onChange={inputOnChangeHandler}
+                    value={formData.num_of_baker_games_per_block}
+                  />
+                  {
+                    <span className={"bd-form__inputError"}>
+                      {errorMessage.num_of_baker_game_per_block || ""}
                     </span>
                   }
                 </Form.Group>
@@ -433,23 +432,11 @@ const UploadPage = () => {
                         <Form.Control
                           type="number"
                           placeholder="0"
-                          value={formData.baker_match_play_distributions[index]}
+                          value={formData[`baker_match_play_${index + 1}`]}
                           onChange={(e) => {
-                            const updatedValue = e.target.value;
-                            const updateValueArr = [
-                              ...formData.baker_match_play_distributions,
-                            ];
-                            updateValueArr[index] = updatedValue;
                             setFormData({
                               ...formData,
-                              baker_match_play_distributions: updateValueArr,
-                            });
-                            setErrorMessage({
-                              ...errorMessage,
-                              baker_match_play_distributions: validateField(
-                                "baker_match_play_distributions",
-                                updateValueArr
-                              ),
+                              [`baker_match_play_${index + 1}`]: e.target.value,
                             });
                           }}
                         />

@@ -48,12 +48,12 @@ let bowlerTableColumns = [
   },
   {
     Header: "First Ball Average",
-    id: "first_ball_ave",
+    id: "first_ball_average",
     aggregate: "average",
-    accessor: (d) => Number(d["first_ball_ave"]),
+    accessor: (d) => Number(d["first_ball_average"]),
     Cell: ({ value }) => (value ? value.toFixed(2) : "-"),
     sortable: true,
-    sortType: (a, b) => sorting("first_ball_ave", a, b),
+    sortType: (a, b) => sorting("first_ball_average", a, b),
   },
   {
     Header: "Frame Average",
@@ -85,13 +85,15 @@ let bowlerTableColumns = [
   },
   {
     Header: "Spares",
-    accessor: "num_spares",
+    id: "num_spares",
+    accessor: (d) => Number(d.num_spares),
     aggregate: "sum",
     sortable: true,
   },
   {
     Header: "Opens",
-    accessor: "num_opens",
+    id: "num_opens",
+    accessor: (d) => Number(d.num_opens),
     aggregate: "sum",
     sortable: true,
   },
@@ -100,13 +102,15 @@ let bowlerTableColumns = [
     columns: [
       {
         Header: "Attempt",
-        accessor: "fill_balls",
+        id: "fill_balls",
+        accessor: (d) => Number(d.fill_balls),
         aggregate: "sum",
         sortable: true,
       },
       {
         Header: "Strikes",
-        accessor: "fill_ball_strikes",
+        id: "fill_ball_strikes",
+        accessor: (d) => Number(d.fill_ball_strikes),
         aggregate: "sum",
         sortable: true,
       },

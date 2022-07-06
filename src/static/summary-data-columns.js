@@ -12,7 +12,8 @@ export const summaryScoreColumns = [
     columns: [
       {
         Header: "Frames",
-        accessor: "baker_num_frames",
+        id: "baker_num_frames",
+        accessor: (d) => Number(d.baker_num_frames),
         aggregate: "sum",
         Cell: ({ value }) => (value ? value : "-"),
       },
@@ -21,7 +22,7 @@ export const summaryScoreColumns = [
         id: "baker_frame_ave",
         accessor: (d) => Number(d.baker_frame_ave),
         aggregate: "average",
-        Cell: ({ value }) => (value ? value : "-"),
+        Cell: ({ value }) => (value ? value.toFixed(2) : "-"),
         sortType: (a, b) => sorting("baker_frame_ave", a, b),
         sortable: true,
       },
@@ -32,7 +33,8 @@ export const summaryScoreColumns = [
     columns: [
       {
         Header: "Frames",
-        accessor: "team_num_frames",
+        id: "team_num_frames",
+        accessor: (d) => Number(d.team_num_frames),
         aggregate: "sum",
         Cell: ({ value }) => (value ? value : "-"),
       },
@@ -41,7 +43,7 @@ export const summaryScoreColumns = [
         id: "team_frame_ave",
         accessor: (d) => Number(d.team_frame_ave),
         aggregate: "average",
-        Cell: ({ value }) => (value ? value : "-"),
+        Cell: ({ value }) => (value ? value.toFixed(2) : "-"),
         sortType: (a, b) => sorting("team_frame_ave", a, b),
         sortable: true,
       },
@@ -53,16 +55,20 @@ export const summaryScoreColumns = [
     columns: [
       {
         Header: "Frames",
-        accessor: "baker_mp_num_frames",
+        id: "baker_mp_num_frames",
+        accessor: (d) =>
+          d.baker_mp_num_frames === "nan" ? 0 : Number(d.baker_mp_num_frames),
         aggregate: "sum",
+        Cell: ({ value }) => (value ? value : "-"),
       },
       {
         Header: "Frame Average",
         id: "baker_mp_frame_ave",
-        accessor: (d) => Number(d.baker_mp_frame_ave),
+        accessor: (d) =>
+          d.baker_mp_frame_ave === "nan" ? 0 : Number(d.baker_mp_frame_ave),
         sortType: (a, b) => sorting("baker_mp_frame_ave", a, b),
         aggregate: "average",
-        Cell: ({ value }) => (value ? value : "-"),
+        Cell: ({ value }) => (value ? value.toFixed(2) : "-"),
         sortable: true,
       },
     ],
@@ -73,13 +79,14 @@ export const summaryScoreColumns = [
     columns: [
       {
         Header: "Frames",
-        accessor: "all_num_frames",
+        id: "all_num_frames",
+        accessor: (d) => Number(d.all_num_frames),
         aggregate: "sum",
       },
       {
         Header: "Frame Average",
         aggregate: "average",
-        Cell: ({ value }) => (value ? value : "-"),
+        Cell: ({ value }) => (value ? value.toFixed(2) : "-"),
         sortable: true,
         id: "all_frame_ave",
         accessor: (d) => Number(d.all_frame_ave),
@@ -100,23 +107,25 @@ export const summaryStrikesColumns = [
     columns: [
       {
         Header: "Strikes",
-        accessor: "baker_num_strikes",
+        id: "baker_num_strikes",
+        accessor: (d) => Number(d.baker_num_strikes),
         aggregate: "sum",
-        // Cell: ({ value }) => (value ? value: "-"),
+        Cell: ({ value }) => (value ? value : "-"),
         sortable: true,
       },
       {
         Header: "Attempts",
-        accessor: "baker_num_strikes_attempt",
+        id: "baker_num_strikes_attempt",
+        accessor: (d) => Number(d.baker_num_strikes_attempt),
         aggregate: "sum",
-        // Cell: ({ value }) => (value ? value: "-"),
+        Cell: ({ value }) => (value ? value : "-"),
       },
       {
         Header: "Strikes %",
         id: "baker_strikes_percentage",
         accessor: (d) => Number(d.baker_strikes_percentage * 100),
         aggregate: "average",
-        Cell: ({ value }) => (value ? `${value}%` : "-"),
+        Cell: ({ value }) => (value ? `${value.toFixed(2)}%` : "-"),
         sortable: true,
       },
     ],
@@ -126,13 +135,15 @@ export const summaryStrikesColumns = [
     columns: [
       {
         Header: "Strikes",
-        accessor: "team_num_strikes",
+        id: "team_num_strikes",
+        accessor: (d) => Number(d.team_num_strikes),
         aggregate: "sum",
         sortable: true,
       },
       {
         Header: "Attempts",
-        accessor: "team_num_strikes_attempt",
+        id: "team_num_strikes_attempt",
+        accessor: (d) => Number(d.team_num_strikes_attempt),
         aggregate: "sum",
       },
       {
@@ -140,7 +151,7 @@ export const summaryStrikesColumns = [
         id: "team_strikes_percentage",
         accessor: (d) => Number(d.team_strikes_percentage * 100),
         aggregate: "average",
-        Cell: ({ value }) => (value ? `${value}%` : "-"),
+        Cell: ({ value }) => (value ? `${value.toFixed(2)}%` : "-"),
         sortable: true,
       },
     ],
@@ -150,23 +161,25 @@ export const summaryStrikesColumns = [
     columns: [
       {
         Header: "Strikes",
-        accessor: "baker_mp_num_strikes",
+        id: "baker_mp_num_strikes",
+        accessor: (d) => Number(d.baker_mp_num_strikes),
         aggregate: "sum",
-        // Cell: ({ value }) => (value ? value: "-"),
+        Cell: ({ value }) => (value ? value : "-"),
         sortable: true,
       },
       {
         Header: "Attempts",
-        accessor: "baker_mp_num_strikes_attempt",
+        id: "baker_mp_num_strikes_attempt",
+        accessor: (d) => Number(d.baker_mp_num_strikes_attempt),
         aggregate: "sum",
-        // Cell: ({ value }) => (value ? value: "-"),
+        Cell: ({ value }) => (value ? value : "-"),
       },
       {
         Header: "Strikes %",
         id: "baker_mp_strikes_percentage",
         accessor: (d) => Number(d.baker_mp_strikes_percentage * 100),
         aggregate: "average",
-        Cell: ({ value }) => (value ? `${value}%` : "-"),
+        Cell: ({ value }) => (value ? `${value.toFixed(2)}%` : "-"),
         sortable: true,
       },
     ],
@@ -176,23 +189,25 @@ export const summaryStrikesColumns = [
     columns: [
       {
         Header: "Strikes",
-        accessor: "all_num_strikes",
+        id: "all_num_strikes",
+        accessor: (d) => Number(d.all_num_strikes),
         aggregate: "sum",
-        // Cell: ({ value }) => (value ? value: "-"),
+        Cell: ({ value }) => (value ? value : "-"),
         sortable: true,
       },
       {
         Header: "Attempts",
-        accessor: "all_num_strikes_attempt",
+        id: "all_num_strikes_attempt",
+        accessor: (d) => Number(d.all_num_strikes),
         aggregate: "sum",
-        // Cell: ({ value }) => (value ? value: "-"),
+        Cell: ({ value }) => (value ? value : "-"),
       },
       {
         Header: "Strikes %",
         id: "all_strikes_percentage",
         accessor: (d) => Number(d.all_strikes_percentage * 100),
         aggregate: "average",
-        Cell: ({ value }) => (value ? `${value}%` : "-"),
+        Cell: ({ value }) => (value ? `${value.toFixed(2)}%` : "-"),
         sortable: true,
       },
     ],
@@ -227,14 +242,16 @@ export const summaryDoublesColumns = [
     columns: [
       {
         Header: "Doubles",
-        accessor: "team_doubles",
+        id: "team_doubles",
+        accessor: (d) => Number(d.team_doubles),
         aggregate: "sum",
         Cell: ({ value }) => (value ? value : "-"),
         sortable: true,
       },
       {
         Header: "Attempts",
-        accessor: "team_doubles_attempt",
+        id: "team_doubles_attempt",
+        accessor: (d) => Number(d.team_doubles_attempt),
         aggregate: "sum",
         Cell: ({ value }) => (value ? value : "-"),
       },
@@ -243,7 +260,7 @@ export const summaryDoublesColumns = [
         id: "team_double_percentage",
         accessor: (d) => Number(d.team_double_percentage * 100),
         aggregate: "average",
-        Cell: ({ value }) => (value ? `${value}%` : "-"),
+        Cell: ({ value }) => (value ? `${value.toFixed(2)}%` : "-"),
         sortable: true,
       },
     ],
@@ -304,12 +321,13 @@ export const summaryFirstBallAveColumns = [
     columns: [
       {
         Header: "Average",
-        id: "baker_first_ball_ave",
-        accessor: (d) => Number(d.baker_first_ball_ave),
-        Cell: ({ value }) => (value ? value : "-"),
+        id: "baker_first_ball_average",
+        accessor: (d) => Number(d.baker_first_ball_average),
+        Cell: ({ value }) => (value ? value.toFixed(2) : "-"),
         aggregate: "average",
         sortable: true,
-        sortType: (rowA, rowB) => sorting("baker_first_ball_ave", rowA, rowB),
+        sortType: (rowA, rowB) =>
+          sorting("baker_first_ball_average", rowA, rowB),
       },
     ],
   },
@@ -318,10 +336,10 @@ export const summaryFirstBallAveColumns = [
     columns: [
       {
         Header: "Average",
-        id: "team_first_ball_ave",
-        accessor: (d) => Number(d.team_first_ball_ave),
+        id: "team_first_ball_average",
+        accessor: (d) => Number(d.team_first_ball_average),
         aggregate: "average",
-        Cell: ({ value }) => (value ? value : "-"),
+        Cell: ({ value }) => (value ? value.toFixed(2) : "-"),
         sortable: true,
         sortType: (rowA, rowB) => sorting("team_first_ball_ave", rowA, rowB),
       },
@@ -332,10 +350,10 @@ export const summaryFirstBallAveColumns = [
     columns: [
       {
         Header: "Average",
-        id: "baker_mp_first_ball_ave",
-        accessor: (d) => Number(d.baker_mp_first_ball_ave),
+        id: "baker_mp_first_ball_average",
+        accessor: (d) => Number(d.baker_mp_first_ball_average),
         aggregate: "average",
-        Cell: ({ value }) => (value ? value : "-"),
+        Cell: ({ value }) => (value ? value.toFixed(2) : "-"),
         sortable: true,
         sortType: (rowA, rowB) =>
           sorting("baker_mp_first_ball_ave", rowA, rowB),
@@ -347,10 +365,10 @@ export const summaryFirstBallAveColumns = [
     columns: [
       {
         Header: "Average",
-        id: "all_first_ball_ave",
-        accessor: (d) => Number(d.all_first_ball_ave),
+        id: "all_first_ball_average",
+        accessor: (d) => Number(d.all_first_ball_average),
         aggregate: "average",
-        Cell: ({ value }) => (value ? value : "-"),
+        Cell: ({ value }) => (value ? value.toFixed(2) : "-"),
         sortable: true,
         sortType: (rowA, rowB) => sorting("all_first_ball_ave", rowA, rowB),
       },
