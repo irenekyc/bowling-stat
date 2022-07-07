@@ -15,10 +15,11 @@ const FormSubmissionConfirmationModal = ({
 
     const form = new FormData();
     Object.entries(formData).forEach(([key, value]) => {
-      if (key !== "team_id") {
+      if (key !== "team_id" && key !== "num_of_team_games") {
         form.append(key, value);
       }
     });
+
     try {
       const res = await axios({
         method: "post",
@@ -44,7 +45,7 @@ const FormSubmissionConfirmationModal = ({
             <button>
               <Link
                 to={{
-                  pathname: `/teams/${showSuccessMessage.team_id}/events/${showSuccessMessage.event_id}`,
+                  pathname: `/${showSuccessMessage.team_id}/events/${showSuccessMessage.event_id}`,
                 }}
               >
                 Look at event data
@@ -68,7 +69,6 @@ const FormSubmissionConfirmationModal = ({
               <li>Team Name: {formData.team_name}</li>
               <li>Event Name: {formData.event_name}</li>
               <li> Event Location: {formData.location}</li>
-              <li>{formData.isWomen ? "Women Team" : "Men Team"}</li>
               <li>
                 There are {formData.num_of_team_games} Traditional Team Games
               </li>

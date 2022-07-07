@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import fetchTeamData from "./actions/fetchTeamData";
 
 export const initialState = {
+  loading: true,
   bowlers: [],
   events: [],
   statistic: [],
@@ -25,6 +26,9 @@ export const teamSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
+    builder.addCase(fetchTeamData.pending, (state) => {
+      state.loading = true;
+    });
     builder.addCase(fetchTeamData.fulfilled, (state, action) => {
       if (action.payload) {
         const {
@@ -39,6 +43,7 @@ export const teamSlice = createSlice({
         state.statistic = statistic;
         state.team = team;
         state.summaryStatistic = summaryStatistic;
+        state.loading = false;
       }
     });
   },

@@ -24,9 +24,9 @@ const INDIVIDUAL = "INDIVIDUAL";
 const GAMETYPE = "GAMETYPE";
 
 const EventDetails = () => {
-  const [metaData, setMetaData] = useState(undefined);
+  const [metaData, setMetaData] = useState("");
   const { teamId, eventId } = useParams();
-  const { statistic, summaryStatistic, events } = useSelector(
+  const { statistic, summaryStatistic, events, loading } = useSelector(
     (state) => state.team
   );
   const dispatch = useDispatch();
@@ -41,6 +41,10 @@ const EventDetails = () => {
     if (eventId === undefined || events.length === 0) return;
     setMetaData(events.filter((event) => event === eventId)[0]);
   }, [events, eventId]);
+
+  if (loading) {
+    return <h1>Loading</h1>;
+  }
 
   return (
     <Page>

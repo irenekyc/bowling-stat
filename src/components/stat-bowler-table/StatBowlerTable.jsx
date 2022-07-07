@@ -1,5 +1,4 @@
 import { useTable, useGroupBy, useExpanded, useSortBy } from "react-table";
-import { useEffect } from "react";
 import Table from "react-bootstrap/Table";
 import SortingDropdown from "../sorting-dropdown";
 
@@ -9,21 +8,24 @@ const StatBowlerTable = ({ data, columns }) => {
     getTableBodyProps,
     headerGroups,
     rows,
-    setGroupBy,
     prepareRow,
   } = useTable(
     {
       columns,
       data,
+      initialState: {
+        groupBy: ["bowler", "game_type"],
+      },
     },
+
     useGroupBy,
     useSortBy,
     useExpanded
   );
 
-  useEffect(() => {
-    setGroupBy(["bowler", "Event Id", "game_type", "game_group"]);
-  }, [setGroupBy]);
+  // useEffect(() => {
+  //   setGroupBy(["bowler", "game_type"]);
+  // }, [setGroupBy]);
 
   return (
     <div className="bd-table" data-testid="bowler-stat-table">

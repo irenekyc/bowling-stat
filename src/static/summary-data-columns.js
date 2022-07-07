@@ -304,7 +304,7 @@ export const summaryDoublesColumns = [
         id: "all_doubles_percentage",
         accessor: "team_double_percentage",
         aggregate: "average",
-        Cell: ({ value }) => (value ? `${value * 100}%` : "-"),
+        Cell: ({ value }) => (value ? `${(value * 100).toFixed(2)}%` : "-"),
       },
     ],
   },

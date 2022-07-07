@@ -1,5 +1,4 @@
 import { useTable, useGroupBy, useExpanded, useSortBy } from "react-table";
-import { useEffect } from "react";
 import Table from "react-bootstrap/Table";
 import SortingDropdown from "../sorting-dropdown";
 
@@ -9,7 +8,6 @@ const StatGameTypeTable = ({ data, columns }) => {
     getTableBodyProps,
     headerGroups,
     rows,
-    setGroupBy,
     prepareRow,
   } = useTable(
     {
@@ -19,6 +17,7 @@ const StatGameTypeTable = ({ data, columns }) => {
         expanded: {
           "All:undefined": true,
         },
+        groupBy: ["All", "game_group"],
       },
     },
     useGroupBy,
@@ -26,9 +25,9 @@ const StatGameTypeTable = ({ data, columns }) => {
     useExpanded
   );
 
-  useEffect(() => {
-    setGroupBy(["All", "bowler", "Event Id", "game_group"]);
-  }, [setGroupBy]);
+  // useEffect(() => {
+  //   setGroupBy(["game_group"]);
+  // }, [setGroupBy]);
 
   return (
     <div className="bd-table" data-testid="game-type-stat-table">

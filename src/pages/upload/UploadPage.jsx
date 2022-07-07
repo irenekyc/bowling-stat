@@ -13,7 +13,6 @@ const initFormData = {
   team_name: "",
   team_id: "",
   file: null,
-  isWomen: true,
   event_name: "",
   location: "",
   season: "2021-2022",
@@ -44,13 +43,11 @@ const UploadPage = () => {
   });
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [gamePattern, setGamePattern] = useState(NORMAL_GAME);
+  const [bakerMPInput, setBakerMPInput] = useState(null);
   const onCheckBakerMP = (e) => {
     setShowBakerMPInput(e.target.checked);
     if (e.target.checked) {
-      setFormData({
-        ...formData,
-        baker_match_play_distributions: [0],
-      });
+      setBakerMPInput([0]);
     }
   };
 
@@ -164,11 +161,10 @@ const UploadPage = () => {
   const inputOnChangeHandler = (e) => {
     const field = e.target.id;
     let value;
-    if (field === "isWomen") {
-      value = e.target.checked;
-    } else {
-      value = e.target.value;
-    }
+    value = e.target.value;
+    console.log(value);
+    if (value < 0) return;
+
     if (errorMessage[field] !== "") {
       const error = validateField(field, value);
       setErrorMessage({ ...errorMessage, [field]: error });
@@ -344,11 +340,11 @@ const UploadPage = () => {
                     />
                   </Form.Label>
                   <Form.Control
-                    id="num_of_baker_games"
+                    id="num_of_team_games"
                     type="number"
                     placeholder="Number of team game"
                     onChange={inputOnChangeHandler}
-                    value={formData.num_of_team_game}
+                    value={formData.num_of_team_games}
                   />
                   {
                     <span className={"bd-form__inputError"}>
@@ -416,7 +412,7 @@ const UploadPage = () => {
                 </Form.Group>
                 <div className="bd-form__bakermp-row">
                   {showBakerMPInput &&
-                    formData.baker_match_play_distributions.map((_, index) => (
+                    bakerMPInput.map((_, index) => (
                       <Form.Group
                         className="bd-form__bakermp-row__input-group mb-3"
                         key={`baker_mp_${index}`}
@@ -434,52 +430,40 @@ const UploadPage = () => {
                           placeholder="0"
                           value={formData[`baker_match_play_${index + 1}`]}
                           onChange={(e) => {
+                            if (e.target.value < 0) return;
+                            const updatedInput = [...bakerMPInput];
+                            updatedInput[index] = e.target.value;
+                            setBakerMPInput(updatedInput);
                             setFormData({
                               ...formData,
                               [`baker_match_play_${index + 1}`]: e.target.value,
                             });
                           }}
                         />
-                        {index ===
-                          formData.baker_match_play_distributions.length -
-                            1 && (
+                        {index === bakerMPInput.length - 1 && index < 2 && (
                           <button
                             className="bd-form__bakermp-row__add-row-button"
                             onClick={(e) => {
                               e.preventDefault();
-                              setFormData({
-                                ...formData,
-                                baker_match_play_distributions: [
-                                  ...formData.baker_match_play_distributions,
-                                  0,
-                                ],
-                              });
+                              setBakerMPInput([...bakerMPInput, 0]);
                             }}
                           >
                             +
                           </button>
                         )}
-                        {index !== 0 &&
-                          index ===
-                            formData.baker_match_play_distributions.length -
-                              1 && (
-                            <button
-                              className="bd-form__bakermp-row__remove-row-button"
-                              onClick={(e) => {
-                                e.preventDefault();
-                                const newArr = [
-                                  ...formData.baker_match_play_distributions,
-                                ];
-                                newArr.pop();
-                                setFormData({
-                                  ...formData,
-                                  baker_match_play_distributions: newArr,
-                                });
-                              }}
-                            >
-                              -
-                            </button>
-                          )}
+                        {index !== 0 && index === bakerMPInput.length - 1 && (
+                          <button
+                            className="bd-form__bakermp-row__remove-row-button"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              const newArr = [...bakerMPInput];
+                              newArr.pop();
+                              setBakerMPInput(newArr);
+                            }}
+                          >
+                            -
+                          </button>
+                        )}
                       </Form.Group>
                     ))}
                   {

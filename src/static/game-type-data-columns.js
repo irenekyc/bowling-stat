@@ -25,8 +25,8 @@ export const bakerColumns = [
   },
   {
     Header: "First Ball Average",
-    id: "first_ball_ave",
-    accessor: (d) => Number(d.first_ball_ave),
+    id: "first_ball_average",
+    accessor: (d) => Number(d.first_ball_average),
     aggregate: "average",
     sortable: true,
     sortType: (a, b) => sorting("first_ball_ave", a, b),

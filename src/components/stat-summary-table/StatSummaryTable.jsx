@@ -1,5 +1,4 @@
 import { useTable, useGroupBy, useExpanded, useSortBy } from "react-table";
-import { useEffect } from "react";
 import Table from "react-bootstrap/Table";
 import transformSummaryTableTitle from "./transformSummaryTableTitle";
 import SortingDropdown from "../../components/sorting-dropdown";
@@ -10,7 +9,6 @@ const BakerGameStatTable = ({ data, columns, title }) => {
     getTableBodyProps,
     headerGroups,
     rows,
-    setGroupBy,
     prepareRow,
   } = useTable(
     {
@@ -20,16 +18,13 @@ const BakerGameStatTable = ({ data, columns, title }) => {
         expanded: {
           "All:undefined": true,
         },
+        groupBy: ["All"],
       },
     },
     useGroupBy,
     useSortBy,
     useExpanded
   );
-
-  useEffect(() => {
-    setGroupBy(["All", "bowler"]);
-  }, [setGroupBy]);
 
   return (
     <div
