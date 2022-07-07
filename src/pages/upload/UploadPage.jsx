@@ -9,6 +9,8 @@ import FormSubmissionConfirmationModal from "../../widgets/form-submission-confi
 import InfoIcon from "../../components/icons/InfoIcon";
 
 const NEW_TEAM = "NEW_TEAM";
+const NORMAL_GAME = "NORMAL_GAME";
+const CHAMPIONSHIP = "CHAMPIONSHIP";
 const initFormData = {
   team_name: "",
   team_id: "",
@@ -22,9 +24,18 @@ const initFormData = {
   baker_match_play_2: 0,
   baker_match_play_3: 0,
   num_of_baker_games_per_block: 5,
+  game_pattern: NORMAL_GAME,
+  champ_1_team_games: 0,
+  champ_1_baker_games: 0,
+  champ_1_baker_mp_games: 0,
+  champ_2_team_games: 0,
+  champ_2_baker_games: 0,
+  champ_2_baker_mp_games: 0,
+  champ_3_team_games: 0,
+  champ_3_baker_games: 0,
+  champ_3_baker_mp_games: 0,
+  num_of_championship_matches: 1,
 };
-const NORMAL_GAME = "NORMAL_GAME";
-const CHAMPIONSHIP = "CHAMPIONSHIP";
 
 const UploadPage = () => {
   const [teams, setTeams] = useState([]);
@@ -44,6 +55,7 @@ const UploadPage = () => {
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [gamePattern, setGamePattern] = useState(NORMAL_GAME);
   const [bakerMPInput, setBakerMPInput] = useState(null);
+  const [championshipGame, setChampionshipGame] = useState([1]);
   const onCheckBakerMP = (e) => {
     setShowBakerMPInput(e.target.checked);
     if (e.target.checked) {
@@ -93,12 +105,12 @@ const UploadPage = () => {
   };
 
   const submitHandler = (e) => {
+    console.log(formData);
     e.preventDefault();
     const num_of_errors = validateFormData();
     if (num_of_errors === 0) {
       setShowConfirmation(true);
     }
-    console.log(formData);
   };
 
   const teamNameChange = (e) => {
@@ -162,7 +174,6 @@ const UploadPage = () => {
     const field = e.target.id;
     let value;
     value = e.target.value;
-    console.log(value);
     if (value < 0) return;
 
     if (errorMessage[field] !== "") {
@@ -179,6 +190,14 @@ const UploadPage = () => {
   const resetForm = () => {
     setShowConfirmation(false);
     setFormData(initFormData);
+  };
+
+  const toggleGamePattern = (game_pattern) => {
+    setGamePattern(game_pattern);
+    setFormData({
+      ...formData,
+      game_pattern,
+    });
   };
 
   return (
@@ -300,7 +319,7 @@ const UploadPage = () => {
           </p>
           <Tab.Container
             defaultActiveKey={NORMAL_GAME}
-            onSelect={setGamePattern}
+            onSelect={toggleGamePattern}
           >
             <Nav>
               <Nav.Item>
@@ -474,17 +493,83 @@ const UploadPage = () => {
                 </div>
               </Tab.Pane>
               <Tab.Pane eventKey={CHAMPIONSHIP}>
-                <h3> Work in progress</h3>
-                <p>This function will be available soon</p>
+                {championshipGame.map((gameNo) => (
+                  <div key={`championship_game_${gameNo}_input`}>
+                    <h3>Match #{gameNo}</h3>
+                    <Form.Group className=" mb-3">
+                      <Form.Label className="bd-page--upload__input-title--sub">
+                        <span> Number of Team Games</span>
+                      </Form.Label>
+                      <Form.Control
+                        type="number"
+                        placeholder="0"
+                        id={`champ_${gameNo}_team_games`}
+                        value={formData[`champ_${gameNo}_team_games`]}
+                        onChange={inputOnChangeHandler}
+                      />
+                    </Form.Group>
+                    <Form.Group className="mb-3">
+                      <Form.Label className="bd-page--upload__input-title--sub">
+                        <span> Number of Baker Games</span>
+                      </Form.Label>
+                      <Form.Control
+                        type="number"
+                        placeholder="0"
+                        id={`champ_${gameNo}_baker_games`}
+                        value={formData[`champ_${gameNo}_baker_games`]}
+                        onChange={inputOnChangeHandler}
+                      />
+                    </Form.Group>
+                    <Form.Group className="mb-3">
+                      <Form.Label className="bd-page--upload__input-title--sub">
+                        <span> Number of Baker Match Play Games</span>
+                      </Form.Label>
+                      <Form.Control
+                        type="number"
+                        placeholder="0"
+                        id={`champ_${gameNo}_baker_mp_games`}
+                        value={formData[`champ_${gameNo}_baker_mp_games`]}
+                        onChange={inputOnChangeHandler}
+                      />
+                    </Form.Group>
+                  </div>
+                ))}
+                <button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    const newMatch =
+                      championshipGame[championshipGame.length - 1] + 1;
+                    setChampionshipGame([...championshipGame, newMatch]);
+                  }}
+                >
+                  + Add another match
+                </button>
+                <button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setChampionshipGame([1]);
+                    setFormData({
+                      ...formData,
+                      champ_1_team_games: 0,
+                      champ_1_baker_games: 0,
+                      champ_1_baker_mp_games: 0,
+                      champ_2_team_games: 0,
+                      champ_2_baker_games: 0,
+                      champ_2_baker_mp_games: 0,
+                      champ_3_team_games: 0,
+                      champ_3_baker_games: 0,
+                      champ_3_baker_mp_games: 0,
+                      num_of_championship_matches: 1,
+                    });
+                  }}
+                >
+                  Reset
+                </button>
               </Tab.Pane>
             </Tab.Content>
           </Tab.Container>
         </div>
-        <Button
-          variant="primary"
-          onClick={submitHandler}
-          disabled={gamePattern === CHAMPIONSHIP}
-        >
+        <Button variant="primary" onClick={submitHandler}>
           Submit
         </Button>
       </Form>
