@@ -15,7 +15,7 @@ const FormSubmissionConfirmationModal = ({
 
     const form = new FormData();
     Object.entries(formData).forEach(([key, value]) => {
-      if (key !== "team_id" && key !== "num_of_team_games") {
+      if (key !== "team_id") {
         form.append(key, value);
       }
     });
@@ -33,6 +33,7 @@ const FormSubmissionConfirmationModal = ({
       });
       // redirect to the event page
     } catch (error) {
+      console.error(error);
       // error
     }
   };

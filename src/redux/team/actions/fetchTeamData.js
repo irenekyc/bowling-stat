@@ -35,16 +35,7 @@ const fetchTeamData = createAsyncThunk("fetchTeamData", async (teamId) => {
       ? teamData.data.events.split(",")
       : [teamData.data.events];
     if (events.length > 1) {
-      events = [
-        {
-          id: "all-events--2021-2022",
-          name: "All Events (2021 - 2022)",
-          location: undefined,
-          startDate: undefined,
-          endDate: undefined,
-        },
-        ...events,
-      ];
+      events = ["all-events--2021-2022", ...events];
     }
     bowlers = teamData.data.bowlers.split(",");
     summaryStatistic = teamEventData.data.data.eventsummary;

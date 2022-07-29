@@ -105,7 +105,6 @@ const UploadPage = () => {
   };
 
   const submitHandler = (e) => {
-    console.log(formData);
     e.preventDefault();
     const num_of_errors = validateFormData();
     if (num_of_errors === 0) {
@@ -159,12 +158,12 @@ const UploadPage = () => {
           return "";
         }
 
-      case "num_of_baker_games":
-        if (value === 0) {
-          return "Number cannot be zero";
-        } else {
-          return "";
-        }
+      // case "num_of_baker_games":
+      //   if (value === 0) {
+      //     return "Number cannot be zero";
+      //   } else {
+      //     return "";
+      //   }
       default:
         return "";
     }
@@ -197,6 +196,21 @@ const UploadPage = () => {
     setFormData({
       ...formData,
       game_pattern,
+    });
+  };
+
+  const removeMatchData = (e) => {
+    e.preventDefault();
+    const gameNo = parseInt(e.target.id) + 1;
+    let updatedChampionshipGame = [...championshipGame];
+    updatedChampionshipGame.pop();
+    setChampionshipGame(updatedChampionshipGame);
+    setFormData({
+      ...formData,
+      num_of_championship_matches: updatedChampionshipGame.length,
+      [`champ_${gameNo}_team_games`]: 0,
+      [`champ_${gameNo}_baker_games`]: 0,
+      [`champ_${gameNo}_baker_mp_games`]: 0,
     });
   };
 
@@ -493,9 +507,15 @@ const UploadPage = () => {
                 </div>
               </Tab.Pane>
               <Tab.Pane eventKey={CHAMPIONSHIP}>
-                {championshipGame.map((gameNo) => (
+                {championshipGame.map((gameNo, index) => (
                   <div key={`championship_game_${gameNo}_input`}>
-                    <h3>Match #{gameNo}</h3>
+                    <h3>Match #{gameNo}</h3>{" "}
+                    {index === championshipGame.length - 1 && index !== 0 && (
+                      <button id={index} onClick={removeMatchData}>
+                        {" "}
+                        Delete
+                      </button>
+                    )}
                     <Form.Group className=" mb-3">
                       <Form.Label className="bd-page--upload__input-title--sub">
                         <span> Number of Team Games</span>
@@ -540,6 +560,13 @@ const UploadPage = () => {
                     const newMatch =
                       championshipGame[championshipGame.length - 1] + 1;
                     setChampionshipGame([...championshipGame, newMatch]);
+                    setFormData({
+                      ...formData,
+                      num_of_championship_matches: [
+                        ...championshipGame,
+                        newMatch,
+                      ].length,
+                    });
                   }}
                 >
                   + Add another match
