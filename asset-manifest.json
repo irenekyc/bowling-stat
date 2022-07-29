@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/bowling-stat/static/css/main.84844e64.css",
-    "main.js": "/bowling-stat/static/js/main.1433462c.js",
+    "main.css": "/bowling-stat/static/css/main.34fcd564.css",
+    "main.js": "/bowling-stat/static/js/main.66fbba65.js",
     "index.html": "/bowling-stat/index.html",
-    "main.84844e64.css.map": "/bowling-stat/static/css/main.84844e64.css.map",
-    "main.1433462c.js.map": "/bowling-stat/static/js/main.1433462c.js.map"
+    "main.34fcd564.css.map": "/bowling-stat/static/css/main.34fcd564.css.map",
+    "main.66fbba65.js.map": "/bowling-stat/static/js/main.66fbba65.js.map"
   },
   "entrypoints": [
-    "static/css/main.84844e64.css",
-    "static/js/main.1433462c.js"
+    "static/css/main.34fcd564.css",
+    "static/js/main.66fbba65.js"
   ]
 }
