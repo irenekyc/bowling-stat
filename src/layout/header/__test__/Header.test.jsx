@@ -1,4 +1,4 @@
-import { screen, render, fireEvent, act } from "@testing-library/react";
+import { screen, render } from "@testing-library/react";
 import "@testing-library/jest-dom";
 
 import Header from "../index";
@@ -6,7 +6,11 @@ import { MemoryRouter } from "react-router";
 
 describe("Layout - Header", () => {
   it("Render Header - Default", () => {
-    render(<Header />);
+    render(
+      <MemoryRouter>
+        <Header />
+      </MemoryRouter>
+    );
     const header = screen.getByTestId("header");
     expect(header).toBeInTheDocument();
   });

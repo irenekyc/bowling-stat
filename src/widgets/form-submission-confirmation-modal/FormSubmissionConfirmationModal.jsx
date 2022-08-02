@@ -2,6 +2,7 @@ import Modal from "react-bootstrap/Modal";
 import axios from "axios";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { NORMAL_GAME } from "../../constants";
 
 const FormSubmissionConfirmationModal = ({
   formData,
@@ -37,13 +38,17 @@ const FormSubmissionConfirmationModal = ({
       // error
     }
   };
+
+  // TODO: EVENT TYPE: Regular Game OR Championship
   return (
     <Modal show={show}>
       {showSuccessMessage ? (
         <>
-          <Modal.Header>Upload Success</Modal.Header>
-          <Modal.Body>
-            <button>
+          <Modal.Header data-testid="upload-success-modal-header">
+            Upload Success
+          </Modal.Header>
+          <Modal.Body data-testid="upload-success-modal-body">
+            <button data-testid="upload-success-modal-button-link">
               <Link
                 to={{
                   pathname: `/${showSuccessMessage.team_id}/events/${showSuccessMessage.event_id}`,
@@ -57,6 +62,7 @@ const FormSubmissionConfirmationModal = ({
                 setShowSuccessMessage(null);
                 formSubmit();
               }}
+              data-testid="upload-success-modal-button-upload-another"
             >
               Upload another event
             </button>
@@ -64,36 +70,58 @@ const FormSubmissionConfirmationModal = ({
         </>
       ) : (
         <>
-          <Modal.Header>File Upload Confirmation</Modal.Header>
+          <Modal.Header data-testid="file-upload-confirmation-modal-header">
+            File Upload Confirmation
+          </Modal.Header>
           <Modal.Body>
             <ul>
-              <li>Team Name: {formData.team_name}</li>
-              <li>Event Name: {formData.event_name}</li>
-              <li> Event Location: {formData.location}</li>
-              <li>
-                There are {formData.num_of_team_games} Traditional Team Games
+              <li data-testid="file-upload-confirmation-modal-team-name">
+                Team Name: {formData.team_name}
               </li>
-              <li>There are {formData.num_of_baker_games} Baker Game Blocks</li>
-              <li>
-                Each Baker Block has {formData.num_of_baker_games_per_block}{" "}
-                games
+              <li data-testid="file-upload-confirmation-modal-event-name">
+                Event Name: {formData.event_name}
               </li>
-              {/* {formData.baker_match_play_distributions.length === 0
-                ? "There are no baker match play"
-                : formData.baker_match_play_distributions.map((num, index) => (
-                    <li key={`${index}-${num}`}>
-                      <span>Baker Match Play{index + 1}: </span>
-                      <span>
-                        <strong>{num}</strong> games
-                      </span>
-                    </li>
-                  ))} */}
-              <li>File: {formData.file ? formData.file.name : ""}</li>
+              <li data-testid="file-upload-confirmation-modal-event-location">
+                {" "}
+                Event Location: {formData.location}
+              </li>
+              {formData.game_pattern === NORMAL_GAME ? (
+                <>
+                  <li data-testid="file-upload-confirmation-modal-normal-game-traditional-team-game">
+                    There are {formData.num_of_team_games} Traditional Team
+                    Games
+                  </li>
+                  <li data-testid="file-upload-confirmation-modal-normal-game-baker-game-blocks">
+                    There are {formData.num_of_baker_games} Baker Game Blocks
+                  </li>
+                  <li data-testid="file-upload-confirmation-modal-normal-game-baker-number-per-block">
+                    Each Baker Block has {formData.num_of_baker_games_per_block}{" "}
+                    games
+                  </li>
+                  {/* TODO: Baker Match Play distributions */}
+                </>
+              ) : (
+                <></>
+              )}
+
+              <li data-testid="file-upload-confirmation-modal-file">
+                File: {formData.file ? formData.file.name : ""}
+              </li>
             </ul>
           </Modal.Body>
           <Modal.Footer>
-            <button onClick={backToForm}>Back</button>
-            <button onClick={submitForm}>Confirm</button>
+            <button
+              onClick={backToForm}
+              data-testid="file-upload-confirmation-modal-button-back"
+            >
+              Back
+            </button>
+            <button
+              onClick={submitForm}
+              data-testid="file-upload-confirmation-modal-button-confirm"
+            >
+              Confirm
+            </button>
           </Modal.Footer>
         </>
       )}

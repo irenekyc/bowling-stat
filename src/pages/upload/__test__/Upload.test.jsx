@@ -1,26 +1,23 @@
 import { screen, render } from "@testing-library/react";
 import "@testing-library/jest-dom";
 
-import Home from "../index";
+import UploadPage from "../index";
 import { MemoryRouter } from "react-router";
 import { Provider } from "react-redux";
-
 import { mockInitialState } from "../../../helpers/__test__/test-utlis";
 
-describe("Render Home Page", () => {
-  it("render home page", () => {
+describe("Render Upload Page", () => {
+  it("Render Upload Page", () => {
     render(
-      <MemoryRouter>
+      <MemoryRouter initialEntries={["/upload"]}>
         <Provider store={mockInitialState}>
-          <Home />
+          <UploadPage />
         </Provider>
       </MemoryRouter>
     );
-    const page = screen.getByTestId("page-layout");
+    const page = screen.getByTestId("upload-page");
     expect(page).toBeInTheDocument();
-    const pageTitle = screen.getByTestId("home-page-title");
-    expect(pageTitle).toHaveTextContent("Teams");
-    const teams = screen.queryAllByTestId("home-page-team-list");
-    expect(teams).toHaveLength(0);
+    const title = screen.getByTestId("upload-page-heading");
+    expect(title).toHaveTextContent("Upload Event Data");
   });
 });

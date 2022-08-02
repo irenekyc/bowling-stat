@@ -2,7 +2,7 @@ import { screen, render } from "@testing-library/react";
 import "@testing-library/jest-dom";
 
 import BowlerStatPage from "../index";
-import { Router } from "react-router";
+import { MemoryRouter } from "react-router";
 import { Provider } from "react-redux";
 import { mockInitialState } from "../../../helpers/__test__/test-utlis";
 import TeamApp from "../../team/Team";
@@ -10,17 +10,13 @@ import TeamApp from "../../team/Team";
 describe("Render Bowler Stat Page", () => {
   it("Render Bowler Stat - All", () => {
     render(
-      <Router
-        location={{
-          pathname: "/bowlers/all",
-        }}
-      >
+      <MemoryRouter initialEntries={["/bowlers/all"]}>
         <Provider store={mockInitialState}>
           <TeamApp>
             <BowlerStatPage />
           </TeamApp>
         </Provider>
-      </Router>
+      </MemoryRouter>
     );
     const page = screen.getByTestId("page-layout");
     expect(page).toBeInTheDocument();
@@ -33,17 +29,18 @@ describe("Render Bowler Stat Page", () => {
   });
   it("Render Bowler Stat - individual bowler", () => {
     render(
-      <Router
-        location={{
-          pathname: "/bowlers/bowler-a",
-        }}
+      <MemoryRouter
+        initialEntries={["/bowlers/bowler-a"]}
+        // location={{
+        //   pathname: "/bowlers/bowler-a",
+        // }}
       >
         <Provider store={mockInitialState}>
           <TeamApp>
             <BowlerStatPage />
           </TeamApp>
         </Provider>
-      </Router>
+      </MemoryRouter>
     );
     const page = screen.getByTestId("page-layout");
     expect(page).toBeInTheDocument();

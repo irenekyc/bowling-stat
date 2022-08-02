@@ -2,7 +2,7 @@ import { screen, render } from "@testing-library/react";
 import "@testing-library/jest-dom";
 
 import EventStatPage from "../index";
-import { Router } from "react-router";
+import { MemoryRouter } from "react-router";
 import { Provider } from "react-redux";
 import { mockDataState } from "../../../helpers/__test__/test-utlis";
 import TeamApp from "../../team/Team";
@@ -10,17 +10,13 @@ import TeamApp from "../../team/Team";
 describe("Render Event Stat Page", () => {
   it("Render Event Stat - All", () => {
     render(
-      <Router
-        location={{
-          pathname: "/events/all--2021-2022",
-        }}
-      >
+      <MemoryRouter initialEntries={["/events/all--2021-2022"]}>
         <Provider store={mockDataState}>
           <TeamApp>
             <EventStatPage />
           </TeamApp>
         </Provider>
-      </Router>
+      </MemoryRouter>
     );
     const page = screen.getByTestId("page-layout");
     expect(page).toBeInTheDocument();
@@ -38,17 +34,13 @@ describe("Render Event Stat Page", () => {
 
   it("Render Event Stat - individual event", () => {
     render(
-      <Router
-        location={{
-          pathname: "/events/event--2021-2022",
-        }}
-      >
+      <MemoryRouter initialEntries={["/events/event--2021-2022"]}>
         <Provider store={mockDataState}>
           <TeamApp>
             <EventStatPage />
           </TeamApp>
         </Provider>
-      </Router>
+      </MemoryRouter>
     );
     const page = screen.getByTestId("page-layout");
     expect(page).toBeInTheDocument();
@@ -66,17 +58,13 @@ describe("Render Event Stat Page", () => {
 
   it("Render Event Stat - No such event", () => {
     render(
-      <Router
-        location={{
-          pathname: "/events/some-random-event",
-        }}
-      >
+      <MemoryRouter initialEntries={["/events/some-random-event"]}>
         <Provider store={mockDataState}>
           <TeamApp>
             <EventStatPage />
           </TeamApp>
         </Provider>
-      </Router>
+      </MemoryRouter>
     );
     const page = screen.getByTestId("page-layout");
     expect(page).toBeInTheDocument();

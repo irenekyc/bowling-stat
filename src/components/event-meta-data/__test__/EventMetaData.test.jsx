@@ -10,12 +10,7 @@ describe("Event Meta Data", () => {
     expect(eventMetaData).toBeNull();
   });
   it("Render Event Meta Data with meta data", () => {
-    const sampleEventData = {
-      name: "event name",
-      location: "location",
-      startDate: "start_date",
-      endDate: "end_date",
-    };
+    const sampleEventData = "event_name";
     render(<EventMetaData metaData={sampleEventData} />);
     const eventMetaData = screen.queryByTestId("event-meta-data");
     expect(eventMetaData).not.toBeNull();
@@ -23,16 +18,12 @@ describe("Event Meta Data", () => {
       "event-meta-data-location"
     );
     const eventMetaDataDate = screen.queryByTestId("event-meta-data-date");
-    expect(eventMetaDataLocation).toHaveTextContent(sampleEventData.location);
-    expect(eventMetaDataDate).toHaveTextContent(
-      `${sampleEventData.startDate} - ${sampleEventData.endDate}`
-    );
+    expect(eventMetaDataLocation).toBeNull();
+    expect(eventMetaDataDate).toBeNull();
   });
 
   it("Render Event Meta Data with meta data all", () => {
-    const sampleEventData = {
-      name: "all",
-    };
+    const sampleEventData = "all";
     render(<EventMetaData metaData={sampleEventData} />);
     const eventMetaData = screen.queryByTestId("event-meta-data");
     expect(eventMetaData).toBeNull();

@@ -7,16 +7,7 @@ export const mockInitialState = mockStore({ team: initialTeamState });
 export const mockDataState = mockStore({
   team: {
     bowlers: [],
-    events: [
-      {
-        id: "all--2021-2022",
-        name: "All",
-      },
-      {
-        id: "event--2021-2022",
-        name: "Event",
-      },
-    ],
+    events: ["all--2021-2022", "event--2021-2022"],
     statistic: [],
     summaryStatistic: [],
     team: undefined,

@@ -7,42 +7,23 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import FormSubmissionConfirmationModal from "../../widgets/form-submission-confirmation-modal";
 import InfoIcon from "../../components/icons/InfoIcon";
-
-const NEW_TEAM = "NEW_TEAM";
-const NORMAL_GAME = "NORMAL_GAME";
-const CHAMPIONSHIP = "CHAMPIONSHIP";
-const initFormData = {
-  team_name: "",
-  team_id: "",
-  file: null,
-  event_name: "",
-  location: "",
-  season: "2021-2022",
-  num_of_team_games: 0,
-  num_of_baker_games: 0,
-  baker_match_play_1: 0,
-  baker_match_play_2: 0,
-  baker_match_play_3: 0,
-  num_of_baker_games_per_block: 5,
-  game_pattern: NORMAL_GAME,
-  champ_1_team_games: 0,
-  champ_1_baker_games: 0,
-  champ_1_baker_mp_games: 0,
-  champ_2_team_games: 0,
-  champ_2_baker_games: 0,
-  champ_2_baker_mp_games: 0,
-  champ_3_team_games: 0,
-  champ_3_baker_games: 0,
-  champ_3_baker_mp_games: 0,
-  num_of_championship_matches: 1,
-};
+import {
+  NORMAL_GAME,
+  CHAMPIONSHIP,
+  INIT_FORM_DATA,
+  NEW_TEAM,
+} from ".././../constants";
+import {
+  validateFormField,
+  validateFormData,
+} from "../../helpers/validateForm";
 
 const UploadPage = () => {
   const [teams, setTeams] = useState([]);
   const [showTeamNameInput, setShowTeamNameInput] = useState(false);
   const [showBakerMPInput, setShowBakerMPInput] = useState(false);
   const [formData, setFormData] = useState({
-    ...initFormData,
+    ...INIT_FORM_DATA,
   });
   const [errorMessage, setErrorMessage] = useState({
     team_name: "",
@@ -68,7 +49,7 @@ const UploadPage = () => {
       ...formData,
       file: e.target.files[0] || null,
     });
-    const error = validateField("file", e.target.files[0]);
+    const error = validateFormField("file", e.target.files[0]);
     setErrorMessage({
       ...errorMessage,
       file: error,
@@ -87,27 +68,14 @@ const UploadPage = () => {
     fetchTeam();
   }, []);
 
-  const validateFormData = () => {
-    let error = {};
-    Object.entries(formData).forEach(([key, value]) => {
-      error = {
-        ...error,
-        [key]: validateField(key, value),
-      };
-    });
-
-    setErrorMessage({
-      ...errorMessage,
-      ...error,
-    });
-
-    return Object.values(error).filter((value) => value !== "").length;
-  };
-
   const submitHandler = (e) => {
     e.preventDefault();
-    const num_of_errors = validateFormData();
-    if (num_of_errors === 0) {
+    const { num_error, errors } = validateFormData(formData);
+    setErrorMessage({
+      ...errorMessage,
+      ...errors,
+    });
+    if (num_error === 0) {
       setShowConfirmation(true);
     }
   };
@@ -140,34 +108,6 @@ const UploadPage = () => {
       season: selectedSeason,
     });
   };
-  const validateField = (field, value) => {
-    switch (field) {
-      case "team_name":
-      case "event_name":
-      case "location":
-        if (value === "") {
-          return `Please input ${field.split("_").join(" ")}`;
-        } else {
-          return "";
-        }
-
-      case "file":
-        if (!value) {
-          return "Please upload the event CSV";
-        } else {
-          return "";
-        }
-
-      // case "num_of_baker_games":
-      //   if (value === 0) {
-      //     return "Number cannot be zero";
-      //   } else {
-      //     return "";
-      //   }
-      default:
-        return "";
-    }
-  };
 
   const inputOnChangeHandler = (e) => {
     const field = e.target.id;
@@ -176,7 +116,7 @@ const UploadPage = () => {
     if (value < 0) return;
 
     if (errorMessage[field] !== "") {
-      const error = validateField(field, value);
+      const error = validateFormField(field, value);
       setErrorMessage({ ...errorMessage, [field]: error });
     }
 
@@ -215,8 +155,8 @@ const UploadPage = () => {
   };
 
   return (
-    <div className="bd-page--upload">
-      <h3>Upload Event Data</h3>
+    <div className="bd-page--upload" data-testid="upload-page">
+      <h3 data-testid="upload-page-heading">Upload Event Data</h3>
       <p>Please fill in below information for your event.</p>
 
       <Form>
