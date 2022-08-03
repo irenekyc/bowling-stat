@@ -3,14 +3,14 @@ import TeamHome from "../team-home";
 import EventDetails from "../event-details";
 import BowlerStat from "../bowler-stat";
 
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../../store";
 import { useEffect } from "react";
 import { fetchTeamData } from "../../redux/team/actions";
 
 const TeamApp = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const { teamId } = useParams();
-  const { team } = useSelector((state) => state.team);
+  const { team } = useAppSelector((state) => state.team);
 
   useEffect(() => {
     if (!teamId) return;

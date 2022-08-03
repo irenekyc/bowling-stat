@@ -1,0 +1,6 @@
+{
+  "team_id": "mock_team",
+  "team_name": "Mock Team",
+  "bowlers": "bowler1,bowler2,bowler3",
+  "events": "event-1,event-2,event-3"
+}
