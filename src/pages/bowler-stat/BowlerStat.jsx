@@ -1,4 +1,4 @@
-import { useParams, useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { transformSlugToName } from "../../helpers/convertSlugAndName";
 import IndividualData from "../../widgets/individual-data";

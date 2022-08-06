@@ -3,6 +3,8 @@ import axios from "axios";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { NORMAL_GAME } from "../../constants";
+import BakerMatchPlayDistribution from "../../components/baker-match-play-distribution";
+import ChampionshipDataConfirmation from "../../components/championship-data-confirmation";
 
 const FormSubmissionConfirmationModal = ({
   formData,
@@ -38,8 +40,6 @@ const FormSubmissionConfirmationModal = ({
       // error
     }
   };
-
-  // TODO: EVENT TYPE: Regular Game OR Championship
   return (
     <Modal show={show}>
       {showSuccessMessage ? (
@@ -98,10 +98,11 @@ const FormSubmissionConfirmationModal = ({
                     Each Baker Block has {formData.num_of_baker_games_per_block}{" "}
                     games
                   </li>
-                  {/* TODO: Baker Match Play distributions */}
+                  <BakerMatchPlayDistribution formData={formData} />
                 </>
               ) : (
-                <></>
+                // Championship data
+                <ChampionshipDataConfirmation formData={formData} />
               )}
 
               <li data-testid="file-upload-confirmation-modal-file">

@@ -1,4 +1,4 @@
-import { screen, render, fireEvent } from "@testing-library/react";
+import { screen, render, fireEvent, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
 
 import FormSubmissionConfirmationModal from "../index";
@@ -161,5 +161,25 @@ describe("Render Form Submission Modal", () => {
     );
     fireEvent.click(backButton, { cancellable: true, bubble: true });
     expect(mockBackToForm).toBeCalled();
+  });
+
+  it("Render Form Submission Modal - submit", () => {
+    render(
+      <FormSubmissionConfirmationModal
+        formData={championshipGameData}
+        backToForm={mockBackToForm}
+        show={true}
+        formSubmit={mockFormSubmit}
+      />
+    );
+
+    const submitButton = screen.getByTestId(
+      "file-upload-confirmation-modal-button-confirm"
+    );
+    fireEvent.click(submitButton, { cancellable: true, bubble: true });
+    waitFor(() => {
+      const successfulModal = screen.getByTestId("upload-success-modal-header");
+      expect(successfulModal).toBeInTheDocument();
+    });
   });
 });

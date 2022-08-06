@@ -44,6 +44,18 @@ const handlers = [
       return res(ctx.json({}));
     }
   ),
+  rest.post(
+    "https://fierce-plateau-64816.herokuapp.com/teams/*/upload",
+    (_, res, ctx) => {
+      return res(
+        ctx.json({
+          status: "updated",
+          team_id: "team-test-update",
+          event_id: "casino-classic--2021-2022",
+        })
+      );
+    }
+  ),
 ];
 
 export const server = setupServer(...handlers);

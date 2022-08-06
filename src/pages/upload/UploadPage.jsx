@@ -17,6 +17,7 @@ import {
   validateFormField,
   validateFormData,
 } from "../../helpers/validateForm";
+import FormGroup from "../../components/form-group";
 
 const UploadPage = () => {
   const [teams, setTeams] = useState([]);
@@ -128,7 +129,7 @@ const UploadPage = () => {
 
   const resetForm = () => {
     setShowConfirmation(false);
-    setFormData(initFormData);
+    setFormData(INIT_FORM_DATA);
   };
 
   const toggleGamePattern = (game_pattern) => {
@@ -160,15 +161,18 @@ const UploadPage = () => {
       <p>Please fill in below information for your event.</p>
 
       <Form>
-        <Form.Group className="my-3">
-          <Form.Label className="bd-page--upload__input-title">
-            <span>Team Name</span>
-            <InfoIcon withTooltip={"Your team name e.g QU Women"} />
-          </Form.Label>
-          <Form.Select onChange={teamNameChange}>
+        <FormGroup
+          label={{ label: "Team Name", tooltip: "Your team name e.g QU Women" }}
+          errorMessage={errorMessage.team_name}
+        >
+          <Form.Select
+            onChange={teamNameChange}
+            data-testid="select-team-input"
+          >
             <option value="">Select team</option>
             {teams.map((team) => (
               <option
+                data-testid="existing-team-option"
                 value={team.team_id + "__" + team.team_name}
                 key={team.team_id}
               >
@@ -177,9 +181,9 @@ const UploadPage = () => {
             ))}
             <option value={NEW_TEAM}>Add my team</option>
           </Form.Select>
-
           {showTeamNameInput && (
             <Form.Control
+              data-testid="input-new-team"
               className="mt-2"
               type="text"
               placeholder="Team Name E.g.QU Women / QU Men"
@@ -188,44 +192,33 @@ const UploadPage = () => {
               onChange={inputOnChangeHandler}
             />
           )}
-          {
-            <span className={"bd-form__inputError"}>
-              {errorMessage.team_name || ""}
-            </span>
-          }
-        </Form.Group>
-        <Form.Group className="my-3">
-          <Form.Label className="bd-page--upload__input-title">
-            <span>Event Name</span>
-            <InfoIcon
-              withTooltip={
-                "The name of the event you are uploading. E.g Flyer Classic"
-              }
-            />
-          </Form.Label>
+        </FormGroup>
+        <FormGroup
+          label={{
+            label: "Event Name",
+            tooltip:
+              "The name of the event you are uploading. E.g Flyer Classic",
+          }}
+          errorMessage={errorMessage.event_name}
+        >
           <Form.Control
+            data-testid="input-event-name"
             type="text"
             placeholder="e.g. Flyer Classic"
             id="event_name"
             value={formData.event_name}
             onChange={inputOnChangeHandler}
           />
-          {
-            <span className={"bd-form__inputError"}>
-              {errorMessage.event_name || ""}
-            </span>
-          }
-        </Form.Group>
-        <Form.Group className="mt-3">
-          <Form.Label className="bd-page--upload__input-title">
-            <span>Event Location</span>
-            <InfoIcon
-              withTooltip={
-                "The name of the bowling center of this event take place E.g North Rock Lanes"
-              }
-            />
-          </Form.Label>
+        </FormGroup>
+        <FormGroup
+          label={{
+            label: "Event Location",
+            tooltip:
+              "The name of the bowling center of this event take place E.g North Rock Lanes",
+          }}
+        >
           <Form.Control
+            data-testid="input-event-location"
             type="text"
             placeholder="Event Location E.g St Clair Bowl"
             id="location"
@@ -237,23 +230,28 @@ const UploadPage = () => {
               {errorMessage.location || ""}
             </span>
           }
-        </Form.Group>
-        <Form.Group className="mt-3">
-          <Form.Label className="bd-page--upload__input-title">
-            <span> Season </span>
-            <InfoIcon
-              withTooltip={"The season year of this event take place"}
-            />
-          </Form.Label>
-          <Form.Select onChange={seasonChange}>
+        </FormGroup>
+        <FormGroup
+          label={{
+            label: "Season",
+            tooltip: "The season year of this event take place",
+          }}
+        >
+          <Form.Select onChange={seasonChange} data-testid="select-season">
             <option value="2021-2022" defaultChecked>
               2021-2022
             </option>
           </Form.Select>
-        </Form.Group>
+        </FormGroup>
+
         <div className="bd-form__input-file-group mt-3">
           <p className="bd-page--upload__input-title">Upload Event Data:</p>
-          <input type="file" onChange={uploadFile} accept=".csv" />
+          <input
+            type="file"
+            onChange={uploadFile}
+            accept=".csv"
+            data-testid="upload-event-file"
+          />
           <small>Only CSV file is accepted</small>
           {
             <span className={"bd-form__inputError"}>
@@ -279,6 +277,7 @@ const UploadPage = () => {
               <Nav.Item>
                 <Nav.Link eventKey={NORMAL_GAME}>
                   <span
+                    data-testid="tab-regular-game"
                     className={`bd-form__tab ${
                       gamePattern === NORMAL_GAME
                         ? "bd-form__tab--active"
@@ -292,6 +291,7 @@ const UploadPage = () => {
               <Nav.Item>
                 <Nav.Link eventKey={CHAMPIONSHIP}>
                   <span
+                    data-testid="tab-championship"
                     className={`bd-form__tab ${
                       gamePattern === CHAMPIONSHIP
                         ? "bd-form__tab--active"
@@ -304,91 +304,79 @@ const UploadPage = () => {
               </Nav.Item>
             </Nav>
             <Tab.Content className="bd-page--upload__tab-container">
-              <Tab.Pane eventKey={NORMAL_GAME}>
-                <Form.Group className="mb-3">
-                  <Form.Label className="bd-page--upload__input-title--sub">
-                    <span> Number of Team Games</span>
-                    <InfoIcon
-                      withTooltip={"How many regular team game in this event?"}
-                    />
-                  </Form.Label>
+              <Tab.Pane
+                eventKey={NORMAL_GAME}
+                data-testid="content-regular-game"
+              >
+                <FormGroup
+                  label={{
+                    label: "Number of Team Games",
+                    tooltip: "How many regular team game in this event?",
+                  }}
+                  errorMessage={errorMessage.num_of_baker_games}
+                >
                   <Form.Control
                     id="num_of_team_games"
                     type="number"
                     placeholder="Number of team game"
                     onChange={inputOnChangeHandler}
                     value={formData.num_of_team_games}
+                    data-testid="regular-game-team-game"
                   />
-                  {
-                    <span className={"bd-form__inputError"}>
-                      {errorMessage.num_of_baker_games || ""}
-                    </span>
-                  }
-                </Form.Group>
-                <Form.Group className="mb-3">
-                  <Form.Label className="bd-page--upload__input-title--sub">
-                    <span> Number of Baker Games</span>
-                    <InfoIcon
-                      withTooltip={"How many normal baker game in this event?"}
-                    />
-                  </Form.Label>
+                </FormGroup>
+                <FormGroup
+                  label={{
+                    label: "Number of Baker Blocks",
+                    tooltip: "How many normal baker blocks in this event?",
+                  }}
+                  errorMessage={errorMessage.num_of_baker_games}
+                >
                   <Form.Control
                     id="num_of_baker_games"
                     type="number"
                     placeholder="Number of Baker Blocks or Matches"
                     onChange={inputOnChangeHandler}
                     value={formData.num_of_baker_games}
+                    data-testid="regular-game-baker-game"
                   />
-                  {
-                    <span className={"bd-form__inputError"}>
-                      {errorMessage.num_of_baker_games || ""}
-                    </span>
-                  }
-                </Form.Group>
-                <Form.Group className="mb-3">
-                  <Form.Label className="bd-page--upload__input-title--sub">
-                    <span> Number of Games per Baker Blocks or match</span>
-                    <InfoIcon
-                      withTooltip={
-                        "How many baker games for each baker game block"
-                      }
-                    />
-                  </Form.Label>
+                </FormGroup>
+                <FormGroup
+                  label={{
+                    label: "Number of Games per Baker Blocks or match",
+                    tooltip: "How many baker games for each baker game block",
+                  }}
+                  errorMessage={errorMessage.num_of_baker_game_per_block}
+                >
                   <Form.Control
                     id="num_of_baker_games_per_block"
                     type="number"
                     placeholder="Number of Baker Blocks or Matches"
                     onChange={inputOnChangeHandler}
                     value={formData.num_of_baker_games_per_block}
+                    data-testid="regular-game-baker-game-per-block"
                   />
-                  {
-                    <span className={"bd-form__inputError"}>
-                      {errorMessage.num_of_baker_game_per_block || ""}
-                    </span>
-                  }
-                </Form.Group>
-                <Form.Group className="mb-3">
-                  <div className="bd-page--upload__input-title--sub">
-                    <span>
+                </FormGroup>
+                <FormGroup
+                  label={{
+                    label: (
                       <Form.Check
+                        data-testid="regular-game-baker-mp-checkbox"
                         type="checkbox"
                         label="This Event has Baker Match Play"
                         onChange={onCheckBakerMP}
                       />
-                    </span>
-                    <InfoIcon
-                      withTooltip={
-                        "If there is baker match play in this event, please check this box. And indicate the baker match play games"
-                      }
-                    />
-                  </div>
-                </Form.Group>
+                    ),
+                    tooltip:
+                      "If there is baker match play in this event, please check this box. And indicate the baker match play games",
+                  }}
+                ></FormGroup>
                 <div className="bd-form__bakermp-row">
                   {showBakerMPInput &&
                     bakerMPInput.map((_, index) => (
                       <Form.Group
                         className="bd-form__bakermp-row__input-group mb-3"
                         key={`baker_mp_${index}`}
+                        data-testid="regular-game-baker-mp-input"
                       >
                         <Form.Label className="bd-page--upload__input-title--sub">
                           <span> Baker Match Play {index + 1}</span>
@@ -420,6 +408,7 @@ const UploadPage = () => {
                               e.preventDefault();
                               setBakerMPInput([...bakerMPInput, 0]);
                             }}
+                            data-testid="regular-game-baker-mp-input-add-button"
                           >
                             +
                           </button>
@@ -433,6 +422,7 @@ const UploadPage = () => {
                               newArr.pop();
                               setBakerMPInput(newArr);
                             }}
+                            data-testid="regular-game-baker-mp-input-delete-button"
                           >
                             -
                           </button>
@@ -446,9 +436,15 @@ const UploadPage = () => {
                   }
                 </div>
               </Tab.Pane>
-              <Tab.Pane eventKey={CHAMPIONSHIP}>
+              <Tab.Pane
+                eventKey={CHAMPIONSHIP}
+                data-testid="content-championship"
+              >
                 {championshipGame.map((gameNo, index) => (
-                  <div key={`championship_game_${gameNo}_input`}>
+                  <div
+                    key={`championship_game_${gameNo}_input`}
+                    data-testid="championship-game-input-row"
+                  >
                     <h3>Match #{gameNo}</h3>{" "}
                     {index === championshipGame.length - 1 && index !== 0 && (
                       <button id={index} onClick={removeMatchData}>
@@ -466,6 +462,7 @@ const UploadPage = () => {
                         id={`champ_${gameNo}_team_games`}
                         value={formData[`champ_${gameNo}_team_games`]}
                         onChange={inputOnChangeHandler}
+                        data-testid={`championship-match-${gameNo}-team-games`}
                       />
                     </Form.Group>
                     <Form.Group className="mb-3">
@@ -478,6 +475,7 @@ const UploadPage = () => {
                         id={`champ_${gameNo}_baker_games`}
                         value={formData[`champ_${gameNo}_baker_games`]}
                         onChange={inputOnChangeHandler}
+                        data-testid={`championship-match-${gameNo}-baker-games`}
                       />
                     </Form.Group>
                     <Form.Group className="mb-3">
@@ -490,6 +488,7 @@ const UploadPage = () => {
                         id={`champ_${gameNo}_baker_mp_games`}
                         value={formData[`champ_${gameNo}_baker_mp_games`]}
                         onChange={inputOnChangeHandler}
+                        data-testid={`championship-match-${gameNo}-baker-mp-games`}
                       />
                     </Form.Group>
                   </div>
@@ -508,6 +507,7 @@ const UploadPage = () => {
                       ].length,
                     });
                   }}
+                  data-testid="championship-add-match-button"
                 >
                   + Add another match
                 </button>
@@ -529,6 +529,7 @@ const UploadPage = () => {
                       num_of_championship_matches: 1,
                     });
                   }}
+                  data-testid="championship-reset-match-button"
                 >
                   Reset
                 </button>
@@ -536,7 +537,11 @@ const UploadPage = () => {
             </Tab.Content>
           </Tab.Container>
         </div>
-        <Button variant="primary" onClick={submitHandler}>
+        <Button
+          variant="primary"
+          onClick={submitHandler}
+          data-testid="submit-form-button"
+        >
           Submit
         </Button>
       </Form>
